@@ -21,6 +21,7 @@ public class ZYexception implements HandlerExceptionResolver {
 
     // 判断是否是Ajax请求
     private boolean isAjax(HttpServletRequest request) {
+        String  a = "dfdfd";
         return "XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"));
     }
 }
