@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.zy.springframework</groupId>
-  <artifactId>zy-springmvc</artifactId>
+  <artifactId>zy-myspringmvc</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>zy-springmvc</name>
+  <name>zy-myspringmvc</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
