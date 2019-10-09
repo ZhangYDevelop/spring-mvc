@@ -85,7 +85,6 @@ public class LoginController {
                 String name = (String)session.getAttributeNames().nextElement();
                 session.removeAttribute(name);
             }
-
             response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expires", 0L);

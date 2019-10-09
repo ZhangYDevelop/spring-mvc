@@ -7,6 +7,11 @@
             http://www.springframework.org/schema/security
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
+    <!-- 登录页面不拦截 -->
+    <security:http pattern="/login" security="none" />
+    <!-- 资源文件不拦截 -->
+    <security:http pattern="/resources/**" security="none" />
+
 
    <security:http>
        <security:http-basic/>
