@@ -8,6 +8,7 @@ import com.zy.springmvc.service.UserService;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class LoginController {
 
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -51,7 +53,7 @@ public class LoginController {
      * @Controller 是视图解析器的，即Return返回的是视图，即jsp或者html页面的。
      * 如果返回数据json、xml等，需要在对应的方法上加上@ResponseBody注解。
      */
-    //@ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response, @RequestParam Map map) throws IOException {
         String userName = (String) map.get("userName");

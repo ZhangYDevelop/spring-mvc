@@ -17,15 +17,17 @@ public class MySecurityFilter   extends AbstractSecurityInterceptor implements
         Filter {
 
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
-    @Override
+
     public void init(FilterConfig filterConfig) throws ServletException {
+        // TODO Auto-generated method stub
 
     }
 
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        FilterInvocation fi = new FilterInvocation(servletRequest, servletResponse, filterChain);
+    public void doFilter(ServletRequest request, ServletResponse response,
+                         FilterChain chain) throws IOException, ServletException {
+        FilterInvocation fi = new FilterInvocation(request, response, chain);
         invoke(fi);
+
     }
 
     private void invoke(FilterInvocation fi) throws IOException, ServletException {
@@ -42,26 +44,35 @@ public class MySecurityFilter   extends AbstractSecurityInterceptor implements
             super.afterInvocation(token, null);
         }
     }
-    @Override
+
+    /**
+     * @return the securityMetadataSource
+     */
+    public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
+        return securityMetadataSource;
+    }
+
+    /**
+     * @param securityMetadataSource the securityMetadataSource to set
+     */
+    public void setSecurityMetadataSource(
+            FilterInvocationSecurityMetadataSource securityMetadataSource) {
+        this.securityMetadataSource = securityMetadataSource;
+    }
+
     public void destroy() {
+        // TODO Auto-generated method stub
 
     }
 
     @Override
     public Class<?> getSecureObjectClass() {
-        return null;
+        //下面的MyAccessDecisionManager的supports方面必须放回true,否则会提醒类型错误
+        return FilterInvocation.class;
     }
 
     @Override
     public SecurityMetadataSource obtainSecurityMetadataSource() {
-        return null;
-    }
-
-    public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
-        return securityMetadataSource;
-    }
-
-    public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource securityMetadataSource) {
-        this.securityMetadataSource = securityMetadataSource;
+        return this.securityMetadataSource;
     }
 }

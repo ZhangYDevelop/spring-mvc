@@ -25,6 +25,7 @@
                 type:'post',
                 dataType:'json',
                 success:function(data){
+                    debugger
                     if(data.success){
                         $(".login_msg").html("登录成功正在跳转，请稍候...");
                         window.location='<%=basePath%>api/platform/main';

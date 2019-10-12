@@ -17,15 +17,11 @@
         </param-value>
     </context-param>
 
-    <!--spirng security 配置-->
-    <!--<filter>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+
+    <!-- 自定义session侦听 -->
+    <listener>
+        <listener-class>com.zy.springmvc.session.MySessionListener</listener-class>
+    </listener>
 
     <!--启动Springmvc 配置-->
     <servlet>
