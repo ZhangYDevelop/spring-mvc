@@ -38,7 +38,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 <!-- Google Font -->
 <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+      href="<%=contextPath%>/resources/css/css.css">
 
 <!-- jQuery 3 -->
 <script src="<%=contextPath%>/resources/js/jquery.min.js"></script>
@@ -77,5 +77,5 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/js/demo.js"></script>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script src="<%=contextPath%>/resources/js/html5shiv.min.js"></script>
+<script src="<%=contextPath%>/resources/js/respond.min.js"></script>
