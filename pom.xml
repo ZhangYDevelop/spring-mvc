@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zy.springframework</groupId>
-    <artifactId>zy-myspringmvc</artifactId>
+    <artifactId>spring-mvc</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>zy-myspringmvc</name>
+    <name>spring-mvc</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -179,7 +179,7 @@
     </dependencies>
 
     <build>
-        <finalName>zy-springmvc</finalName>
+        <finalName>spring-mvc</finalName>
         <resources>
             <!--表示把java目录下的有关xml文件,properties文件编译/打包的时候放在resource目录下-->
             <resource>

@@ -7,17 +7,70 @@
             http://www.springframework.org/schema/security
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-    <!-- 登录页面不拦截 -->
-    <security:http pattern="/login" security="none" />
-    <!-- 资源文件不拦截 -->
-    <security:http pattern="/resources/**" security="none" />
+    <!--&lt;!&ndash; 登录页面不拦截 &ndash;&gt;-->
+    <!--<security:http pattern="/api/platform/login" security="none" />-->
+    <!--&lt;!&ndash; 资源文件不拦截 &ndash;&gt;-->
+    <!--<security:http pattern="/resources/**" security="none" />-->
+
+    <!--<security:http auto-config="false" use-expressions="true" entry-point-ref="myUrlEntryPoint">-->
+        <!--<security:logout logout-success-url="/api/platform/logout" />-->
+
+        <!--<security:session-management invalid-session-url="/api/platform/login?error=3"-->
+                            <!--session-fixation-protection="none">-->
+            <!--<security:concurrency-control max-sessions="1"-->
+                                 <!--error-if-maximum-exceeded="true" expired-url="/platform/home/login?error=2" />&lt;!&ndash; 阻止第二次登录 &ndash;&gt;-->
+        <!--</security:session-management>-->
+
+        <!--&lt;!&ndash; 登录过滤器 &ndash;&gt;-->
+        <!--<security:custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter"/>-->
 
 
-   <security:http>
-       <security:http-basic/>
-   </security:http>
+        <!--<security:custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>-->
 
-    <security:authentication-manager>
+        <!--&lt;!&ndash; 注销过滤器 &ndash;&gt;-->
+        <!--&lt;!&ndash; <custom-filter before="LOGOUT_FILTER" ref="logoutFilter"/> &ndash;&gt;-->
+    <!--</security:http>-->
 
-    </security:authentication-manager>
+    <!--&lt;!&ndash; 认证切入点，这里使用它的目的是保证当用户登录之前就访问前后台时，会跳转到不同的登录页面 &ndash;&gt;-->
+    <!--<bean id ="myUrlEntryPoint" class="com.zy.springmvc.security.UrlEntryPoint"></bean>-->
+
+    <!--<bean id="securityFilter" class="com.zy.springmvc.security.MySecurityFilter">-->
+        <!--&lt;!&ndash; 用户拥有的权限 &ndash;&gt;-->
+        <!--<property name="authenticationManager" ref="myAuthenticationManager" />-->
+        <!--&lt;!&ndash; 用户是否拥有所请求资源的权限 &ndash;&gt;-->
+        <!--<property name="accessDecisionManager" ref="myAccessDecisionManager" />-->
+        <!--&lt;!&ndash; 资源与权限对应关系 &ndash;&gt;-->
+        <!--<property name="securityMetadataSource" ref="mySecurityMetadataSource" />-->
+    <!--</bean>-->
+
+    <!--<bean id="loginFilter" class="com.zy.springmvc.security.UserNamePasswarkAuthenticationFilter">-->
+
+        <!--<property name="usernameParameter" value="userName"></property>-->
+        <!--<property name="passwordParameter" value="userPwd"></property>-->
+        <!--&lt;!&ndash;<property name="validateCodeParameter" value="userCode"></property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="openValidateCode" value="true" />&ndash;&gt;-->
+        <!--<property name="filterProcessesUrl" value="/api/platform/login" />-->
+        <!--<property name="authenticationFailureHandler" ref="myFailureHandler"/>-->
+        <!--<property name="authenticationSuccessHandler" ref="mySuccessHandler"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="myAccessDecisionManager" class="com.zy.springmvc.security.MyAccessDecisionManager"></bean>-->
+    <!--<bean id="mySecurityMetadataSource" class="com.zy.springmvc.security.MySecurityMetadataSource"></bean>-->
+    <!--<bean id="myUserDetailsServiceImpl" class="com.zy.springmvc.security.UserDetailsServiceImpl"></bean>-->
+
+    <!--&lt;!&ndash; 登录成功业务处理 &ndash;&gt;-->
+    <!--<bean id="mySuccessHandler" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler">-->
+        <!--<property name="url" value="/index"></property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 登录失败业务处理 &ndash;&gt;-->
+    <!--<bean id="myFailureHandler" class="com.zy.springmvc.security.MyAuthenticationFailureHandler"/>-->
+
+    <!--<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />-->
+
+    <!--<security:authentication-manager alias="myAuthenticationManager">-->
+        <!--<security:authentication-provider user-service-ref="myUserDetailsServiceImpl">-->
+            <!--<security:password-encoder ref="passwordEncoder" hash="md5"></security:password-encoder>-->
+        <!--</security:authentication-provider>-->
+    <!--</security:authentication-manager>-->
 </beans>

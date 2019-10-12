@@ -7,7 +7,23 @@ package com.zy.springmvc.entity;
 public class LoginUser {
     private  String id;
     private  String userName;
+    private  String passWard;
     private  String userAddres;
+
+    public LoginUser(String id, String userName, String passWard, String userAddres) {
+        this.id = id;
+        this.userName = userName;
+        this.passWard = passWard;
+        this.userAddres = userAddres;
+    }
+
+    public String getPassWard() {
+        return passWard;
+    }
+
+    public void setPassWard(String passWard) {
+        this.passWard = passWard;
+    }
 
     public String getId() {
         return id;
@@ -38,6 +54,7 @@ public class LoginUser {
         return "LoginUser{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
+                ", passWard='" + passWard + '\'' +
                 ", userAddres='" + userAddres + '\'' +
                 '}';
     }
