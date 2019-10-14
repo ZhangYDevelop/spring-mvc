@@ -1,7 +1,7 @@
 package com.zy.springmvc.service;
 
 import com.alibaba.fastjson.JSON;
-import com.zy.springmvc.entity.OperateLog;
+import com.zy.springmvc.domain.OperateLog;
 import org.springframework.stereotype.Service;
 
 /**

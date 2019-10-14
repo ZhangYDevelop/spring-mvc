@@ -23,7 +23,7 @@ public class UrlEntryPoint  implements AuthenticationEntryPoint {
             targetUrl = "/admin/login.do";
         }else{
             //未登录而访问前台受控资源时，跳转到前台登录页面
-            targetUrl = "/platform/home/login";
+            targetUrl = "/api/platform/login";
         }
 
         targetUrl = httpServletRequest.getContextPath() + targetUrl;

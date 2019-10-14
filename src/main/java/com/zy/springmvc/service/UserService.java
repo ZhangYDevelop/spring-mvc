@@ -1,17 +1,13 @@
 package com.zy.springmvc.service;
 
 import com.zy.springmvc.common.Consts;
-import com.zy.springmvc.entity.LoginUser;
-import com.zy.springmvc.entity.Result;
-import org.springframework.security.core.userdetails.User;
+import com.zy.springmvc.domain.LoginUser;
+import com.zy.springmvc.domain.Result;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Author zhangy
@@ -19,7 +15,7 @@ import java.util.Map;
  **/
 @Service
 public class UserService {
-    public Result updateForlogin(HttpServletRequest request, HttpServletResponse response, String userName, String userPwd, String userCode) {
+    public Result updateForlogin(HttpServletRequest request, HttpServletResponse response, String userName, String userPwd) {
       Result result = new Result();
        // 将用户信息存入session
         HttpSession session = request.getSession();

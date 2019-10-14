@@ -16,4 +16,9 @@ public class SysUserController {
     public ModelAndView getUserList() {
         return new ModelAndView("platform/user/userlist");
     }
+
+    @RequestMapping("/add")
+    public ModelAndView addUser() {
+        return new ModelAndView("platform/user/add");
+    }
 }

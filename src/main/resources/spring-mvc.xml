@@ -20,7 +20,7 @@
     <!-- 静态资源访问 -->
     <mvc:resources location="/resources/" mapping="/resources/**" />
 
-    <!--<mvc:view-controller path="/" view-name="main"/>-->
+    <mvc:view-controller path="/" view-name="main"/>
 
     <!--<mvc:interceptors>-->
         <!--&lt;!&ndash;<mvc:interceptor>&ndash;&gt;-->
@@ -60,7 +60,7 @@
     <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
 
     <!--&lt;!&ndash; 定义Spring描述Bean的范围  &ndash;&gt;-->
-    <context:component-scan base-package="com.zy.springmvc.*" />
+    <context:component-scan base-package="com.zy.springmvc.controller.*,com.zy.springmvc.service" />
     <!--<context:component-scan base-package="com.zy.springmvc.service" />-->
 
     <!--&lt;!&ndash;开启注解扫描包&ndash;&gt;-->

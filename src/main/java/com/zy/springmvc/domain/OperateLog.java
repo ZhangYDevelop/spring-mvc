@@ -1,4 +1,4 @@
-package com.zy.springmvc.entity;
+package com.zy.springmvc.domain;
 
 import java.io.Serializable;
 import java.util.Date;

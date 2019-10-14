@@ -21,6 +21,7 @@
         function  login() {
             $.ajax({
                 url:'<%=basePath%>api/platform/login',
+
                 data: {username:$("#username").val(), password:$("#password").val()},
                 type:'post',
                 dataType:'json',
@@ -46,6 +47,7 @@
     </script>
 </head>
 <body id = "loginBody">
+
       <div class="container">
           <div class="form row" >
               <div class="form-horizontal col-md-offset-3" id="login_form">

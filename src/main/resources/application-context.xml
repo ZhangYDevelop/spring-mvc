@@ -11,5 +11,38 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
+    <!--读取jdbc.properties配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--配置连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="name" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.passward}"/>
+        <property name="driverClassName" value="${jdbc.driverclass}"/>
+        <property name="maxActive" value="10"/>
+        <property name="maxWait" value="3000"/>
+    </bean>
+
+    <!--Mybatis 整合spring-->
+    <bean id ="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--别名扫描-->
+        <property name="typeAliasesPackage"  value="com.zy.springmvc.domain"/>
+    </bean>
+
+    <!--mapper 接口扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zy.springmvc.mapper"/>
+    </bean>
+
+    <!--事物配置-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--开启事物注解-->
+    <tx:annotation-driven/>
+
 
 </beans>

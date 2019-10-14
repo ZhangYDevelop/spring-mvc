@@ -1,6 +1,6 @@
 package com.zy.springmvc.common;
 
-import com.zy.springmvc.entity.LoginUser;
+import com.zy.springmvc.domain.LoginUser;
 
 import java.util.HashMap;
 import java.util.Map;
