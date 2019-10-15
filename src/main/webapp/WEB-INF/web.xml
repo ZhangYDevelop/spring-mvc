@@ -15,12 +15,8 @@
 
     <!--log4j2-->
     <context-param>
-        <param-name>log4jConfiguration</param-name>
+        <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:log4j.xml</param-value>
-    </context-param>
-    <context-param>
-        <param-name>log4jRefreshInterval</param-name>
-        <param-value>60000</param-value>
     </context-param>
 
     <!--启动Spring-->
@@ -29,8 +25,14 @@
     </listener>
 
 
+    <!--logback 监听-->
     <listener>
-        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            org.springframework.web.util.IntrospectorCleanupListener
+        </listener-class>
     </listener>
 
 
@@ -83,8 +85,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
 
 
 </web-app>

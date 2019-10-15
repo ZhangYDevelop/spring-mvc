@@ -1,90 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- status=debug 可以查看log4j的装配过程 -->
-<configuration status="info">
-    <!-- 文件路径 -->
-    <properties>
-        <!--设置日志在硬盘上输出的目录${log4j:configParentLocation}使用此查找将日志文件放在相对于log4j配置文件的目录中-->
-        <property name="Log_Home">${web:rootDir}/logs</property>
+<configuration debug="true">
+    <!--定义日志文件存储地址，勿在logback的配置中使用相对路径-->
+    <property name="LOG_HOME" value="D:/var/log" />
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <!-- 按照每天生成日志文件 -->
+    <appender name="INFO"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/info/manage-remote-info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>16</MaxHistory>
+            <!--日志文件切割大小-->
+            <maxFileSize>20MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <appender name="WARN"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/warn/manage-remote-warn.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>24</MaxHistory>
+            <!--日志文件切割大小-->
+            <maxFileSize>20MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+    <appender name="ERROR"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/error/manage-remote-error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>32</MaxHistory>
+            <!--日志文件切割大小-->
+            <maxFileSize>20MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder"  level="TRACE" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor"  level="DEBUG" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
 
-    </properties>
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
-    <!--先定义所有的appender-->
-    <appenders>
-        <!--输出控制台的配置-->
-        <Console name="Console" target="SYSTEM_OUT">
-            <!--输出日志的格式
-            %L:：输出代码中的行号。
-            %M：输出产生日志信息的方法名。-->
-            <!--"%highlight{%d{HH:mm:ss.SSS} %-5level %logger{36}.%M() @%L - %msg%n}{FATAL=Bright Red, ERROR=Bright Magenta, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White}"-->
-
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36}.%M @%L :-> %msg%xEx%n"/>
-        </Console>
-
-        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <RollingFile name="RollingFileInfo" fileName="${Log_Home}/info.${date:yyyy-MM-dd}.log" immediateFlush="true"
-                     filePattern="${Log_Home}/$${date:yyyy-MM}/info-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36}.%M @%L :-> %msg%xEx%n"/>
-            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
-            <filters>
-                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
-            </filters>
-            <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-                <SizeBasedTriggeringPolicy size="10MB"/>
-            </Policies>
-        </RollingFile>
-
-        <!--   这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFileDebug" fileName="${Log_Home}/debug.${date:yyyy-MM-dd}.log" immediateFlush="true"
-                     filePattern="${Log_Home}/$${date:yyyy-MM}/debug-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36}.%M @%L :-> %msg%xEx%n"/>
-            <filters>
-                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
-            </filters>
-            <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-                <SizeBasedTriggeringPolicy size="10MB"/>
-            </Policies>
-        </RollingFile>
-
-        <!-- 这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFileError" fileName="${Log_Home}/error.${date:yyyy-MM-dd}.log" immediateFlush="true"
-                     filePattern="${Log_Home}/$${date:yyyy-MM}/error-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36}.%M @%L :-> %msg%xEx%n"/>
-            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-                <SizeBasedTriggeringPolicy size="10MB"/>
-            </Policies>
-        </RollingFile>
-
-    </appenders>
-    <!--trace<debug<info<warn<error<fatal-->
-    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
-    <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
-    <!--log4j的additivity属性： additivity它是 子Logger 是否继承 父Logger 的 输出源（appender） 的标志位。
-    具体说，默认情况下子Logger会继承父Logger的appender，也就是说子Logger会在父Logger的appender里输出。
-    若是additivity设为false，则子Logger只会在自己的appender里输出，而不会在父Logger的appender里输出。！-->
-    <!--<logger name="org" level="INFO" additivity="false" ></logger>-->
-    <!--<logger name="org.springframework" level="INFO" additivity="false"></logger>-->
-    <!--<logger name="org.mybatis" level="INFO" additivity="false"></logger>-->
-    <loggers>
-        <logger name="org.springframework.core" level="info">
-        </logger>
-        <logger name="org.springframework.beans" level="info">
-        </logger>
-        <logger name="org.springframework.context" level="info">
-        </logger>
-        <logger name="org.springframework.web" level="info">
-        </logger>
-        <!--建立一个默认的root的logger-->
-        <root level="info">
-            <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileDebug"/>
-            <appender-ref ref="RollingFileError"/>
-        </root>
-    </loggers>
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="INFO" />
+        <appender-ref ref="WARN" />
+        <appender-ref ref="ERROR" />
+    </root>
 </configuration>
