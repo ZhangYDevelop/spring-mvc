@@ -1,6 +1,6 @@
 package com.zy.springmvc.common;
 
-import com.zy.springmvc.domain.LoginUser;
+import com.zy.springmvc.domain.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public class SessionUitl {
 
     private final  static Map sessionMap = new HashMap();
 
-    public  static void addSession(LoginUser user){
+    public  static void addSession(User user){
         synchronized (SessionUitl.class) {
             sessionMap.put("userId" , user.getId());
         }

@@ -6,7 +6,7 @@ package com.zy.springmvc.common;
  **/
 public class Consts {
 
-    public static final String LOGIN_USER_SESSION = "LoginUser";
+    public static final String LOGIN_USER_SESSION = "User";
     public static final String LOGIN_USER_LOCK = "LoginUserLock";
     public static final String LOGIN_OPERS_SESSION = "LoginOpers";
     public static final String LOGIN_RIGHTS_SESSION = "LoginRights";
