@@ -1,6 +1,6 @@
 package com.zy.springmvc.security;
 
-import com.zy.springmvc.domain.LoginUser;
+import com.zy.springmvc.domain.User;
 import com.zy.springmvc.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 //        org.springframework.security.core.userdetails.User userDetails = null;
 //
-//        LoginUser user = userService.getUserByUserName(account);
+//        User user = userService.getUserByUserName(account);
 //
 //        boolean enables = true; //true;
 //        boolean accountNonExpired = true;
@@ -44,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                getGrantedAuthorities(user));
 //        return userDetails;
 
-        User user = new User("zhangyu", "123", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User("zhangyu", "123", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
 
         return user;
     }
@@ -55,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @param user 系统用户对象
      * @return
      */
-    private Collection<GrantedAuthority> getGrantedAuthorities(LoginUser user) {
+    private Collection<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         /*List<Role> roles = roleMapper.selectByUserId(user.getId());
         if(roles != null) {

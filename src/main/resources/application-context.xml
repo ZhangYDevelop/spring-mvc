@@ -17,7 +17,7 @@
     <!--配置连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="${jdbc.url}"/>
-        <property name="name" value="${jdbc.username}"/>
+        <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.passward}"/>
         <property name="driverClassName" value="${jdbc.driverclass}"/>
         <property name="maxActive" value="10"/>

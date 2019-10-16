@@ -1,8 +1,8 @@
 create  table sys_user (
     id  int (10) not null,
-    user_name varchar (64) default  null,
+    username varchar (64) default  null,
     real_name varchar (64) default  null,
-    pass_word varchar (64) default null ,
+    password varchar (64) default null ,
     last_login_time date  null default  null,
     account_non_expired int(5) default  null,
     account_non_locked int(5) default null,
@@ -21,7 +21,8 @@ create  table sys_role (
 )
 
 create table sys_user_role (
-
+  id  int (10) not null,
+  primary key (`id`)
 )
 
 create table sys_permission (
@@ -32,5 +33,6 @@ create table sys_permission (
 )
 
 create table sys_role_permission (
-
+   id  int (10) not null,
+   primary key (`id`)
 )

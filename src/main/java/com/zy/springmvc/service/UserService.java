@@ -1,7 +1,7 @@
 package com.zy.springmvc.service;
 
 import com.zy.springmvc.common.Consts;
-import com.zy.springmvc.domain.LoginUser;
+import com.zy.springmvc.domain.User;
 import com.zy.springmvc.domain.Result;
 import org.springframework.stereotype.Service;
 
@@ -19,19 +19,19 @@ public class UserService {
       Result result = new Result();
        // 将用户信息存入session
         HttpSession session = request.getSession();
-        LoginUser loginUser = getUserById("admin");
-        loginUser.setId("admin");
-        loginUser.setUserName(userName);
+        User loginUser = getUserById("admin");
+        loginUser.setId(10);
+        //loginUser.setUserName(userName);
         // 获取所有操作和模块组成的菜单
         result.setSuccess(true);
         session.setAttribute(Consts.LOGIN_USER_SESSION, loginUser);
         return result;
     }
 
-    public  LoginUser getUserById(String userId) {
-        return  new LoginUser("zhangy", "zhangyu", "123456", "hubei");
+    public User getUserById(String userId) {
+        return  null;
     }
-    public  LoginUser getUserByUserName(String userId) {
-        return  new LoginUser("zhangy", "zhangyu", "123456", "hubei");
+    public User getUserByUserName(String userId) {
+        return  null;
     }
 }

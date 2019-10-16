@@ -16,7 +16,7 @@
     <!--log4j2-->
     <context-param>
         <param-name>logbackConfigLocation</param-name>
-        <param-value>classpath:log4j.xml</param-value>
+        <param-value>classpath:logback.xml</param-value>
     </context-param>
 
     <!--启动Spring-->
