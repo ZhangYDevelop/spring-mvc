@@ -1,5 +1,7 @@
 package com.zy.springmvc;
 
+import com.alibaba.fastjson.JSONObject;
+import com.zy.springmvc.domain.Permission;
 import com.zy.springmvc.domain.User;
 import com.zy.springmvc.mapper.UserMapper;
 import org.junit.Test;
@@ -7,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * @Author zhangy
@@ -20,8 +24,14 @@ public class UserMapperTest {
     private UserMapper userMapper;
 
     @Test
-    public void TestUserMapper() {
+    public void testUserMapper() {
         User user = userMapper.getUserByName("zhangyu");
+        System.out.println(JSONObject.toJSON(user));
+    }
+
+    @Test
+    public void tesgetUserPermissionByUserName() {
+        List<Permission> user = userMapper.getUserPermissionByUserName("zhangyu");
         System.out.println(user.toString());
     }
 }

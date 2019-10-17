@@ -23,5 +23,5 @@ public interface UserMapper {
      * @param UserName
      * @return
      */
-//     List<Permission> getUserPermissionByUserName(String UserName);
+    List<Permission> getUserPermissionByUserName(String UserName);
 }

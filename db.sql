@@ -10,7 +10,7 @@ create  table sys_user (
     create_time date  default null,
     create_user_id varchar(36)  default null,
     primary key (`id`)
-)
+);
 
 
 create  table sys_role (
@@ -18,21 +18,25 @@ create  table sys_role (
   role_name varchar (64) default null,
   role_desc varchar(64) default null,
   primary key (`id`)
-)
-
-create table sys_user_role (
-  id  int (10) not null,
-  primary key (`id`)
-)
+);
 
 create table sys_permission (
    id  int (10) not null,
    perm_name varchar (64) default null,
    perm_tag varchar (64) default null,
    primary key (`id`)
-)
+);
 
 create table sys_role_permission (
    id  int (10) not null,
+   role_id int(10) default  null,
+   perm_id int(10) default null,
    primary key (`id`)
-)
+);
+
+create table sys_user_role (
+  id  int (10) not null,
+  user_id int(10) default  null,
+  role_id int(10) default null,
+  primary key (`id`)
+);
