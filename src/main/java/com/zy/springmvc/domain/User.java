@@ -137,4 +137,22 @@ public class User implements UserDetails {
     public void setAuthorities(List<GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", realname='" + realname + '\'' +
+                ", password='" + password + '\'' +
+                ", last_login_time=" + last_login_time +
+                ", enabled=" + enabled +
+                ", account_non_expired=" + account_non_expired +
+                ", account_non_locked=" + account_non_locked +
+                ", credentials_non_expired=" + credentials_non_expired +
+                ", create_time=" + create_time +
+                ", create_user_id='" + create_user_id + '\'' +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

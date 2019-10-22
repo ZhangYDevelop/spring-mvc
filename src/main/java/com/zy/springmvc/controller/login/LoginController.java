@@ -62,7 +62,6 @@ public class LoginController {
     @RequestMapping(value = "/main")
     @Description("访问系统首页")
     public ModelAndView main(HttpServletRequest req, HttpServletResponse resp) {
-        logger.info("登录成功。。。测试日志集成");
         ModelAndView mv = new ModelAndView("main");
         return mv;
     }

@@ -1,5 +1,7 @@
 package com.zy.springmvc.security;
 
+import com.alibaba.fastjson.JSONObject;
+import com.zy.springmvc.domain.Result;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -17,27 +19,13 @@ import java.io.IOException;
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private Log logger = LogFactory.getLog(MyAuthenticationSuccessHandler.class);
-    //登录验证成功后需要跳转的url
-    private String url;
-
-    /**
-     * @return the url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * @param url the url to set
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        logger.info("登录验证成功："+httpServletRequest.getContextPath()+url);
-        //response.sendRedirect(request.getContextPath()+url);
-        httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest, httpServletResponse);
+        logger.info("登录验证成功：");
+        // 验证成功返回JSON数据到前端
+        Result result = new Result();
+        result.setSuccess(true);
+        httpServletResponse.getWriter().write(JSONObject.toJSONString(result));
     }
 }

@@ -8,12 +8,27 @@
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <security:http >
+        <security:intercept-url pattern="/api/platform/main" access="hasAnyAuthority('USER_ROLE')"/>
+        <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
+        <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
+        <security:intercept-url pattern="/resources/**" access="permitAll()"/>
+        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+        <security:form-login login-page="/api/platform/login"  authentication-success-handler-ref="loginSuccess" authentication-failure-handler-ref="loginFail"/>
+        <!--无权限访问跳转页面-->
+        <security:access-denied-handler error-page="/api/platform/error"/>
 
-        <security:form-login />
-
+        <security:csrf disabled="true"/>
     </security:http>
 
     <security:authentication-manager >
-
+        <security:authentication-provider >
+            <security:user-service>
+                <security:user name="zhangyu" authorities="USER_ROLE" password="123"/>
+            </security:user-service>
+        </security:authentication-provider>
     </security:authentication-manager>
+
+    <bean id="securityUserService" class="com.zy.springmvc.security.UserDetailsServiceImpl"></bean>
+    <bean id="loginSuccess" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler"></bean>
+    <bean id="loginFail" class="com.zy.springmvc.security.MyAuthenticationFailureHandler" ></bean>
 </beans>
