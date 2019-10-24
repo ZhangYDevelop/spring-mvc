@@ -8,27 +8,38 @@
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <security:http >
-        <security:intercept-url pattern="/api/platform/main" access="hasAnyAuthority('USER_ROLE')"/>
+        <security:intercept-url pattern="/api/platform/main"  access="hasAnyAuthority('USER_ROLE0')"/>
         <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
+        <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
-        <security:form-login login-page="/api/platform/login"  authentication-success-handler-ref="loginSuccess" authentication-failure-handler-ref="loginFail"/>
+        <security:form-login  login-page="/api/platform/login"  authentication-success-handler-ref="myAuthenticationSuccessHandler"
+                              authentication-failure-handler-ref="myAuthenticationFailureHandler"/>
         <!--无权限访问跳转页面-->
-        <security:access-denied-handler error-page="/api/platform/error"/>
-
+        <security:access-denied-handler error-page="/api/platform/403"/>
+        <!--用户登录前增加验证码-->
+        <security:custom-filter ref="imageCodeAuthencationFilter" before="FORM_LOGIN_FILTER"/>
         <security:csrf disabled="true"/>
+        <!--logout-url:退出登录要拦截的URL invalidate-session:是否清楚session-->
+        <security:logout logout-url="/logout" logout-success-url="/api/platform/login" invalidate-session="true"/>
     </security:http>
 
     <security:authentication-manager >
-        <security:authentication-provider >
-            <security:user-service>
-                <security:user name="zhangyu" authorities="USER_ROLE" password="123"/>
-            </security:user-service>
+        <security:authentication-provider  user-service-ref="securityUserService">
+            <!--<security:password-encoder ref="passwordEncoder" hash="md5"/>-->
         </security:authentication-provider>
     </security:authentication-manager>
 
+    <!--验证码处理类-->
+    <bean id="imageCodeAuthencationFilter" class="com.zy.springmvc.security.ImageCodeAuthencationFilter">
+        <property name="myAuthenticationFailureHandler" ref="myAuthenticationFailureHandler"/>
+        <!--配置是否开启验证码-->
+        <property name="openImageCodeCheck" value="false"/>
+    </bean>
+
     <bean id="securityUserService" class="com.zy.springmvc.security.UserDetailsServiceImpl"></bean>
-    <bean id="loginSuccess" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler"></bean>
-    <bean id="loginFail" class="com.zy.springmvc.security.MyAuthenticationFailureHandler" ></bean>
+    <bean id="myAuthenticationSuccessHandler" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler"></bean>
+    <bean id="myAuthenticationFailureHandler" class="com.zy.springmvc.security.MyAuthenticationFailureHandler" ></bean>
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 </beans>

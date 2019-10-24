@@ -1,14 +1,13 @@
 create  table sys_user (
     id  int (10) not null,
     username varchar (64) default  null,
-    real_name varchar (64) default  null,
+    realName varchar (64) default  null,
     password varchar (64) default null ,
-    last_login_time date  null default  null,
-    account_non_expired int(5) default  null,
-    account_non_locked int(5) default null,
-    credentials_non_expired int(5) default null,
-    create_time date  default null,
-    create_user_id varchar(36)  default null,
+    accountNonExpired int(5) default  null,
+    enabled int(5) default null,
+    credentialsNonExpired int(5) default null,
+    createTime date  default null,
+    createUserId varchar(36)  default null,
     primary key (`id`)
 );
 

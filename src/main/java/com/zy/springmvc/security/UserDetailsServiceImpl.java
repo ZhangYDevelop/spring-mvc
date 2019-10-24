@@ -6,6 +6,8 @@ import com.zy.springmvc.mapper.UserMapper;
 import com.zy.springmvc.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -14,9 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author zhangy
@@ -24,7 +24,7 @@ import java.util.List;
  **/
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private Log logger = LogFactory.getLog(UserDetailsServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(MyAuthenticationFailureHandler.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -36,16 +36,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (null != user) {
             // 查询用户拥有的权限标志符
             List<Permission> permissionList = userMapper.getUserPermissionByUserName(userName);
-
-            List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+            Set<GrantedAuthority> grantedAuthorityList = new HashSet<>();
 //            for (Permission permission : permissionList) {
 //                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getPerm_tag());
 //                grantedAuthorityList.add(grantedAuthority);
 //            }
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("USER_ROLE");
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority ("USER_ROLE");
             grantedAuthorityList.add(grantedAuthority);
             user.setAuthorities(grantedAuthorityList);
-
             logger.info("登录用户： "  + user);
             return user;
         } else {

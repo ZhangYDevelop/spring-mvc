@@ -2,7 +2,7 @@
 
 <%
     String path = request.getContextPath();
-    String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ path;
     request.setAttribute("contextPath", contextPath);
 %>
 <meta http-equiv="X-UA-Compatible" content="edge"/>
@@ -29,6 +29,8 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/daterangepicker.css">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/bootstrap3-wysihtml5.min.css">
+<link rel="shortcut icon" href="<%=contextPath%>/resources/images/favicon.ico" type="image/x-icon">
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -50,4 +50,11 @@ public class Result extends HashMap {
     public void setData(Object data) {
         this.put("data", data);
     }
+
+    public void setCode(String code) {
+        this.put("code",code);
+    }
+    public String getCode () {
+        return (String) this.get("code");
+    }
 }

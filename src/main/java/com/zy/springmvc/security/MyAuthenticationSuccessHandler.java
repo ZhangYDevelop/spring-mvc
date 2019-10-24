@@ -2,8 +2,9 @@ package com.zy.springmvc.security;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zy.springmvc.domain.Result;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -18,14 +19,18 @@ import java.io.IOException;
  **/
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    private Log logger = LogFactory.getLog(MyAuthenticationSuccessHandler.class);
+    private Logger logger = LoggerFactory.getLogger(MyAuthenticationFailureHandler.class);
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         logger.info("登录验证成功：");
+        logger.info("权限点：" + JSONObject.toJSONString(authentication));
         // 验证成功返回JSON数据到前端
         Result result = new Result();
         result.setSuccess(true);
+        // 将用户信息写入session
+        httpServletRequest.getSession().setAttribute("access_token", JSONObject.toJSONString(authentication));
+        httpServletResponse.setContentType("text/json;charset=UTF-8");
         httpServletResponse.getWriter().write(JSONObject.toJSONString(result));
     }
 }

@@ -7,6 +7,7 @@ import com.zy.springmvc.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -33,5 +34,13 @@ public class UserMapperTest {
     public void tesgetUserPermissionByUserName() {
         List<Permission> user = userMapper.getUserPermissionByUserName("zhangyu");
         System.out.println(user.toString());
+    }
+    @Test
+    public void tesupdateUser() {
+        User user = new User();
+        user.setUsername("zhangyu");
+        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
+        user.setPassword(md5PasswordEncoder.encodePassword("123", null));
+        userMapper.updateUser(user);
     }
 }

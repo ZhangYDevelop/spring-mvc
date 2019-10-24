@@ -81,5 +81,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- 验证码 -->
+    <servlet>
+        <servlet-name>pictureCheckCode</servlet-name>
+        <servlet-class>com.zy.springmvc.servlet.PictureCheckCode</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>pictureCheckCode</servlet-name>
+        <url-pattern>/pictureCheckCode</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

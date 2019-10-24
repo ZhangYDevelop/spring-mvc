@@ -12,4 +12,8 @@
           inner join sys_role_permission rolepermission on rolepermission.role_id = user_role.role_id
           inner join sys_permission permission on permission.id = rolepermission.perm_id where  user.username = #{value};
     </select>
+
+    <update id="updateUser" parameterType="user">
+        update sys_user set password = #{password} where username=#{username}
+    </update>
 </mapper>

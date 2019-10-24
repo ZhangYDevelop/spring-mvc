@@ -1,13 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
-    String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
     request.setAttribute("contextPath", contextPath);
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title>主页</title>
+    <title>工作台</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <jsp:include page="/WEB-INF/tags/head.jsp"></jsp:include>
 </head>
@@ -275,7 +275,7 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="<%=contextPath%>/logout" class="btn btn-default btn-flat">退出登录</a>
                                 </div>
                             </li>
                         </ul>

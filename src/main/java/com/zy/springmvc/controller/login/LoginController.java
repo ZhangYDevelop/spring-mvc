@@ -91,4 +91,10 @@ public class LoginController {
     public String error() {
         return "error";
     }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @Description("访问登陆页面")
+    public String unAutnecation() {
+        return "403";
+    }
 }

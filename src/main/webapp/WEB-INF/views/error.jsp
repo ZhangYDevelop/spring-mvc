@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>异常页面</title>
+    <title>异常</title>
 </head>
 <body>
-   无权限访问！
+<div class="jumbotron" style="text-align: center;">
+    <p> 系统异常请稍后再试</p>
+</div>
 </body>
 </html>
