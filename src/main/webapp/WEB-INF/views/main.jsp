@@ -1,8 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.alibaba.fastjson.JSON" %>
 <%
     String path = request.getContextPath();
     String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
     request.setAttribute("contextPath", contextPath);
+    String  authencationStr =  (String)request.getSession().getAttribute("access_token");
+    Map map = (Map)JSON.parse(authencationStr);
+    Map userMap =  (Map)map.get("principal"); //用户信息
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -242,7 +246,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><%=userMap.get("realName")%></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->

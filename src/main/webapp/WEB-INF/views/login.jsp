@@ -62,46 +62,105 @@
                 login();
             }
         };
+
+        /**
+         * 用户注册
+         */
+        function registerUser() {
+
+        }
     </script>
 </head>
 <body id="loginBody">
-<div class="container">
-    <div class="form row">
-        <div class="form-horizontal col-md-offset-3" id="login_form">
-            <h3 class="form-title">用户登录</h3>
-            <div class="col-md-9">
-                <div class="form-group">
-                    <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="用户名" id="username"
-                           name="username" autofocus="autofocus" maxlength="20"/>
-                </div>
-                <div class="form-group">
-                    <i class="fa fa-lock fa-lg"></i>
-                    <input class="form-control required" type="password" placeholder="密码" id="password"
-                           name="password" maxlength="8"/>
-                </div>
-                <div class="form-group">
-                    <i class="fa fa-lock fa-lg"></i>
-                    <input class="form-control required" placeholder="不需要" readonly="readonly" type="text" id="userCode"/>
-                    <div class="Code">
-                        <img src="<%=basePath%>/pictureCheckCode" id="imgCode" width="63" height="23" alt="单击可刷新"
-                             onclick="codeClick();"/>
-                        看不清楚，<a href="#" onclick="codeClick();">换一张</a>
+    <div class="container">
+        <div class="form row">
+            <div class="form-horizontal col-md-offset-3" id="login_form">
+                <h3 class="form-title">用户登录</h3>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <i class="fa fa-user fa-lg"></i>
+                        <input class="form-control required" type="text" placeholder="用户名" id="username"
+                               name="username" autofocus="autofocus" maxlength="20"/>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1"/>记住我
-                    </label>
-                </div>
-                <div class="form-group col-md-offset-9">
-                    <div class="login_msg"></div>
-                    <button type="submit" class="btn btn-success pull-right" name="submit" onclick="login()">登录
-                    </button>
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="password" placeholder="密码" id="password"
+                               name="password" maxlength="8"/>
+                    </div>
+                    <div class="form-group">
+                        <input style="width: 120px;float: left;" class="form-control required" placeholder="不需要" readonly="readonly" type="text" id="userCode"/>
+                        <div  style="margin: 5px 5px;float: right;" >
+                            <img src="<%=basePath%>/pictureCheckCode" id="imgCode" width="63" height="23" alt="单击可刷新"
+                                 onclick="codeClick();"/><a href="#" onclick="codeClick();">刷新</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label class="checkbox" style="float: left;">
+                                <input type="checkbox" name="remember" value="1"/>记住我
+                            </label>
+                            <div style="float: right; margin: 5px 5px;">
+                                <a href="#" data-toggle="modal" data-target="#myModal">注册</a>
+                                <!-- 按钮触发模态框 -->
+                                <a href="#" >忘记密码</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-offset-9">
+                        <div class="login_msg"></div>
+                        <button type="submit" class="btn btn-success" name="submit" style="width: 230px;" onclick="login()">登录
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        用户注册
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">用户名</label>
+                            <input type="text" class="form-control" id="name"
+                                   placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">账号</label>
+                            <input type="text" class="form-control" id="account"
+                                   placeholder="请输入账号">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">电话</label>
+                            <input type="text" class="form-control" id="tel"
+                                   placeholder="请输入电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">邮箱</label>
+                            <input type="text" class="form-control" id="mail"
+                                   placeholder="请输入邮箱">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        保存
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 </body>
 </html>

@@ -8,7 +8,7 @@
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <security:http >
-        <security:intercept-url pattern="/api/platform/main"  access="hasAnyAuthority('USER_ROLE0')"/>
+        <security:intercept-url pattern="/api/platform/main"  access="hasAnyAuthority('USER_ROLE')"/>
         <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
