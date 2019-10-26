@@ -36,10 +36,10 @@ public class ImageCodeAuthencationFilter extends OncePerRequestFilter {
                 String imageCode = request.getParameter("userCode");
                 String key = (String) request.getSession().getAttribute("randCheckCode");
                 if (StringUtils.isEmpty(imageCode)) {
-                    throw new ImageCodeAuthencationException("请输入验证码");
+                    throw new MyAuthencationException("请输入验证码");
                 }
                 if(!key.trim().equals(imageCode)) {
-                    throw new ImageCodeAuthencationException("验证码错误");
+                    throw new MyAuthencationException("验证码错误");
                 }
             }catch (AuthenticationException e) {
                 myAuthenticationFailureHandler.onAuthenticationFailure(request,response,e);

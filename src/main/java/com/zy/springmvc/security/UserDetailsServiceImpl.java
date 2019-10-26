@@ -47,7 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             logger.info("登录用户： "  + user);
             return user;
         } else {
-            return  null;
+            throw new MyAuthencationException("用户不存在");
         }
     }
 }

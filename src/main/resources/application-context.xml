@@ -4,11 +4,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
     <!--读取jdbc.properties配置文件-->
@@ -37,12 +37,42 @@
     </bean>
 
     <!--事物配置-->
-    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!--开启事物注解-->
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
+    <!-- 配置事务传播特性 -->
+    <tx:advice id="transactionAdvice" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="apply*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="edit*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="upload*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="down*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="get*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="find*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="list*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="enable*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Start*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Submit*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Revoke*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Pause*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Resume*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Abort*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="Over*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="*" propagation="REQUIRED" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置参与事务的类 -->
+    <aop:config proxy-target-class="true">
+        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(* com.zy..*.*Service.*(..))" />
+    </aop:config>
 
 </beans>
