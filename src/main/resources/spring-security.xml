@@ -12,6 +12,7 @@
         <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
+        <security:intercept-url pattern=" /api/user/add" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
         <security:form-login  login-page="/api/platform/login"  authentication-success-handler-ref="myAuthenticationSuccessHandler"

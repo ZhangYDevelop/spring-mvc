@@ -66,7 +66,22 @@
         /**
          * 用户注册
          */
-        function registerUser() {
+        function submit() {
+            var  data = $("#userRegister").serialize();
+            $.ajax({
+                url: '<%=basePath%>/api/user/add',
+                type: 'POST',
+                data:  JSON.stringify(data),
+                dataType: "json",
+                success: function (data) {
+                    debugger
+                    if (data.success) {
+
+                    } else {
+
+                    }
+                }
+            });
 
         }
     </script>
@@ -129,25 +144,30 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form">
+                    <form role="form" id="userRegister">
                         <div class="form-group">
-                            <label for="name">用户名</label>
-                            <input type="text" class="form-control" id="name"
-                                   placeholder="请输入用户名">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">账号</label>
-                            <input type="text" class="form-control" id="account"
+                            <label for="name" >账号</label>
+                            <input type="text" name="username" class="form-control" id="name"
                                    placeholder="请输入账号">
                         </div>
                         <div class="form-group">
+                            <label for="name" >密码</label>
+                            <input type="password" name="password" class="form-control" id="password2"
+                                   placeholder="请输入密码">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">用户名</label>
+                            <input type="realName" name="realName" class="form-control" id="realName"
+                                   placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
                             <label for="name">电话</label>
-                            <input type="text" class="form-control" id="tel"
+                            <input type="text" class="form-control" id="tel" name="tel"
                                    placeholder="请输入电话">
                         </div>
                         <div class="form-group">
                             <label for="name">邮箱</label>
-                            <input type="text" class="form-control" id="mail"
+                            <input type="text" class="form-control" id="mail" name="mail"
                                    placeholder="请输入邮箱">
                         </div>
                     </form>
@@ -155,7 +175,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" onclick="submit()">
                         保存
                     </button>
                 </div>
