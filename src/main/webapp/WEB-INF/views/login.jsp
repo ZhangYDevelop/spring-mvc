@@ -23,6 +23,11 @@
             var passward = hex_md5($("#password").val());
             var username = $("#username").val();
             var userCode = $("#userCode").val();
+            var remember = $("#remember").val();
+            var data = {username: username, password: passward ,userCode: userCode};
+            if (remember === "1") {
+                data['remember'] = remember;
+            }
             if (!username)  {
                 $(".login_msg").html("用户名不能为空");
                 return;
@@ -31,9 +36,11 @@
                 $(".login_msg").html("密码不能为空");
                 return;
             }
+            console.log(data)
+            debugger;
             $.ajax({
                 url: '<%=basePath%>/login',
-                data: {username: username, password: passward ,userCode: userCode},
+                data: data,
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
@@ -112,7 +119,7 @@
                     <div class="form-group">
                         <div>
                             <label class="checkbox" style="float: left;">
-                                <input type="checkbox" name="remember" value="1"/>记住我
+                                <input type="checkbox" id="remember" name="remember" value="1"/>记住我
                             </label>
                             <div style="float: right; margin: 5px 5px;">
                                 <a href="#" data-toggle="modal" data-target="#myModal">注册</a>

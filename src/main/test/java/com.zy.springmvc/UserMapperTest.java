@@ -38,9 +38,9 @@ public class UserMapperTest {
     @Test
     public void tesupdateUser() {
         User user = new User();
-        user.setUsername("zhangyu");
+        user.setUsername("admin");
         Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-        user.setPassword(md5PasswordEncoder.encodePassword("123", null));
+        user.setPassword(md5PasswordEncoder.encodePassword("admin", null));
         userMapper.updateUser(user);
     }
 }
