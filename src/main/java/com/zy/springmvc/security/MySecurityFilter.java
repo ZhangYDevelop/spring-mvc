@@ -20,7 +20,7 @@ public class MySecurityFilter   extends AbstractSecurityInterceptor implements
 
     public void init(FilterConfig filterConfig) throws ServletException {
         // TODO Auto-generated method stub
-
+        System.out.println("测试信息");
     }
 
     public void doFilter(ServletRequest request, ServletResponse response,

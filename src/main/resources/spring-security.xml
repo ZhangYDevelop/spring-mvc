@@ -16,17 +16,22 @@
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
         <security:form-login  login-page="/api/platform/login"  authentication-success-handler-ref="myAuthenticationSuccessHandler"
-                              authentication-failure-handler-ref="myAuthenticationFailureHandler"/>
+                              authentication-failure-handler-ref="myAuthenticationFailureHandler" />
         <!--无权限访问跳转页面-->
         <security:access-denied-handler error-page="/api/platform/403"/>
         <!--用户登录前增加验证码-->
         <security:custom-filter ref="imageCodeAuthencationFilter" before="FORM_LOGIN_FILTER"/>
+        <security:custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
         <security:csrf disabled="true"/>
         <!--logout-url:退出登录要拦截的URL invalidate-session:是否清楚session-->
         <security:logout logout-url="/logout" logout-success-url="/api/platform/login" invalidate-session="true"/>
+        <security:session-management>
+            <!--配置回话最大过期时间-->
+            <security:concurrency-control max-sessions="30"/>
+        </security:session-management>
     </security:http>
 
-    <security:authentication-manager >
+    <security:authentication-manager  alias="authencationManager">
         <security:authentication-provider  user-service-ref="securityUserService">
             <!--<security:password-encoder ref="passwordEncoder" hash="md5"/>-->
         </security:authentication-provider>
@@ -38,6 +43,15 @@
         <!--配置是否开启验证码-->
         <property name="openImageCodeCheck" value="false"/>
     </bean>
+
+    <bean id="mySecurityFilter" class="com.zy.springmvc.security.MySecurityFilter">
+        <property name="authenticationManager" ref="authencationManager"/>
+        <property name="accessDecisionManager" ref="myAccessDecisionManager"/>
+        <property name="securityMetadataSource" ref="mySecurityMetadataSource"/>
+    </bean>
+
+    <bean id="mySecurityMetadataSource" class="com.zy.springmvc.security.MySecurityMetadataSource"/>
+    <bean id="myAccessDecisionManager" class="com.zy.springmvc.security.MyAccessDecisionManager"/>
 
     <bean id="securityUserService" class="com.zy.springmvc.security.UserDetailsServiceImpl"></bean>
     <bean id="myAuthenticationSuccessHandler" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler"></bean>
