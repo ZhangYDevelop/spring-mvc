@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getPerm_tag());
 //                grantedAuthorityList.add(grantedAuthority);
 //            }
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority ("USER_ROLE");
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority ("USER_ROLE2");
             grantedAuthorityList.add(grantedAuthority);
             user.setAuthorities(grantedAuthorityList);
             logger.info("登录用户： "  + user);

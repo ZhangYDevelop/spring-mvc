@@ -7,16 +7,17 @@
             http://www.springframework.org/schema/security
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-    <security:http >
-        <security:intercept-url pattern="/api/platform/main"  access="hasAnyAuthority('USER_ROLE')"/>
+    <security:http>
+        <!--<security:intercept-url pattern="/api/platform/main" access="hasAnyAuthority('USER_ROLE')"/>-->
         <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
         <security:intercept-url pattern=" /api/user/add" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
-        <security:form-login  login-page="/api/platform/login"  authentication-success-handler-ref="myAuthenticationSuccessHandler"
-                              authentication-failure-handler-ref="myAuthenticationFailureHandler" />
+        <security:form-login login-page="/api/platform/login"
+                             authentication-success-handler-ref="myAuthenticationSuccessHandler"
+                             authentication-failure-handler-ref="myAuthenticationFailureHandler"/>
         <!--无权限访问跳转页面-->
         <security:access-denied-handler error-page="/api/platform/403"/>
         <!--用户登录前增加验证码-->
@@ -31,11 +32,12 @@
         </security:session-management>
 
         <security:remember-me token-validity-seconds="1800" token-repository-ref="jdbcTokenRepository"
-                              remember-me-parameter="remember" authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
+                              remember-me-parameter="remember"
+                              authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
     </security:http>
 
-    <security:authentication-manager  alias="authencationManager">
-        <security:authentication-provider  user-service-ref="securityUserService">
+    <security:authentication-manager alias="authencationManager">
+        <security:authentication-provider user-service-ref="securityUserService">
             <!--<security:password-encoder ref="passwordEncoder" hash="md5"/>-->
         </security:authentication-provider>
     </security:authentication-manager>
@@ -47,13 +49,22 @@
         <property name="openImageCodeCheck" value="false"/>
     </bean>
 
+    <bean id="mySecurityFilter" class="com.zy.springmvc.security.MySecurityFilter">
+        <property name="authenticationManager" ref="authencationManager"/>
+        <property name="accessDecisionManager" ref="myAccessDecisionManager"/>
+        <property name="securityMetadataSource" ref="mySecurityMetadataSource"/>
+    </bean>
+
+    <bean id="mySecurityMetadataSource" class="com.zy.springmvc.security.MySecurityMetadataSource"/>
+    <bean id="myAccessDecisionManager" class="com.zy.springmvc.security.MyAccessDecisionManager"/>
     <bean id="securityUserService" class="com.zy.springmvc.security.UserDetailsServiceImpl"></bean>
     <bean id="myAuthenticationSuccessHandler" class="com.zy.springmvc.security.MyAuthenticationSuccessHandler"></bean>
-    <bean id="myAuthenticationFailureHandler" class="com.zy.springmvc.security.MyAuthenticationFailureHandler" ></bean>
-    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+    <bean id="myAuthenticationFailureHandler" class="com.zy.springmvc.security.MyAuthenticationFailureHandler"></bean>
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
-    <bean id="jdbcTokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+    <bean id="jdbcTokenRepository"
+          class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
         <property name="dataSource" ref="dataSource"/>
         <property name="createTableOnStartup" value="false"/>
-     </bean>
+    </bean>
 </beans>

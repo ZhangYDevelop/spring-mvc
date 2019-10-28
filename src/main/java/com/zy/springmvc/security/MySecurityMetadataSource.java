@@ -1,6 +1,7 @@
 package com.zy.springmvc.security;
 
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
@@ -30,6 +31,11 @@ public class MySecurityMetadataSource implements
                 configAttributes.add(configAttribute);
                 resourceMap.put(resource.getUrl(), configAttributes);
             } */
+            Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
+            //以权限名封装为Spring的security Object
+            ConfigAttribute configAttribute = new SecurityConfig("USER_ROLE2");
+            configAttributes.add(configAttribute);
+            resourceMap.put("/api/platform/main", configAttributes);
         }
 
         Set<Map.Entry<String, Collection<ConfigAttribute>>> resourceSet = resourceMap.entrySet();
