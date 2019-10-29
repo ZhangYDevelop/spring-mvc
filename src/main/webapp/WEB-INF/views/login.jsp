@@ -37,7 +37,6 @@
                 return;
             }
             console.log(data)
-            debugger;
             $.ajax({
                 url: '<%=basePath%>/login',
                 data: data,

@@ -27,15 +27,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private Logger logger = LoggerFactory.getLogger(MyAuthenticationFailureHandler.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         // 查询用户
-        User user = userMapper.getUserByName(userName);
+        User user = userService.getUserByName(userName);
         if (null != user) {
             // 查询用户拥有的权限标志符
-            List<Permission> permissionList = userMapper.getUserPermissionByUserName(userName);
+            List<Permission> permissionList = userService.getUserPermissionByUserName(userName);
             Set<GrantedAuthority> grantedAuthorityList = new HashSet<>();
 //            for (Permission permission : permissionList) {
 //                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getPerm_tag());

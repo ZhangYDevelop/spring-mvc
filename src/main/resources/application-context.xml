@@ -14,6 +14,8 @@
     <!--读取jdbc.properties配置文件-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
+    <context:component-scan base-package="com.zy.springmvc.service" />
+
     <!--配置连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="${jdbc.url}"/>

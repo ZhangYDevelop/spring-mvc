@@ -60,7 +60,7 @@
     <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
 
     <!--&lt;!&ndash; 定义Spring描述Bean的范围  &ndash;&gt;-->
-    <context:component-scan base-package="com.zy.springmvc.web.controller,com.zy.springmvc.service" />
+    <context:component-scan base-package="com.zy.springmvc.web.controller" />
     <!--<context:component-scan base-package="com.zy.springmvc.service" />-->
 
     <!--&lt;!&ndash;开启注解扫描包&ndash;&gt;-->
