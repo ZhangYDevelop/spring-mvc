@@ -1,4 +1,4 @@
-package com.zy.springmvc.syslog.aspect;
+package com.zy.springmvc.aop.aspect;
 
 import com.zy.springmvc.domain.OperateLog;
 import org.aspectj.lang.JoinPoint;
@@ -7,7 +7,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -25,11 +24,10 @@ public class LogOperateAop {
     private static final Logger logger = LoggerFactory.getLogger(LogOperateAop.class);
 
 
-    @Autowired
-     private  SysLogServeve sysLogServeve;
+
 
     //切入点定义：controller
-    @Pointcut("@annotation(com.zy.springmvc.syslog.annotion.LogOperate)")
+    @Pointcut("@annotation(com.zy.springmvc.annotion.LogOperate)")
     public void controllerAspect() { }
 
 
@@ -43,7 +41,6 @@ public class LogOperateAop {
     public void doBefore(JoinPoint joinPoint) {
         try {
             OperateLog log  = getControllerMethodDescription(joinPoint);
-            sysLogServeve.saveLog(log);
         } catch (Exception e) {
             logger.error("--------------controllerAspect for log fail-----------------------");
             logger.error("exception info : ", e);

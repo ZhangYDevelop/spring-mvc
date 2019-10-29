@@ -1,4 +1,4 @@
-package com.zy.springmvc.servlet;
+package com.zy.springmvc.web.servlet;
 
 /**
  * @Author zhangy

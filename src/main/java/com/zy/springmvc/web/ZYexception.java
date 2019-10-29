@@ -1,4 +1,4 @@
-package com.zy.springmvc;
+package com.zy.springmvc.web;
 
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;

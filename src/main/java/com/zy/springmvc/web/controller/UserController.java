@@ -1,4 +1,4 @@
-package com.zy.springmvc.controller;
+package com.zy.springmvc.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -30,12 +30,6 @@
         <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
     </listener>
 
-
-    <!-- 自定义session侦听 -->
-    <listener>
-        <listener-class>com.zy.springmvc.session.MySessionListener</listener-class>
-    </listener>
-
     <!--启动Springmvc 配置-->
     <servlet>
         <servlet-name>ZyDispatchservlet</servlet-name>
@@ -84,7 +78,7 @@
     <!-- 验证码 -->
     <servlet>
         <servlet-name>pictureCheckCode</servlet-name>
-        <servlet-class>com.zy.springmvc.servlet.PictureCheckCode</servlet-class>
+        <servlet-class>com.zy.springmvc.web.servlet.PictureCheckCode</servlet-class>
     </servlet>
 
     <servlet-mapping>

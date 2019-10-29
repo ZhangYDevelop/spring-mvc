@@ -1,4 +1,4 @@
-package com.zy.springmvc.intercerpter;
+package com.zy.springmvc.web.intercerpter;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

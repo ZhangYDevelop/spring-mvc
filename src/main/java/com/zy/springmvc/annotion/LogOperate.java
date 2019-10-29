@@ -1,4 +1,4 @@
-package com.zy.springmvc.syslog.annotion;
+package com.zy.springmvc.annotion;
 
 import java.lang.annotation.*;
 
