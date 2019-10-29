@@ -19,7 +19,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         if (session.getAttribute("User") == null) {
-            response.sendRedirect(request.getContextPath() + "/api/platform/login");
+            response.sendRedirect(request.getContextPath() + "/api/platform/usercontroller");
         } else {
             super.preHandle(request,response, handler);
         }

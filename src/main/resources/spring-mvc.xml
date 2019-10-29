@@ -26,13 +26,13 @@
         <!--&lt;!&ndash;<mvc:interceptor>&ndash;&gt;-->
             <!--&lt;!&ndash;<mvc:mapping path="/**"/>&ndash;&gt;-->
             <!--&lt;!&ndash;<mvc:exclude-mapping path="/resources/**"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<mvc:exclude-mapping path="/api/platform/login"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<mvc:exclude-mapping path="/api/platform/usercontroller"/>&ndash;&gt;-->
             <!--&lt;!&ndash;<bean class="com.zy.springmvc.intercerpter.LoginInterceptor"/>&ndash;&gt;-->
         <!--&lt;!&ndash;</mvc:interceptor>&ndash;&gt;-->
         <!--&lt;!&ndash;<mvc:interceptor>&ndash;&gt;-->
             <!--&lt;!&ndash;<mvc:mapping path="/**"/>&ndash;&gt;-->
             <!--&lt;!&ndash;<mvc:exclude-mapping path="/resources/**"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<mvc:exclude-mapping path="/api/platform/login"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<mvc:exclude-mapping path="/api/platform/usercontroller"/>&ndash;&gt;-->
             <!--&lt;!&ndash;<bean class="com.zy.springmvc.intercerpter.SysLogOperate"/>&ndash;&gt;-->
         <!--&lt;!&ndash;</mvc:interceptor>&ndash;&gt;-->
     <!--</mvc:interceptors>-->

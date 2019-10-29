@@ -1,7 +1,6 @@
 package com.zy.springmvc.syslog.aspect;
 
 import com.zy.springmvc.domain.OperateLog;
-import com.zy.springmvc.service.SysLogServeve;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

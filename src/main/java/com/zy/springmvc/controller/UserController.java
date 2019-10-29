@@ -1,13 +1,8 @@
-package com.zy.springmvc.controller.login;
+package com.zy.springmvc.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.zy.springmvc.domain.Result;
-import com.zy.springmvc.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
@@ -29,12 +23,9 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/api/platform")
-public class LoginController {
+public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
-    @Autowired
-    private UserService userService;
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @Description("访问登陆页面")
@@ -52,12 +43,11 @@ public class LoginController {
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam Map map) throws IOException {
-        String userName = (String) map.get("username");
-        String userPwd = (String) map.get("password");
-       // ModelAndView modelAndView = new ModelAndView();
-        //modelAndView.addObject(this.userService.updateForlogin(request, response, userName, userPwd, userCode));
-        Result result = userService.updateForlogin(request, response, userName, userPwd);
-        return JSONObject.toJSONString(result);
+//        String userName = (String) map.get("username");
+//        String userPwd = (String) map.get("password");
+//
+//        Result result = userService.updateForlogin(request, response, userName, userPwd);
+        return null;
     }
 
     @RequestMapping(value = "/main")
@@ -66,26 +56,6 @@ public class LoginController {
         ModelAndView mv = new ModelAndView("main");
         return mv;
     }
-
-
-    @RequestMapping({"/logout"})
-    @Description("系统退出")
-    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-
-        while (session.getAttributeNames().hasMoreElements()) {
-            String name = (String) session.getAttributeNames().nextElement();
-            session.removeAttribute(name);
-        }
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0L);
-        session = request.getSession(true);
-        session.invalidate();
-        return new ModelAndView("redirect:login");
-
-    }
-
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     @Description("访问登陆页面")
@@ -97,5 +67,22 @@ public class LoginController {
     @Description("访问登陆页面")
     public String unAutnecation() {
         return "403";
+    }
+
+
+
+    @RequestMapping("/userList")
+    public ModelAndView getUserList() {
+        return new ModelAndView("platform/user/userlist");
+    }
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public String addUser(@RequestParam Map map) {
+//        //userMapper.addUser(user);
+//        Result result  = new Result();
+//        result.setSuccess(true);
+//        return JSONObject.toJSON(result).toString();
+        return  null;
     }
 }

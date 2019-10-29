@@ -81,12 +81,12 @@
 
         <!--<security:http >-->
             <!--&lt;!&ndash;&lt;!&ndash; 登录页面不拦截 &ndash;&gt;&ndash;&gt;-->
-            <!--<security:intercept-url pattern="/api/platform/login" access="permitAll()" />-->
+            <!--<security:intercept-url pattern="/api/platform/usercontroller" access="permitAll()" />-->
 
             <!--&lt;!&ndash;&lt;!&ndash; 资源文件不拦截 &ndash;&gt;&ndash;&gt;-->
             <!--<security:intercept-url pattern="/resources/**" access="permitAll()" />-->
             <!--<security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>-->
-            <!--<security:form-login login-page="/api/platform/login"  login-processing-url="/api/platform/userLogin"-->
+            <!--<security:form-usercontroller usercontroller-page="/api/platform/usercontroller"  usercontroller-processing-url="/api/platform/userLogin"-->
                                  <!--default-target-url="/api/platform/main"/>-->
 
             <!--<security:access-denied-handler error-page="/api/platform/error"/>-->

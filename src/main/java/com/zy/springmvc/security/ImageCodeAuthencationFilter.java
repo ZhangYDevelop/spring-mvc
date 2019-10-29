@@ -31,7 +31,7 @@ public class ImageCodeAuthencationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(request.getRequestURI().contains("/login") && request.getMethod().equals("POST") && isOpenImageCodeCheck) {
+        if(request.getRequestURI().contains("/usercontroller") && request.getMethod().equals("POST") && isOpenImageCodeCheck) {
             try{
                 String imageCode = request.getParameter("userCode");
                 String key = (String) request.getSession().getAttribute("randCheckCode");

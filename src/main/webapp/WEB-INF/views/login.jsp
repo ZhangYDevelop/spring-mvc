@@ -39,7 +39,7 @@
             console.log(data)
             debugger;
             $.ajax({
-                url: '<%=basePath%>/login',
+                url: '<%=basePath%>/usercontroller',
                 data: data,
                 type: 'post',
                 dataType: 'json',

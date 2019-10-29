@@ -20,10 +20,10 @@ public class UrlEntryPoint  implements AuthenticationEntryPoint {
 
         if(url.indexOf("admin") != -1){
             //未登录而访问后台受控资源时，跳转到后台登录页面
-            targetUrl = "/admin/login.do";
+            targetUrl = "/admin/usercontroller.do";
         }else{
             //未登录而访问前台受控资源时，跳转到前台登录页面
-            targetUrl = "/api/platform/login";
+            targetUrl = "/api/platform/usercontroller";
         }
 
         targetUrl = httpServletRequest.getContextPath() + targetUrl;
