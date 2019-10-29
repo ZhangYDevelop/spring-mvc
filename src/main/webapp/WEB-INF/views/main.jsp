@@ -2,11 +2,11 @@
 <%@ page import="com.alibaba.fastjson.JSON" %>
 <%
     String path = request.getContextPath();
-    String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    String contextPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
     request.setAttribute("contextPath", contextPath);
-    String  authencationStr =  (String)request.getSession().getAttribute("access_token");
-    Map map = (Map)JSON.parse(authencationStr);
-    Map userMap =  (Map)map.get("principal"); //用户信息
+    String authencationStr = (String) request.getSession().getAttribute("access_token");
+    Map map = (Map) JSON.parse(authencationStr);
+    Map userMap = (Map) map.get("principal"); //用户信息
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -14,6 +14,12 @@
     <title>工作台</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <jsp:include page="/WEB-INF/tags/head.jsp"></jsp:include>
+    <script type="text/javascript">
+        angular.module('myApp', []).controller('namesCtrl', function($scope) {
+            $scope.names = [{name:'1212'},{name:'sfsfwefsf'},{name:'121dfd'}];
+        });
+        //
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -49,7 +55,8 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="img-circle"
+                                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -63,7 +70,8 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg" class="img-circle"
+                                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -76,7 +84,8 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg" class="img-circle"
+                                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -89,7 +98,8 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg" class="img-circle"
+                                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -102,7 +112,8 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg" class="img-circle"
+                                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -245,13 +256,15 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="user-image"
+                                 alt="User Image">
                             <span class="hidden-xs"><%=userMap.get("realName")%></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="img-circle"
+                                     alt="User Image">
 
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -318,8 +331,8 @@
             </form>
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
+            <ul class="sidebar-menu" data-widget="tree" ng-app="myApp" ng-controller="namesCtrl">
+                <li class="header" ng-repeat="x in names ">{{x.name}}</li>
                 <li class="active treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -361,8 +374,8 @@
                         <i class="fa fa-pie-chart"></i>
                         <span>Charts</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
@@ -617,7 +630,8 @@
                         <div class="box-body chat" id="chat-box">
                             <!-- chat item -->
                             <div class="item">
-                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg" alt="user image" class="online">
+                                <img src="<%=contextPath%>/resources/images/user4-128x128.jpg" alt="user image"
+                                     class="online">
 
                                 <p class="message">
                                     <a href="#" class="name">
@@ -644,7 +658,8 @@
                             <!-- /.item -->
                             <!-- chat item -->
                             <div class="item">
-                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg" alt="user image" class="offline">
+                                <img src="<%=contextPath%>/resources/images/user3-128x128.jpg" alt="user image"
+                                     class="offline">
 
                                 <p class="message">
                                     <a href="#" class="name">
@@ -659,7 +674,8 @@
                             <!-- /.item -->
                             <!-- chat item -->
                             <div class="item">
-                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" alt="user image" class="offline">
+                                <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" alt="user image"
+                                     class="offline">
 
                                 <p class="message">
                                     <a href="#" class="name">

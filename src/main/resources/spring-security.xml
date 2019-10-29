@@ -31,9 +31,9 @@
             <security:concurrency-control max-sessions="30"/>
         </security:session-management>
 
-        <security:remember-me token-validity-seconds="1800" token-repository-ref="jdbcTokenRepository"
-                              remember-me-parameter="remember"
-                              authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
+        <!--<security:remember-me token-validity-seconds="1800" token-repository-ref="jdbcTokenRepository"-->
+                              <!--remember-me-parameter="remember"-->
+                              <!--authentication-success-handler-ref="myAuthenticationSuccessHandler"/>-->
     </security:http>
 
     <security:authentication-manager alias="authencationManager">
