@@ -2,7 +2,9 @@ package com.zy.springmvc;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zy.springmvc.domain.Permission;
+import com.zy.springmvc.domain.SysModel;
 import com.zy.springmvc.domain.User;
+import com.zy.springmvc.mapper.SysModelMapper;
 import com.zy.springmvc.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
