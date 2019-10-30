@@ -45,7 +45,7 @@
                 success: function (data) {
                     if (data.success) {
                         $(".login_msg").html("登录成功正在跳转，请稍候...");
-                        window.location = '<%=basePath%>/api/platform/main';
+                        window.location = '<%=basePath%>/platform/main';
                     } else if (data.code == '004') {
                         $(".login_msg").html(data.message);
                     } else {

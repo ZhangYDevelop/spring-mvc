@@ -9,23 +9,23 @@
 
     <security:http>
         <!--<security:intercept-url pattern="/api/platform/main" access="hasAnyAuthority('USER_ROLE')"/>-->
-        <security:intercept-url pattern="/api/platform/error" access="permitAll()"/>
-        <security:intercept-url pattern="/api/platform/login" access="permitAll()"/>
+        <security:intercept-url pattern="/platform/error" access="permitAll()"/>
+        <security:intercept-url pattern="/platform/login" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
-        <security:intercept-url pattern=" /api/user/add" access="permitAll()"/>
+        <security:intercept-url pattern=" /user/add" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
-        <security:form-login login-page="/api/platform/login"
+        <security:form-login login-page="/platform/login"
                              authentication-success-handler-ref="myAuthenticationSuccessHandler"
                              authentication-failure-handler-ref="myAuthenticationFailureHandler"/>
         <!--无权限访问跳转页面-->
-        <security:access-denied-handler error-page="/api/platform/403"/>
+        <security:access-denied-handler error-page="/platform/403"/>
         <!--用户登录前增加验证码-->
         <security:custom-filter ref="imageCodeAuthencationFilter" before="FORM_LOGIN_FILTER"/>
         <security:custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
         <security:csrf disabled="true"/>
         <!--logout-url:退出登录要拦截的URL invalidate-session:是否清楚session-->
-        <security:logout logout-url="/logout" logout-success-url="/api/platform/login" invalidate-session="true"/>
+        <security:logout logout-url="/logout" logout-success-url="/platform/login" invalidate-session="true"/>
         <security:session-management>
             <!--配置回话最大过期时间-->
             <security:concurrency-control max-sessions="30"/>
@@ -34,6 +34,13 @@
         <!--<security:remember-me token-validity-seconds="1800" token-repository-ref="jdbcTokenRepository"-->
                               <!--remember-me-parameter="remember"-->
                               <!--authentication-success-handler-ref="myAuthenticationSuccessHandler"/>-->
+        <security:headers >
+            <!-- Spring Security4默认是将'X-Frame-Options' 设置为 'DENY'
+                DENY - is a default value. With this the page cannot be displayed in a frame, regardless of the site attempting to do so.
+                SAMEORIGIN - I assume this is what you are looking for, so that the page will be (and can be) displayed in a frame on the same origin as the page itself
+                ALLOW-FROM - Allows you to specify an origin, where the page can be displayed in a frame.-->
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
     </security:http>
 
     <security:authentication-manager alias="authencationManager">

@@ -36,6 +36,11 @@ public class MySecurityMetadataSource implements
             ConfigAttribute configAttribute = new SecurityConfig("USER_ROLE2");
             configAttributes.add(configAttribute);
             resourceMap.put("/api/platform/main", configAttributes);
+
+            configAttributes = new ArrayList<ConfigAttribute>();
+            configAttribute = new SecurityConfig("USER_ROLE3");
+            configAttributes.add(configAttribute);
+            resourceMap.put("/api/platform/error", configAttributes);
         }
 
         Set<Map.Entry<String, Collection<ConfigAttribute>>> resourceSet = resourceMap.entrySet();

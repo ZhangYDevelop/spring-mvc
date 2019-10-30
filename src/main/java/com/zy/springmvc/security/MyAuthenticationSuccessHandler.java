@@ -41,7 +41,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         httpServletRequest.getSession().setAttribute("access_token", JSONObject.toJSONString(authentication));
         httpServletResponse.setContentType("text/json;charset=UTF-8");
         if (authentication instanceof RememberMeAuthenticationToken) { // 记住我功能，在Spring security 认证成功后，在重定向到主页面
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/api/platform/main");
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/platform/main");
         } else {
             httpServletResponse.getWriter().write(JSONObject.toJSONString(result));
         }
