@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.springmvc.mapper.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysPermission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_ok" jdbcType="VARCHAR" property="isOk" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="sys_module_id" jdbcType="VARCHAR" property="sysModuleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, url, method, description, is_ok, order_num, sys_module_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysPermission" useGeneratedKeys="true">
+    insert into sys_permission (code, url, method, 
+      description, is_ok, order_num, 
+      sys_module_id)
+    values (#{code,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{isOk,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
+      #{sysModuleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysPermission" useGeneratedKeys="true">
+    insert into sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="isOk != null">
+        is_ok,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="sysModuleId != null">
+        sys_module_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="sysModuleId != null">
+        #{sysModuleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysPermission">
+    update sys_permission
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        is_ok = #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="sysModuleId != null">
+        sys_module_id = #{sysModuleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysPermission">
+    update sys_permission
+    set code = #{code,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      is_ok = #{isOk,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      sys_module_id = #{sysModuleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

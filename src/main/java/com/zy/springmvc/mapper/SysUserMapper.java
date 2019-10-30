@@ -1,16 +1,8 @@
-package com.zy.springmvc.service;
+package com.zy.springmvc.mapper;
 
-import com.zy.springmvc.domain.SysPermission;
 import com.zy.springmvc.domain.SysUser;
-import com.zy.springmvc.domain.User;
 
-import java.util.List;
-
-/**
- * @Author zhangy
- * @Date 20:05 2019/10/10
- **/
-public interface UserService {
+public interface SysUserMapper {
     int deleteByPrimaryKey(String id);
 
     int insert(SysUser record);

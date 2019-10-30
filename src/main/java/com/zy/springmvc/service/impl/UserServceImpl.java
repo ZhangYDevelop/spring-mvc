@@ -1,8 +1,8 @@
 package com.zy.springmvc.service.impl;
 
-import com.zy.springmvc.domain.Permission;
+import com.zy.springmvc.domain.SysPermission;
+import com.zy.springmvc.domain.SysUser;
 import com.zy.springmvc.domain.User;
-import com.zy.springmvc.mapper.UserMapper;
 import com.zy.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,26 +17,34 @@ import java.util.List;
 @Service
 public class UserServceImpl implements UserService {
 
-    @Autowired
-    private UserMapper userMapper;
 
     @Override
-    public User getUserByName(String userName) {
-        return userMapper.getUserByName(userName);
+    public int deleteByPrimaryKey(String id) {
+        return 0;
     }
 
     @Override
-    public List<Permission> getUserPermissionByUserName(String UserName) {
-        return userMapper.getUserPermissionByUserName(UserName);
+    public int insert(SysUser record) {
+        return 0;
     }
 
     @Override
-    public void updateUser(User user) {
-        userMapper.updateUser(user);
+    public int insertSelective(SysUser record) {
+        return 0;
     }
 
     @Override
-    public int addUser(User user) {
-        return userMapper.addUser(user);
+    public SysUser selectByPrimaryKey(String id) {
+        return null;
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(SysUser record) {
+        return 0;
+    }
+
+    @Override
+    public int updateByPrimaryKey(SysUser record) {
+        return 0;
     }
 }

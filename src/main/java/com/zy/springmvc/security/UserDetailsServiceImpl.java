@@ -1,16 +1,12 @@
 package com.zy.springmvc.security;
 
-import com.zy.springmvc.domain.Permission;
+import com.zy.springmvc.domain.SysUser;
 import com.zy.springmvc.domain.User;
-import com.zy.springmvc.mapper.UserMapper;
 import com.zy.springmvc.service.UserService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,10 +28,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         // 查询用户
-        User user = userService.getUserByName(userName);
+        SysUser user = userService.selectByPrimaryKey("dfdf");
         if (null != user) {
             // 查询用户拥有的权限标志符
-            List<Permission> permissionList = userService.getUserPermissionByUserName(userName);
+           // List<Permission> permissionList = userService.getUserPermissionByUserName(userName);
             Set<GrantedAuthority> grantedAuthorityList = new HashSet<>();
 //            for (Permission permission : permissionList) {
 //                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getPerm_tag());
