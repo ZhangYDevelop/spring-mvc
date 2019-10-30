@@ -6,12 +6,14 @@ import com.zy.springmvc.domain.SysUser;
 import com.zy.springmvc.domain.User;
 import com.zy.springmvc.mapper.SysModelMapper;
 import com.zy.springmvc.mapper.SysUserMapper;
+import org.hibernate.id.GUIDGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.StringUtils;
 
 /**
  * @Author zhangy
@@ -31,7 +33,8 @@ public class UserMapperTest {
 
     @Test
     public void testUserMapper() {
-        SysUser user = sysUserMapper.selectByPrimaryKey("004cc465-b060-4dc8-8988-4685e331b905");
+
+        SysUser user = sysUserMapper.getSysUserByUserName("admin");
         System.out.println(JSONObject.toJSON(user));
     }
 
@@ -43,16 +46,22 @@ public class UserMapperTest {
     }
     @Test
     public void tesupdateUser() {
-        User user = new User();
+        SysUser user =  new SysUser();
+        user.setId(3);
         user.setUsername("admin");
+        user.setEntity_name("管理员");
         Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
         user.setPassword(md5PasswordEncoder.encodePassword("admin", null));
-       // userMapper.updateUser(user);
+        sysUserMapper.updateByPrimaryKey(user);
     }
 
     @Test
     public void  testgetsysModelMapper() {
-       SysModel sysModel =  sysModelMapper.selectByPrimaryKey("0026c983-c96d-482b-97d6-fe18f23b0fd6");
+       SysModel sysModel =  new SysModel();
+       sysModel.setId("dfdf");
+       sysModel.setModuleName("lsdflsjf");
+
+       sysModelMapper.insert(sysModel);
        System.out.println(sysModel);
     }
 }

@@ -63,11 +63,7 @@ CREATE TABLE `sys_permission`  (
   `is_ok` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `order_num` int(11) NULL DEFAULT NULL,
   `sys_module_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_sys_permission_url_method`(`url`, `method`) USING BTREE,
-  UNIQUE INDEX `uk_sys_permission_code`(`code`) USING BTREE,
-  INDEX `fk_sys_permission_sys_module_id`(`sys_module_id`) USING BTREE,
-  CONSTRAINT `fk_sys_permission_sys_module_id` FOREIGN KEY (`sys_module_id`) REFERENCES `sys_module` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -106,12 +102,6 @@ CREATE TABLE `sys_role_permission`  (
   `sys_role_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `sys_permission_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_sys_role_permission_sys_user_id`(`sys_user_id`) USING BTREE,
-  INDEX `fk_sys_role_permission_sys_role_id`(`sys_role_id`) USING BTREE,
-  INDEX `fk_sys_role_permission_sys_permission_id`(`sys_permission_id`) USING BTREE,
-  CONSTRAINT `fk_sys_role_permission_sys_permission_id` FOREIGN KEY (`sys_permission_id`) REFERENCES `sys_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_sys_role_permission_sys_role_id` FOREIGN KEY (`sys_role_id`) REFERENCES `sys_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_sys_role_permission_sys_user_id` FOREIGN KEY (`sys_user_id`) REFERENCES `sys_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -152,8 +142,7 @@ CREATE TABLE `sys_user`  (
   `creator` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `modified_time` datetime(0) NULL DEFAULT NULL,
   `modifier` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_sys_user_name`(`username`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -164,11 +153,7 @@ CREATE TABLE `sys_user_role`  (
   `id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sys_user_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `sys_role_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_sys_user_role_sys_user_id`(`sys_user_id`) USING BTREE,
-  INDEX `fk_sys_user_role_sys_role_id`(`sys_role_id`) USING BTREE,
-  CONSTRAINT `fk_sys_user_role_sys_role_id` FOREIGN KEY (`sys_role_id`) REFERENCES `sys_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_sys_user_role_sys_user_id` FOREIGN KEY (`sys_user_id`) REFERENCES `sys_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

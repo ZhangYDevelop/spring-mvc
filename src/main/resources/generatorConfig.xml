@@ -39,23 +39,23 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="my.isgen.usekeys" value="true"/>
-            <!--useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名-->
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
-        <table tableName="sys_permission" domainObjectName="SysPermission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="my.isgen.usekeys" value="true"/>
-            <!--useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名-->
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="my.isgen.usekeys" value="true"/>-->
+            <!--&lt;!&ndash;useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名&ndash;&gt;-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
+        <!--<table tableName="sys_permission" domainObjectName="SysPermission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="my.isgen.usekeys" value="true"/>-->
+            <!--&lt;!&ndash;useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名&ndash;&gt;-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <table tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="my.isgen.usekeys" value="true"/>
             <!--useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名-->
             <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         </table>
 
     </context>

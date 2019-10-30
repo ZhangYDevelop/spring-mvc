@@ -83,4 +83,3 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/morris.min.js"></script>
 <script src="<%=contextPath%>/resources/js/respond.min.js"></script>
 <script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
-<script src="<%=contextPath%>/resources/js/angular-1.5.8/angular-route.min.js" ></script>

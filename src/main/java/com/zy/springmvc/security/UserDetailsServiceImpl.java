@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         // 查询用户
-        SysUser user = userService.selectByPrimaryKey("dfdf");
+        SysUser user = userService.getSysUserByUserName(userName);
         if (null != user) {
             // 查询用户拥有的权限标志符
            // List<Permission> permissionList = userService.getUserPermissionByUserName(userName);

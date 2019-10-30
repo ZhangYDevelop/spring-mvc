@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.springmvc.mapper.SysUserMapper">
   <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysUser">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="entity_id" jdbcType="VARCHAR" property="entity_id" />
     <result column="entity_type" jdbcType="VARCHAR" property="entity_type" />
@@ -44,6 +44,13 @@
     accountNonLocked, enabled, credentialsNonExpired, created_time, creator, modified_time, 
     modifier
   </sql>
+  <select id="getSysUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

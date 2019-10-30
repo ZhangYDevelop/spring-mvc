@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class SysUser implements UserDetails, CredentialsContainer {
-    private String id;
+    private Integer id;
 
     private String username;
 
@@ -84,12 +84,12 @@ public class SysUser implements UserDetails, CredentialsContainer {
         this.authorities = authorities;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id == null ? null : id;
     }
 
     public String getUsername() {
@@ -98,7 +98,7 @@ public class SysUser implements UserDetails, CredentialsContainer {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return this.accountNonExpired;
     }
 
     public void setUsername(String username) {
@@ -346,6 +346,10 @@ public class SysUser implements UserDetails, CredentialsContainer {
 
     public void setModifier(String modifier) {
         this.modifier = modifier == null ? null : modifier.trim();
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
     }
 
     @Override
