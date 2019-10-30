@@ -31,7 +31,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成xml映射文件存放位置-->
-        <sqlMapGenerator targetPackage="com.zy.springmvc.mapper" targetProject="D:\workspace\zy-github\spring-mvc\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="D:\workspace\zy-github\spring-mvc\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成mapper类存放位置-->
@@ -45,25 +45,11 @@
             <!--<property name="useActualColumnNames" value="true"/>-->
             <!--<generatedKey column="id" sqlStatement="JDBC" />-->
         <!--</table>-->
-        <table tableName="sys_module" domainObjectName="SysModel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">
+        <table tableName="sys_module" domainObjectName="SysModel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="my.isgen.usekeys" value="true"/>
-            <property name="useActualColumnNames" value="true"/>
+            <!--useActualColumnNames: true 表示和数据库字段名一样 false：默认按照驼峰命名-->
+            <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
-        <!--<table tableName="permission" domainObjectName="Permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
-            <!--<property name="my.isgen.usekeys" value="true"/>-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
-            <!--<property name="my.isgen.usekeys" value="true"/>-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="role_permission" domainObjectName="RolePermission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
-            <!--<property name="my.isgen.usekeys" value="true"/>-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
     </context>
 </generatorConfiguration>

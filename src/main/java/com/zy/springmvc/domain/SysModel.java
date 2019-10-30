@@ -5,51 +5,51 @@ import java.util.Date;
 public class SysModel {
     private String id;
 
-    private String module_name;
+    private String moduleName;
 
-    private String module_code;
+    private String moduleCode;
 
-    private String parent_module;
+    private String parentModule;
 
-    private String module_type;
+    private String moduleType;
 
-    private String module_url;
+    private String moduleUrl;
 
-    private String module_icon;
+    private String moduleIcon;
 
-    private String module_eng_desc;
+    private String moduleEngDesc;
 
-    private String is_run_work_flow;
+    private String isRunWorkFlow;
 
-    private String is_modify;
+    private String isModify;
 
-    private String is_ok;
+    private String isOk;
 
-    private Integer order_num;
+    private Integer orderNum;
 
-    private String is_display_front;
+    private String isDisplayFront;
 
-    private String is_top_menu;
+    private String isTopMenu;
 
-    private String is_side_menu;
+    private String isSideMenu;
 
     private String creator;
 
-    private Date created_time;
+    private Date createdTime;
 
     private String modifier;
 
-    private Date modified_time;
+    private Date modifiedTime;
 
-    private String ext_field_1;
+    private String extField1;
 
-    private String ext_field_2;
+    private String extField2;
 
-    private String ext_field_3;
+    private String extField3;
 
-    private String ext_field_4;
+    private String extField4;
 
-    private String ext_field_5;
+    private String extField5;
 
     public String getId() {
         return id;
@@ -59,116 +59,116 @@ public class SysModel {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getModule_name() {
-        return module_name;
+    public String getModuleName() {
+        return moduleName;
     }
 
-    public void setModule_name(String module_name) {
-        this.module_name = module_name == null ? null : module_name.trim();
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName == null ? null : moduleName.trim();
     }
 
-    public String getModule_code() {
-        return module_code;
+    public String getModuleCode() {
+        return moduleCode;
     }
 
-    public void setModule_code(String module_code) {
-        this.module_code = module_code == null ? null : module_code.trim();
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode == null ? null : moduleCode.trim();
     }
 
-    public String getParent_module() {
-        return parent_module;
+    public String getParentModule() {
+        return parentModule;
     }
 
-    public void setParent_module(String parent_module) {
-        this.parent_module = parent_module == null ? null : parent_module.trim();
+    public void setParentModule(String parentModule) {
+        this.parentModule = parentModule == null ? null : parentModule.trim();
     }
 
-    public String getModule_type() {
-        return module_type;
+    public String getModuleType() {
+        return moduleType;
     }
 
-    public void setModule_type(String module_type) {
-        this.module_type = module_type == null ? null : module_type.trim();
+    public void setModuleType(String moduleType) {
+        this.moduleType = moduleType == null ? null : moduleType.trim();
     }
 
-    public String getModule_url() {
-        return module_url;
+    public String getModuleUrl() {
+        return moduleUrl;
     }
 
-    public void setModule_url(String module_url) {
-        this.module_url = module_url == null ? null : module_url.trim();
+    public void setModuleUrl(String moduleUrl) {
+        this.moduleUrl = moduleUrl == null ? null : moduleUrl.trim();
     }
 
-    public String getModule_icon() {
-        return module_icon;
+    public String getModuleIcon() {
+        return moduleIcon;
     }
 
-    public void setModule_icon(String module_icon) {
-        this.module_icon = module_icon == null ? null : module_icon.trim();
+    public void setModuleIcon(String moduleIcon) {
+        this.moduleIcon = moduleIcon == null ? null : moduleIcon.trim();
     }
 
-    public String getModule_eng_desc() {
-        return module_eng_desc;
+    public String getModuleEngDesc() {
+        return moduleEngDesc;
     }
 
-    public void setModule_eng_desc(String module_eng_desc) {
-        this.module_eng_desc = module_eng_desc == null ? null : module_eng_desc.trim();
+    public void setModuleEngDesc(String moduleEngDesc) {
+        this.moduleEngDesc = moduleEngDesc == null ? null : moduleEngDesc.trim();
     }
 
-    public String getIs_run_work_flow() {
-        return is_run_work_flow;
+    public String getIsRunWorkFlow() {
+        return isRunWorkFlow;
     }
 
-    public void setIs_run_work_flow(String is_run_work_flow) {
-        this.is_run_work_flow = is_run_work_flow == null ? null : is_run_work_flow.trim();
+    public void setIsRunWorkFlow(String isRunWorkFlow) {
+        this.isRunWorkFlow = isRunWorkFlow == null ? null : isRunWorkFlow.trim();
     }
 
-    public String getIs_modify() {
-        return is_modify;
+    public String getIsModify() {
+        return isModify;
     }
 
-    public void setIs_modify(String is_modify) {
-        this.is_modify = is_modify == null ? null : is_modify.trim();
+    public void setIsModify(String isModify) {
+        this.isModify = isModify == null ? null : isModify.trim();
     }
 
-    public String getIs_ok() {
-        return is_ok;
+    public String getIsOk() {
+        return isOk;
     }
 
-    public void setIs_ok(String is_ok) {
-        this.is_ok = is_ok == null ? null : is_ok.trim();
+    public void setIsOk(String isOk) {
+        this.isOk = isOk == null ? null : isOk.trim();
     }
 
-    public Integer getOrder_num() {
-        return order_num;
+    public Integer getOrderNum() {
+        return orderNum;
     }
 
-    public void setOrder_num(Integer order_num) {
-        this.order_num = order_num;
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 
-    public String getIs_display_front() {
-        return is_display_front;
+    public String getIsDisplayFront() {
+        return isDisplayFront;
     }
 
-    public void setIs_display_front(String is_display_front) {
-        this.is_display_front = is_display_front == null ? null : is_display_front.trim();
+    public void setIsDisplayFront(String isDisplayFront) {
+        this.isDisplayFront = isDisplayFront == null ? null : isDisplayFront.trim();
     }
 
-    public String getIs_top_menu() {
-        return is_top_menu;
+    public String getIsTopMenu() {
+        return isTopMenu;
     }
 
-    public void setIs_top_menu(String is_top_menu) {
-        this.is_top_menu = is_top_menu == null ? null : is_top_menu.trim();
+    public void setIsTopMenu(String isTopMenu) {
+        this.isTopMenu = isTopMenu == null ? null : isTopMenu.trim();
     }
 
-    public String getIs_side_menu() {
-        return is_side_menu;
+    public String getIsSideMenu() {
+        return isSideMenu;
     }
 
-    public void setIs_side_menu(String is_side_menu) {
-        this.is_side_menu = is_side_menu == null ? null : is_side_menu.trim();
+    public void setIsSideMenu(String isSideMenu) {
+        this.isSideMenu = isSideMenu == null ? null : isSideMenu.trim();
     }
 
     public String getCreator() {
@@ -179,12 +179,12 @@ public class SysModel {
         this.creator = creator == null ? null : creator.trim();
     }
 
-    public Date getCreated_time() {
-        return created_time;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public String getModifier() {
@@ -195,81 +195,51 @@ public class SysModel {
         this.modifier = modifier == null ? null : modifier.trim();
     }
 
-    public Date getModified_time() {
-        return modified_time;
+    public Date getModifiedTime() {
+        return modifiedTime;
     }
 
-    public void setModified_time(Date modified_time) {
-        this.modified_time = modified_time;
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 
-    public String getExt_field_1() {
-        return ext_field_1;
+    public String getExtField1() {
+        return extField1;
     }
 
-    public void setExt_field_1(String ext_field_1) {
-        this.ext_field_1 = ext_field_1 == null ? null : ext_field_1.trim();
+    public void setExtField1(String extField1) {
+        this.extField1 = extField1 == null ? null : extField1.trim();
     }
 
-    public String getExt_field_2() {
-        return ext_field_2;
+    public String getExtField2() {
+        return extField2;
     }
 
-    public void setExt_field_2(String ext_field_2) {
-        this.ext_field_2 = ext_field_2 == null ? null : ext_field_2.trim();
+    public void setExtField2(String extField2) {
+        this.extField2 = extField2 == null ? null : extField2.trim();
     }
 
-    public String getExt_field_3() {
-        return ext_field_3;
+    public String getExtField3() {
+        return extField3;
     }
 
-    public void setExt_field_3(String ext_field_3) {
-        this.ext_field_3 = ext_field_3 == null ? null : ext_field_3.trim();
+    public void setExtField3(String extField3) {
+        this.extField3 = extField3 == null ? null : extField3.trim();
     }
 
-    public String getExt_field_4() {
-        return ext_field_4;
+    public String getExtField4() {
+        return extField4;
     }
 
-    public void setExt_field_4(String ext_field_4) {
-        this.ext_field_4 = ext_field_4 == null ? null : ext_field_4.trim();
+    public void setExtField4(String extField4) {
+        this.extField4 = extField4 == null ? null : extField4.trim();
     }
 
-    public String getExt_field_5() {
-        return ext_field_5;
+    public String getExtField5() {
+        return extField5;
     }
 
-    public void setExt_field_5(String ext_field_5) {
-        this.ext_field_5 = ext_field_5 == null ? null : ext_field_5.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "SysModel{" +
-                "id='" + id + '\'' +
-                ", module_name='" + module_name + '\'' +
-                ", module_code='" + module_code + '\'' +
-                ", parent_module='" + parent_module + '\'' +
-                ", module_type='" + module_type + '\'' +
-                ", module_url='" + module_url + '\'' +
-                ", module_icon='" + module_icon + '\'' +
-                ", module_eng_desc='" + module_eng_desc + '\'' +
-                ", is_run_work_flow='" + is_run_work_flow + '\'' +
-                ", is_modify='" + is_modify + '\'' +
-                ", is_ok='" + is_ok + '\'' +
-                ", order_num=" + order_num +
-                ", is_display_front='" + is_display_front + '\'' +
-                ", is_top_menu='" + is_top_menu + '\'' +
-                ", is_side_menu='" + is_side_menu + '\'' +
-                ", creator='" + creator + '\'' +
-                ", created_time=" + created_time +
-                ", modifier='" + modifier + '\'' +
-                ", modified_time=" + modified_time +
-                ", ext_field_1='" + ext_field_1 + '\'' +
-                ", ext_field_2='" + ext_field_2 + '\'' +
-                ", ext_field_3='" + ext_field_3 + '\'' +
-                ", ext_field_4='" + ext_field_4 + '\'' +
-                ", ext_field_5='" + ext_field_5 + '\'' +
-                '}';
+    public void setExtField5(String extField5) {
+        this.extField5 = extField5 == null ? null : extField5.trim();
     }
 }

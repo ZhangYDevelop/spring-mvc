@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.springmvc.mapper.SysModelMapper">
+  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysModel">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+    <result column="parent_module" jdbcType="VARCHAR" property="parentModule" />
+    <result column="module_type" jdbcType="VARCHAR" property="moduleType" />
+    <result column="module_url" jdbcType="VARCHAR" property="moduleUrl" />
+    <result column="module_icon" jdbcType="VARCHAR" property="moduleIcon" />
+    <result column="module_eng_desc" jdbcType="VARCHAR" property="moduleEngDesc" />
+    <result column="is_run_work_flow" jdbcType="VARCHAR" property="isRunWorkFlow" />
+    <result column="is_modify" jdbcType="VARCHAR" property="isModify" />
+    <result column="is_ok" jdbcType="VARCHAR" property="isOk" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="is_display_front" jdbcType="VARCHAR" property="isDisplayFront" />
+    <result column="is_top_menu" jdbcType="VARCHAR" property="isTopMenu" />
+    <result column="is_side_menu" jdbcType="VARCHAR" property="isSideMenu" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ext_field_1" jdbcType="VARCHAR" property="extField1" />
+    <result column="ext_field_2" jdbcType="VARCHAR" property="extField2" />
+    <result column="ext_field_3" jdbcType="VARCHAR" property="extField3" />
+    <result column="ext_field_4" jdbcType="VARCHAR" property="extField4" />
+    <result column="ext_field_5" jdbcType="VARCHAR" property="extField5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
+    module_eng_desc, is_run_work_flow, is_modify, is_ok, order_num, is_display_front, 
+    is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
+    ext_field_2, ext_field_3, ext_field_4, ext_field_5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysModel" useGeneratedKeys="true">
+    insert into sys_module (module_name, module_code, parent_module, 
+      module_type, module_url, module_icon, 
+      module_eng_desc, is_run_work_flow, is_modify, 
+      is_ok, order_num, is_display_front, 
+      is_top_menu, is_side_menu, creator, 
+      created_time, modifier, modified_time, 
+      ext_field_1, ext_field_2, ext_field_3, 
+      ext_field_4, ext_field_5)
+    values (#{moduleName,jdbcType=VARCHAR}, #{moduleCode,jdbcType=VARCHAR}, #{parentModule,jdbcType=VARCHAR}, 
+      #{moduleType,jdbcType=VARCHAR}, #{moduleUrl,jdbcType=VARCHAR}, #{moduleIcon,jdbcType=VARCHAR}, 
+      #{moduleEngDesc,jdbcType=VARCHAR}, #{isRunWorkFlow,jdbcType=VARCHAR}, #{isModify,jdbcType=VARCHAR}, 
+      #{isOk,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, #{isDisplayFront,jdbcType=VARCHAR}, 
+      #{isTopMenu,jdbcType=VARCHAR}, #{isSideMenu,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{extField1,jdbcType=VARCHAR}, #{extField2,jdbcType=VARCHAR}, #{extField3,jdbcType=VARCHAR}, 
+      #{extField4,jdbcType=VARCHAR}, #{extField5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysModel" useGeneratedKeys="true">
+    insert into sys_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="parentModule != null">
+        parent_module,
+      </if>
+      <if test="moduleType != null">
+        module_type,
+      </if>
+      <if test="moduleUrl != null">
+        module_url,
+      </if>
+      <if test="moduleIcon != null">
+        module_icon,
+      </if>
+      <if test="moduleEngDesc != null">
+        module_eng_desc,
+      </if>
+      <if test="isRunWorkFlow != null">
+        is_run_work_flow,
+      </if>
+      <if test="isModify != null">
+        is_modify,
+      </if>
+      <if test="isOk != null">
+        is_ok,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="isDisplayFront != null">
+        is_display_front,
+      </if>
+      <if test="isTopMenu != null">
+        is_top_menu,
+      </if>
+      <if test="isSideMenu != null">
+        is_side_menu,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="extField1 != null">
+        ext_field_1,
+      </if>
+      <if test="extField2 != null">
+        ext_field_2,
+      </if>
+      <if test="extField3 != null">
+        ext_field_3,
+      </if>
+      <if test="extField4 != null">
+        ext_field_4,
+      </if>
+      <if test="extField5 != null">
+        ext_field_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentModule != null">
+        #{parentModule,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUrl != null">
+        #{moduleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleIcon != null">
+        #{moduleIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleEngDesc != null">
+        #{moduleEngDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isRunWorkFlow != null">
+        #{isRunWorkFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null">
+        #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplayFront != null">
+        #{isDisplayFront,jdbcType=VARCHAR},
+      </if>
+      <if test="isTopMenu != null">
+        #{isTopMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="isSideMenu != null">
+        #{isSideMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extField1 != null">
+        #{extField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extField4 != null">
+        #{extField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extField5 != null">
+        #{extField5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    <set>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentModule != null">
+        parent_module = #{parentModule,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        module_type = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUrl != null">
+        module_url = #{moduleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleIcon != null">
+        module_icon = #{moduleIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleEngDesc != null">
+        module_eng_desc = #{moduleEngDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isRunWorkFlow != null">
+        is_run_work_flow = #{isRunWorkFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null">
+        is_modify = #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        is_ok = #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplayFront != null">
+        is_display_front = #{isDisplayFront,jdbcType=VARCHAR},
+      </if>
+      <if test="isTopMenu != null">
+        is_top_menu = #{isTopMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="isSideMenu != null">
+        is_side_menu = #{isSideMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extField1 != null">
+        ext_field_1 = #{extField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extField4 != null">
+        ext_field_4 = #{extField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extField5 != null">
+        ext_field_5 = #{extField5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    set module_name = #{moduleName,jdbcType=VARCHAR},
+      module_code = #{moduleCode,jdbcType=VARCHAR},
+      parent_module = #{parentModule,jdbcType=VARCHAR},
+      module_type = #{moduleType,jdbcType=VARCHAR},
+      module_url = #{moduleUrl,jdbcType=VARCHAR},
+      module_icon = #{moduleIcon,jdbcType=VARCHAR},
+      module_eng_desc = #{moduleEngDesc,jdbcType=VARCHAR},
+      is_run_work_flow = #{isRunWorkFlow,jdbcType=VARCHAR},
+      is_modify = #{isModify,jdbcType=VARCHAR},
+      is_ok = #{isOk,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      is_display_front = #{isDisplayFront,jdbcType=VARCHAR},
+      is_top_menu = #{isTopMenu,jdbcType=VARCHAR},
+      is_side_menu = #{isSideMenu,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      ext_field_1 = #{extField1,jdbcType=VARCHAR},
+      ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      ext_field_4 = #{extField4,jdbcType=VARCHAR},
+      ext_field_5 = #{extField5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysModel">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+    <result column="parent_module" jdbcType="VARCHAR" property="parentModule" />
+    <result column="module_type" jdbcType="VARCHAR" property="moduleType" />
+    <result column="module_url" jdbcType="VARCHAR" property="moduleUrl" />
+    <result column="module_icon" jdbcType="VARCHAR" property="moduleIcon" />
+    <result column="module_eng_desc" jdbcType="VARCHAR" property="moduleEngDesc" />
+    <result column="is_run_work_flow" jdbcType="VARCHAR" property="isRunWorkFlow" />
+    <result column="is_modify" jdbcType="VARCHAR" property="isModify" />
+    <result column="is_ok" jdbcType="VARCHAR" property="isOk" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="is_display_front" jdbcType="VARCHAR" property="isDisplayFront" />
+    <result column="is_top_menu" jdbcType="VARCHAR" property="isTopMenu" />
+    <result column="is_side_menu" jdbcType="VARCHAR" property="isSideMenu" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ext_field_1" jdbcType="VARCHAR" property="extField1" />
+    <result column="ext_field_2" jdbcType="VARCHAR" property="extField2" />
+    <result column="ext_field_3" jdbcType="VARCHAR" property="extField3" />
+    <result column="ext_field_4" jdbcType="VARCHAR" property="extField4" />
+    <result column="ext_field_5" jdbcType="VARCHAR" property="extField5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
+    module_eng_desc, is_run_work_flow, is_modify, is_ok, order_num, is_display_front, 
+    is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
+    ext_field_2, ext_field_3, ext_field_4, ext_field_5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zy.springmvc.domain.SysModel">
+    insert into sys_module (id, module_name, module_code, 
+      parent_module, module_type, module_url, 
+      module_icon, module_eng_desc, is_run_work_flow, 
+      is_modify, is_ok, order_num, 
+      is_display_front, is_top_menu, is_side_menu, 
+      creator, created_time, modifier, 
+      modified_time, ext_field_1, ext_field_2, 
+      ext_field_3, ext_field_4, ext_field_5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR}, #{moduleCode,jdbcType=VARCHAR}, 
+      #{parentModule,jdbcType=VARCHAR}, #{moduleType,jdbcType=VARCHAR}, #{moduleUrl,jdbcType=VARCHAR}, 
+      #{moduleIcon,jdbcType=VARCHAR}, #{moduleEngDesc,jdbcType=VARCHAR}, #{isRunWorkFlow,jdbcType=VARCHAR}, 
+      #{isModify,jdbcType=VARCHAR}, #{isOk,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
+      #{isDisplayFront,jdbcType=VARCHAR}, #{isTopMenu,jdbcType=VARCHAR}, #{isSideMenu,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{extField1,jdbcType=VARCHAR}, #{extField2,jdbcType=VARCHAR}, 
+      #{extField3,jdbcType=VARCHAR}, #{extField4,jdbcType=VARCHAR}, #{extField5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysModel">
+    insert into sys_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="parentModule != null">
+        parent_module,
+      </if>
+      <if test="moduleType != null">
+        module_type,
+      </if>
+      <if test="moduleUrl != null">
+        module_url,
+      </if>
+      <if test="moduleIcon != null">
+        module_icon,
+      </if>
+      <if test="moduleEngDesc != null">
+        module_eng_desc,
+      </if>
+      <if test="isRunWorkFlow != null">
+        is_run_work_flow,
+      </if>
+      <if test="isModify != null">
+        is_modify,
+      </if>
+      <if test="isOk != null">
+        is_ok,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="isDisplayFront != null">
+        is_display_front,
+      </if>
+      <if test="isTopMenu != null">
+        is_top_menu,
+      </if>
+      <if test="isSideMenu != null">
+        is_side_menu,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="extField1 != null">
+        ext_field_1,
+      </if>
+      <if test="extField2 != null">
+        ext_field_2,
+      </if>
+      <if test="extField3 != null">
+        ext_field_3,
+      </if>
+      <if test="extField4 != null">
+        ext_field_4,
+      </if>
+      <if test="extField5 != null">
+        ext_field_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentModule != null">
+        #{parentModule,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUrl != null">
+        #{moduleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleIcon != null">
+        #{moduleIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleEngDesc != null">
+        #{moduleEngDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isRunWorkFlow != null">
+        #{isRunWorkFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null">
+        #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplayFront != null">
+        #{isDisplayFront,jdbcType=VARCHAR},
+      </if>
+      <if test="isTopMenu != null">
+        #{isTopMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="isSideMenu != null">
+        #{isSideMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extField1 != null">
+        #{extField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extField4 != null">
+        #{extField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extField5 != null">
+        #{extField5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    <set>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentModule != null">
+        parent_module = #{parentModule,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        module_type = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUrl != null">
+        module_url = #{moduleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleIcon != null">
+        module_icon = #{moduleIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleEngDesc != null">
+        module_eng_desc = #{moduleEngDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isRunWorkFlow != null">
+        is_run_work_flow = #{isRunWorkFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null">
+        is_modify = #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isOk != null">
+        is_ok = #{isOk,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplayFront != null">
+        is_display_front = #{isDisplayFront,jdbcType=VARCHAR},
+      </if>
+      <if test="isTopMenu != null">
+        is_top_menu = #{isTopMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="isSideMenu != null">
+        is_side_menu = #{isSideMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extField1 != null">
+        ext_field_1 = #{extField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extField2 != null">
+        ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extField3 != null">
+        ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extField4 != null">
+        ext_field_4 = #{extField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extField5 != null">
+        ext_field_5 = #{extField5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    set module_name = #{moduleName,jdbcType=VARCHAR},
+      module_code = #{moduleCode,jdbcType=VARCHAR},
+      parent_module = #{parentModule,jdbcType=VARCHAR},
+      module_type = #{moduleType,jdbcType=VARCHAR},
+      module_url = #{moduleUrl,jdbcType=VARCHAR},
+      module_icon = #{moduleIcon,jdbcType=VARCHAR},
+      module_eng_desc = #{moduleEngDesc,jdbcType=VARCHAR},
+      is_run_work_flow = #{isRunWorkFlow,jdbcType=VARCHAR},
+      is_modify = #{isModify,jdbcType=VARCHAR},
+      is_ok = #{isOk,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      is_display_front = #{isDisplayFront,jdbcType=VARCHAR},
+      is_top_menu = #{isTopMenu,jdbcType=VARCHAR},
+      is_side_menu = #{isSideMenu,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      ext_field_1 = #{extField1,jdbcType=VARCHAR},
+      ext_field_2 = #{extField2,jdbcType=VARCHAR},
+      ext_field_3 = #{extField3,jdbcType=VARCHAR},
+      ext_field_4 = #{extField4,jdbcType=VARCHAR},
+      ext_field_5 = #{extField5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysModel">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_name" jdbcType="VARCHAR" property="module_name" />
+    <result column="module_code" jdbcType="VARCHAR" property="module_code" />
+    <result column="parent_module" jdbcType="VARCHAR" property="parent_module" />
+    <result column="module_type" jdbcType="VARCHAR" property="module_type" />
+    <result column="module_url" jdbcType="VARCHAR" property="module_url" />
+    <result column="module_icon" jdbcType="VARCHAR" property="module_icon" />
+    <result column="module_eng_desc" jdbcType="VARCHAR" property="module_eng_desc" />
+    <result column="is_run_work_flow" jdbcType="VARCHAR" property="is_run_work_flow" />
+    <result column="is_modify" jdbcType="VARCHAR" property="is_modify" />
+    <result column="is_ok" jdbcType="VARCHAR" property="is_ok" />
+    <result column="order_num" jdbcType="INTEGER" property="order_num" />
+    <result column="is_display_front" jdbcType="VARCHAR" property="is_display_front" />
+    <result column="is_top_menu" jdbcType="VARCHAR" property="is_top_menu" />
+    <result column="is_side_menu" jdbcType="VARCHAR" property="is_side_menu" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modified_time" />
+    <result column="ext_field_1" jdbcType="VARCHAR" property="ext_field_1" />
+    <result column="ext_field_2" jdbcType="VARCHAR" property="ext_field_2" />
+    <result column="ext_field_3" jdbcType="VARCHAR" property="ext_field_3" />
+    <result column="ext_field_4" jdbcType="VARCHAR" property="ext_field_4" />
+    <result column="ext_field_5" jdbcType="VARCHAR" property="ext_field_5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
+    module_eng_desc, is_run_work_flow, is_modify, is_ok, order_num, is_display_front, 
+    is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
+    ext_field_2, ext_field_3, ext_field_4, ext_field_5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zy.springmvc.domain.SysModel">
+    insert into sys_module (id, module_name, module_code, 
+      parent_module, module_type, module_url, 
+      module_icon, module_eng_desc, is_run_work_flow, 
+      is_modify, is_ok, order_num, 
+      is_display_front, is_top_menu, is_side_menu, 
+      creator, created_time, modifier, 
+      modified_time, ext_field_1, ext_field_2, 
+      ext_field_3, ext_field_4, ext_field_5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{module_name,jdbcType=VARCHAR}, #{module_code,jdbcType=VARCHAR}, 
+      #{parent_module,jdbcType=VARCHAR}, #{module_type,jdbcType=VARCHAR}, #{module_url,jdbcType=VARCHAR}, 
+      #{module_icon,jdbcType=VARCHAR}, #{module_eng_desc,jdbcType=VARCHAR}, #{is_run_work_flow,jdbcType=VARCHAR}, 
+      #{is_modify,jdbcType=VARCHAR}, #{is_ok,jdbcType=VARCHAR}, #{order_num,jdbcType=INTEGER}, 
+      #{is_display_front,jdbcType=VARCHAR}, #{is_top_menu,jdbcType=VARCHAR}, #{is_side_menu,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{created_time,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modified_time,jdbcType=TIMESTAMP}, #{ext_field_1,jdbcType=VARCHAR}, #{ext_field_2,jdbcType=VARCHAR}, 
+      #{ext_field_3,jdbcType=VARCHAR}, #{ext_field_4,jdbcType=VARCHAR}, #{ext_field_5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysModel">
+    insert into sys_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="module_name != null">
+        module_name,
+      </if>
+      <if test="module_code != null">
+        module_code,
+      </if>
+      <if test="parent_module != null">
+        parent_module,
+      </if>
+      <if test="module_type != null">
+        module_type,
+      </if>
+      <if test="module_url != null">
+        module_url,
+      </if>
+      <if test="module_icon != null">
+        module_icon,
+      </if>
+      <if test="module_eng_desc != null">
+        module_eng_desc,
+      </if>
+      <if test="is_run_work_flow != null">
+        is_run_work_flow,
+      </if>
+      <if test="is_modify != null">
+        is_modify,
+      </if>
+      <if test="is_ok != null">
+        is_ok,
+      </if>
+      <if test="order_num != null">
+        order_num,
+      </if>
+      <if test="is_display_front != null">
+        is_display_front,
+      </if>
+      <if test="is_top_menu != null">
+        is_top_menu,
+      </if>
+      <if test="is_side_menu != null">
+        is_side_menu,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modified_time != null">
+        modified_time,
+      </if>
+      <if test="ext_field_1 != null">
+        ext_field_1,
+      </if>
+      <if test="ext_field_2 != null">
+        ext_field_2,
+      </if>
+      <if test="ext_field_3 != null">
+        ext_field_3,
+      </if>
+      <if test="ext_field_4 != null">
+        ext_field_4,
+      </if>
+      <if test="ext_field_5 != null">
+        ext_field_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="module_name != null">
+        #{module_name,jdbcType=VARCHAR},
+      </if>
+      <if test="module_code != null">
+        #{module_code,jdbcType=VARCHAR},
+      </if>
+      <if test="parent_module != null">
+        #{parent_module,jdbcType=VARCHAR},
+      </if>
+      <if test="module_type != null">
+        #{module_type,jdbcType=VARCHAR},
+      </if>
+      <if test="module_url != null">
+        #{module_url,jdbcType=VARCHAR},
+      </if>
+      <if test="module_icon != null">
+        #{module_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="module_eng_desc != null">
+        #{module_eng_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="is_run_work_flow != null">
+        #{is_run_work_flow,jdbcType=VARCHAR},
+      </if>
+      <if test="is_modify != null">
+        #{is_modify,jdbcType=VARCHAR},
+      </if>
+      <if test="is_ok != null">
+        #{is_ok,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null">
+        #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="is_display_front != null">
+        #{is_display_front,jdbcType=VARCHAR},
+      </if>
+      <if test="is_top_menu != null">
+        #{is_top_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="is_side_menu != null">
+        #{is_side_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified_time != null">
+        #{modified_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext_field_1 != null">
+        #{ext_field_1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_2 != null">
+        #{ext_field_2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_3 != null">
+        #{ext_field_3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_4 != null">
+        #{ext_field_4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_5 != null">
+        #{ext_field_5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    <set>
+      <if test="module_name != null">
+        module_name = #{module_name,jdbcType=VARCHAR},
+      </if>
+      <if test="module_code != null">
+        module_code = #{module_code,jdbcType=VARCHAR},
+      </if>
+      <if test="parent_module != null">
+        parent_module = #{parent_module,jdbcType=VARCHAR},
+      </if>
+      <if test="module_type != null">
+        module_type = #{module_type,jdbcType=VARCHAR},
+      </if>
+      <if test="module_url != null">
+        module_url = #{module_url,jdbcType=VARCHAR},
+      </if>
+      <if test="module_icon != null">
+        module_icon = #{module_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="module_eng_desc != null">
+        module_eng_desc = #{module_eng_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="is_run_work_flow != null">
+        is_run_work_flow = #{is_run_work_flow,jdbcType=VARCHAR},
+      </if>
+      <if test="is_modify != null">
+        is_modify = #{is_modify,jdbcType=VARCHAR},
+      </if>
+      <if test="is_ok != null">
+        is_ok = #{is_ok,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null">
+        order_num = #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="is_display_front != null">
+        is_display_front = #{is_display_front,jdbcType=VARCHAR},
+      </if>
+      <if test="is_top_menu != null">
+        is_top_menu = #{is_top_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="is_side_menu != null">
+        is_side_menu = #{is_side_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created_time != null">
+        created_time = #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified_time != null">
+        modified_time = #{modified_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext_field_1 != null">
+        ext_field_1 = #{ext_field_1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_2 != null">
+        ext_field_2 = #{ext_field_2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_3 != null">
+        ext_field_3 = #{ext_field_3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_4 != null">
+        ext_field_4 = #{ext_field_4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_5 != null">
+        ext_field_5 = #{ext_field_5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    set module_name = #{module_name,jdbcType=VARCHAR},
+      module_code = #{module_code,jdbcType=VARCHAR},
+      parent_module = #{parent_module,jdbcType=VARCHAR},
+      module_type = #{module_type,jdbcType=VARCHAR},
+      module_url = #{module_url,jdbcType=VARCHAR},
+      module_icon = #{module_icon,jdbcType=VARCHAR},
+      module_eng_desc = #{module_eng_desc,jdbcType=VARCHAR},
+      is_run_work_flow = #{is_run_work_flow,jdbcType=VARCHAR},
+      is_modify = #{is_modify,jdbcType=VARCHAR},
+      is_ok = #{is_ok,jdbcType=VARCHAR},
+      order_num = #{order_num,jdbcType=INTEGER},
+      is_display_front = #{is_display_front,jdbcType=VARCHAR},
+      is_top_menu = #{is_top_menu,jdbcType=VARCHAR},
+      is_side_menu = #{is_side_menu,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{created_time,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modified_time = #{modified_time,jdbcType=TIMESTAMP},
+      ext_field_1 = #{ext_field_1,jdbcType=VARCHAR},
+      ext_field_2 = #{ext_field_2,jdbcType=VARCHAR},
+      ext_field_3 = #{ext_field_3,jdbcType=VARCHAR},
+      ext_field_4 = #{ext_field_4,jdbcType=VARCHAR},
+      ext_field_5 = #{ext_field_5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysModel">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_name" jdbcType="VARCHAR" property="module_name" />
+    <result column="module_code" jdbcType="VARCHAR" property="module_code" />
+    <result column="parent_module" jdbcType="VARCHAR" property="parent_module" />
+    <result column="module_type" jdbcType="VARCHAR" property="module_type" />
+    <result column="module_url" jdbcType="VARCHAR" property="module_url" />
+    <result column="module_icon" jdbcType="VARCHAR" property="module_icon" />
+    <result column="module_eng_desc" jdbcType="VARCHAR" property="module_eng_desc" />
+    <result column="is_run_work_flow" jdbcType="VARCHAR" property="is_run_work_flow" />
+    <result column="is_modify" jdbcType="VARCHAR" property="is_modify" />
+    <result column="is_ok" jdbcType="VARCHAR" property="is_ok" />
+    <result column="order_num" jdbcType="INTEGER" property="order_num" />
+    <result column="is_display_front" jdbcType="VARCHAR" property="is_display_front" />
+    <result column="is_top_menu" jdbcType="VARCHAR" property="is_top_menu" />
+    <result column="is_side_menu" jdbcType="VARCHAR" property="is_side_menu" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modified_time" />
+    <result column="ext_field_1" jdbcType="VARCHAR" property="ext_field_1" />
+    <result column="ext_field_2" jdbcType="VARCHAR" property="ext_field_2" />
+    <result column="ext_field_3" jdbcType="VARCHAR" property="ext_field_3" />
+    <result column="ext_field_4" jdbcType="VARCHAR" property="ext_field_4" />
+    <result column="ext_field_5" jdbcType="VARCHAR" property="ext_field_5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
+    module_eng_desc, is_run_work_flow, is_modify, is_ok, order_num, is_display_front, 
+    is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
+    ext_field_2, ext_field_3, ext_field_4, ext_field_5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_module
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysModel" useGeneratedKeys="true">
+    insert into sys_module (module_name, module_code, parent_module, 
+      module_type, module_url, module_icon, 
+      module_eng_desc, is_run_work_flow, is_modify, 
+      is_ok, order_num, is_display_front, 
+      is_top_menu, is_side_menu, creator, 
+      created_time, modifier, modified_time, 
+      ext_field_1, ext_field_2, ext_field_3, 
+      ext_field_4, ext_field_5)
+    values (#{module_name,jdbcType=VARCHAR}, #{module_code,jdbcType=VARCHAR}, #{parent_module,jdbcType=VARCHAR}, 
+      #{module_type,jdbcType=VARCHAR}, #{module_url,jdbcType=VARCHAR}, #{module_icon,jdbcType=VARCHAR}, 
+      #{module_eng_desc,jdbcType=VARCHAR}, #{is_run_work_flow,jdbcType=VARCHAR}, #{is_modify,jdbcType=VARCHAR}, 
+      #{is_ok,jdbcType=VARCHAR}, #{order_num,jdbcType=INTEGER}, #{is_display_front,jdbcType=VARCHAR}, 
+      #{is_top_menu,jdbcType=VARCHAR}, #{is_side_menu,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{created_time,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modified_time,jdbcType=TIMESTAMP}, 
+      #{ext_field_1,jdbcType=VARCHAR}, #{ext_field_2,jdbcType=VARCHAR}, #{ext_field_3,jdbcType=VARCHAR}, 
+      #{ext_field_4,jdbcType=VARCHAR}, #{ext_field_5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysModel" useGeneratedKeys="true">
+    insert into sys_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="module_name != null">
+        module_name,
+      </if>
+      <if test="module_code != null">
+        module_code,
+      </if>
+      <if test="parent_module != null">
+        parent_module,
+      </if>
+      <if test="module_type != null">
+        module_type,
+      </if>
+      <if test="module_url != null">
+        module_url,
+      </if>
+      <if test="module_icon != null">
+        module_icon,
+      </if>
+      <if test="module_eng_desc != null">
+        module_eng_desc,
+      </if>
+      <if test="is_run_work_flow != null">
+        is_run_work_flow,
+      </if>
+      <if test="is_modify != null">
+        is_modify,
+      </if>
+      <if test="is_ok != null">
+        is_ok,
+      </if>
+      <if test="order_num != null">
+        order_num,
+      </if>
+      <if test="is_display_front != null">
+        is_display_front,
+      </if>
+      <if test="is_top_menu != null">
+        is_top_menu,
+      </if>
+      <if test="is_side_menu != null">
+        is_side_menu,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modified_time != null">
+        modified_time,
+      </if>
+      <if test="ext_field_1 != null">
+        ext_field_1,
+      </if>
+      <if test="ext_field_2 != null">
+        ext_field_2,
+      </if>
+      <if test="ext_field_3 != null">
+        ext_field_3,
+      </if>
+      <if test="ext_field_4 != null">
+        ext_field_4,
+      </if>
+      <if test="ext_field_5 != null">
+        ext_field_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="module_name != null">
+        #{module_name,jdbcType=VARCHAR},
+      </if>
+      <if test="module_code != null">
+        #{module_code,jdbcType=VARCHAR},
+      </if>
+      <if test="parent_module != null">
+        #{parent_module,jdbcType=VARCHAR},
+      </if>
+      <if test="module_type != null">
+        #{module_type,jdbcType=VARCHAR},
+      </if>
+      <if test="module_url != null">
+        #{module_url,jdbcType=VARCHAR},
+      </if>
+      <if test="module_icon != null">
+        #{module_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="module_eng_desc != null">
+        #{module_eng_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="is_run_work_flow != null">
+        #{is_run_work_flow,jdbcType=VARCHAR},
+      </if>
+      <if test="is_modify != null">
+        #{is_modify,jdbcType=VARCHAR},
+      </if>
+      <if test="is_ok != null">
+        #{is_ok,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null">
+        #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="is_display_front != null">
+        #{is_display_front,jdbcType=VARCHAR},
+      </if>
+      <if test="is_top_menu != null">
+        #{is_top_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="is_side_menu != null">
+        #{is_side_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified_time != null">
+        #{modified_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext_field_1 != null">
+        #{ext_field_1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_2 != null">
+        #{ext_field_2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_3 != null">
+        #{ext_field_3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_4 != null">
+        #{ext_field_4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_5 != null">
+        #{ext_field_5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    <set>
+      <if test="module_name != null">
+        module_name = #{module_name,jdbcType=VARCHAR},
+      </if>
+      <if test="module_code != null">
+        module_code = #{module_code,jdbcType=VARCHAR},
+      </if>
+      <if test="parent_module != null">
+        parent_module = #{parent_module,jdbcType=VARCHAR},
+      </if>
+      <if test="module_type != null">
+        module_type = #{module_type,jdbcType=VARCHAR},
+      </if>
+      <if test="module_url != null">
+        module_url = #{module_url,jdbcType=VARCHAR},
+      </if>
+      <if test="module_icon != null">
+        module_icon = #{module_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="module_eng_desc != null">
+        module_eng_desc = #{module_eng_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="is_run_work_flow != null">
+        is_run_work_flow = #{is_run_work_flow,jdbcType=VARCHAR},
+      </if>
+      <if test="is_modify != null">
+        is_modify = #{is_modify,jdbcType=VARCHAR},
+      </if>
+      <if test="is_ok != null">
+        is_ok = #{is_ok,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null">
+        order_num = #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="is_display_front != null">
+        is_display_front = #{is_display_front,jdbcType=VARCHAR},
+      </if>
+      <if test="is_top_menu != null">
+        is_top_menu = #{is_top_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="is_side_menu != null">
+        is_side_menu = #{is_side_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created_time != null">
+        created_time = #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified_time != null">
+        modified_time = #{modified_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext_field_1 != null">
+        ext_field_1 = #{ext_field_1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_2 != null">
+        ext_field_2 = #{ext_field_2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_3 != null">
+        ext_field_3 = #{ext_field_3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_4 != null">
+        ext_field_4 = #{ext_field_4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext_field_5 != null">
+        ext_field_5 = #{ext_field_5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysModel">
+    update sys_module
+    set module_name = #{module_name,jdbcType=VARCHAR},
+      module_code = #{module_code,jdbcType=VARCHAR},
+      parent_module = #{parent_module,jdbcType=VARCHAR},
+      module_type = #{module_type,jdbcType=VARCHAR},
+      module_url = #{module_url,jdbcType=VARCHAR},
+      module_icon = #{module_icon,jdbcType=VARCHAR},
+      module_eng_desc = #{module_eng_desc,jdbcType=VARCHAR},
+      is_run_work_flow = #{is_run_work_flow,jdbcType=VARCHAR},
+      is_modify = #{is_modify,jdbcType=VARCHAR},
+      is_ok = #{is_ok,jdbcType=VARCHAR},
+      order_num = #{order_num,jdbcType=INTEGER},
+      is_display_front = #{is_display_front,jdbcType=VARCHAR},
+      is_top_menu = #{is_top_menu,jdbcType=VARCHAR},
+      is_side_menu = #{is_side_menu,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{created_time,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modified_time = #{modified_time,jdbcType=TIMESTAMP},
+      ext_field_1 = #{ext_field_1,jdbcType=VARCHAR},
+      ext_field_2 = #{ext_field_2,jdbcType=VARCHAR},
+      ext_field_3 = #{ext_field_3,jdbcType=VARCHAR},
+      ext_field_4 = #{ext_field_4,jdbcType=VARCHAR},
+      ext_field_5 = #{ext_field_5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
