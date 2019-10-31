@@ -257,7 +257,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="user-image"
                                  alt="User Image">
-                            <span class="hidden-xs"><%=userMap.get("realName")%></span>
+                            <span class="hidden-xs"><%=userMap.get("entity_name")%></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->

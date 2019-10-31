@@ -1,8 +1,17 @@
 package com.zy.springmvc.web.controller;
 
+import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.zy.springmvc.common.MapUtils;
+import com.zy.springmvc.domain.Result;
+import com.zy.springmvc.domain.SysUser;
+import com.zy.springmvc.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 
 /**
@@ -26,6 +36,9 @@ import java.util.Map;
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @Description("访问登陆页面")
@@ -76,13 +89,15 @@ public class UserController {
         return new ModelAndView("platform/user/userlist");
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/user/add")
     @ResponseBody
-    public String addUser(@RequestParam Map map) {
-//        //userMapper.addUser(user);
-//        Result result  = new Result();
-//        result.setSuccess(true);
-//        return JSONObject.toJSON(result).toString();
-        return  null;
+    public ResponseEntity<String> addUser(@RequestParam Map map) throws Exception {
+        SysUser sysUser  = MapUtils.map2bean(map, SysUser.class);
+        sysUser.setId(UUID.randomUUID().toString());
+        userService.insert(sysUser);
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setData(sysUser);
+        return  ResponseEntity.ok(JSONObject.toJSONString(sysUser));
     }
 }

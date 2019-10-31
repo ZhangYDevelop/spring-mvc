@@ -12,7 +12,7 @@
         <security:intercept-url pattern="/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/platform/login" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
-        <security:intercept-url pattern=" /user/add" access="permitAll()"/>
+        <security:intercept-url pattern="/platform/user/add" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
         <security:form-login login-page="/platform/login"

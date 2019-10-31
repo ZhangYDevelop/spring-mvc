@@ -14,6 +14,7 @@
     <link href="<%=basePath%>/resources/css/login.css" rel="stylesheet">
     <script src="<%=basePath%>/resources/js/bootstrap.min.js"></script>
     <script src="<%=basePath%>/resources/js/encrypt/md5.js"></script>
+    <script src="<%=basePath%>/resources/js/angular-1.5.8/angular.js"></script>
     <link rel="shortcut icon" href="<%=basePath%>/resources/images/favicon.ico" type="image/x-icon">
     <script type="text/javascript">
         /**
@@ -68,28 +69,27 @@
                 login();
             }
         };
-
-        /**
-         * 用户注册
-         */
-        function submit() {
-            var  data = $("#userRegister").serialize();
-            $.ajax({
-                url: '<%=basePath%>/api/user/add',
-                type: 'POST',
-                data:  JSON.stringify(data),
-                dataType: "json",
-                success: function (data) {
+        var app = angular.module('myApp', []);
+        app.controller('formCtrl', function($scope, $http) {
+            $scope.user = {};
+            $scope.submit = function() {
+                $scope.user = angular.copy($scope.user);
+                alert("dfdfd")
+                // 简单的 GET 请求，可以改为 POST
+                $http({
+                    method: 'GET',
+                    url: '<%=basePath%>/platform/user/add',
+                    data: $scope
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
                     debugger
-                    if (data.success) {
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            };
+            $scope.submit();
+        });
 
-                    } else {
-
-                    }
-                }
-            });
-
-        }
     </script>
 </head>
 <body id="loginBody">
@@ -138,7 +138,7 @@
         </div>
     </div>
     <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-app="myApp" ng-controller="formCtrl">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -153,17 +153,17 @@
                     <form role="form" id="userRegister">
                         <div class="form-group">
                             <label for="name" >账号</label>
-                            <input type="text" name="username" class="form-control" id="name"
+                            <input type="text" name="username" class="form-control" id="name" ng-model="user.username"
                                    placeholder="请输入账号">
                         </div>
                         <div class="form-group">
                             <label for="name" >密码</label>
-                            <input type="password" name="password" class="form-control" id="password2"
+                            <input type="password" name="password" class="form-control" id="password2" ng-model="user.password"
                                    placeholder="请输入密码">
                         </div>
                         <div class="form-group">
                             <label for="name">用户名</label>
-                            <input type="realName" name="realName" class="form-control" id="realName"
+                            <input type="realName" name="entity_name" class="form-control" id="entity_name"
                                    placeholder="请输入用户名">
                         </div>
                         <div class="form-group">
@@ -181,7 +181,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
-                    <button type="submit" class="btn btn-primary" onclick="submit()">
+                    <button type="submit" class="btn btn-primary" ng-click="submit()">
                         保存
                     </button>
                 </div>
