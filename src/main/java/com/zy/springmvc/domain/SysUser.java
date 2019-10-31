@@ -8,7 +8,8 @@ import java.util.Date;
 import java.util.Set;
 
 public class SysUser implements UserDetails, CredentialsContainer {
-    private Integer id;
+
+    private String id;
 
     private String username;
 
@@ -76,6 +77,7 @@ public class SysUser implements UserDetails, CredentialsContainer {
 
     private Set<GrantedAuthority> authorities;
 
+    @Override
     public Set<GrantedAuthority> getAuthorities() {
         return authorities;
     }
@@ -84,12 +86,12 @@ public class SysUser implements UserDetails, CredentialsContainer {
         this.authorities = authorities;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id == null ? null : id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getUsername() {
@@ -98,7 +100,22 @@ public class SysUser implements UserDetails, CredentialsContainer {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public void setUsername(String username) {
@@ -289,27 +306,16 @@ public class SysUser implements UserDetails, CredentialsContainer {
         this.last_modified_date = last_modified_date;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
     }
 
     public void setAccountNonLocked(boolean accountNonLocked) {
         this.accountNonLocked = accountNonLocked;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
     }
 
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
@@ -346,10 +352,6 @@ public class SysUser implements UserDetails, CredentialsContainer {
 
     public void setModifier(String modifier) {
         this.modifier = modifier == null ? null : modifier.trim();
-    }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        this.accountNonExpired = accountNonExpired;
     }
 
     @Override

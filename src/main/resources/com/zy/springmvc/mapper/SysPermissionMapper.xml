@@ -24,17 +24,20 @@
     delete from sys_permission
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysPermission" useGeneratedKeys="true">
-    insert into sys_permission (code, url, method, 
-      description, is_ok, order_num, 
-      sys_module_id)
-    values (#{code,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{isOk,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
-      #{sysModuleId,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.zy.springmvc.domain.SysPermission">
+    insert into sys_permission (id, code, url, 
+      method, description, is_ok, 
+      order_num, sys_module_id)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isOk,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{sysModuleId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysPermission" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysPermission">
     insert into sys_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="code != null">
         code,
       </if>
@@ -58,6 +61,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>

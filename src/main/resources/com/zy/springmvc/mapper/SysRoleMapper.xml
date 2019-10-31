@@ -36,23 +36,28 @@
     delete from sys_role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysRole" useGeneratedKeys="true">
-    insert into sys_role (role_name, role_code, role_desc, 
-      remark, order_num, is_ok, 
-      org_id, creator, created_time, 
-      modifier, modified_time, tenant_id, 
-      ext_field_1, ext_field_2, ext_field_3, 
-      ext_field_4, ext_field_5)
-    values (#{roleName,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, #{isOk,jdbcType=VARCHAR}, 
-      #{orgId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, #{tenantId,jdbcType=VARCHAR}, 
-      #{extField1,jdbcType=VARCHAR}, #{extField2,jdbcType=VARCHAR}, #{extField3,jdbcType=VARCHAR}, 
-      #{extField4,jdbcType=VARCHAR}, #{extField5,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.zy.springmvc.domain.SysRole">
+    insert into sys_role (id, role_name, role_code, 
+      role_desc, remark, order_num, 
+      is_ok, org_id, creator, 
+      created_time, modifier, modified_time, 
+      tenant_id, ext_field_1, ext_field_2, 
+      ext_field_3, ext_field_4, ext_field_5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
+      #{roleDesc,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
+      #{isOk,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{tenantId,jdbcType=VARCHAR}, #{extField1,jdbcType=VARCHAR}, #{extField2,jdbcType=VARCHAR}, 
+      #{extField3,jdbcType=VARCHAR}, #{extField4,jdbcType=VARCHAR}, #{extField5,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysRole" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysRole">
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="roleName != null">
         role_name,
       </if>
@@ -106,6 +111,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="roleName != null">
         #{roleName,jdbcType=VARCHAR},
       </if>

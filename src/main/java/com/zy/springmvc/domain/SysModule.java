@@ -2,7 +2,7 @@ package com.zy.springmvc.domain;
 
 import java.util.Date;
 
-public class SysModel {
+public class SysModule {
     private String id;
 
     private String moduleName;

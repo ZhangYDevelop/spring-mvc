@@ -1,14 +1,10 @@
 package com.zy.springmvc.service.impl;
 
-import com.zy.springmvc.domain.SysPermission;
 import com.zy.springmvc.domain.SysUser;
-import com.zy.springmvc.domain.User;
 import com.zy.springmvc.mapper.SysUserMapper;
 import com.zy.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @Author zhangy
@@ -24,7 +20,7 @@ public class UserServceImpl implements UserService {
 
 
     @Override
-    public int deleteByPrimaryKey(int id) {
+    public int deleteByPrimaryKey(String id) {
         return sysUserMapperl.deleteByPrimaryKey(id);
     }
 
@@ -39,7 +35,7 @@ public class UserServceImpl implements UserService {
     }
 
     @Override
-    public SysUser selectByPrimaryKey(int id) {
+    public SysUser selectByPrimaryKey(String id) {
         return sysUserMapperl.selectByPrimaryKey(id);
     }
 

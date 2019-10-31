@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.springmvc.mapper.SysUserMapper">
   <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysUser">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="entity_id" jdbcType="VARCHAR" property="entity_id" />
     <result column="entity_type" jdbcType="VARCHAR" property="entity_type" />
@@ -44,52 +44,56 @@
     accountNonLocked, enabled, credentialsNonExpired, created_time, creator, modified_time, 
     modifier
   </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from sys_user
+  where id = #{id,jdbcType=VARCHAR}
+</select>
   <select id="getSysUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_user
     where username = #{username,jdbcType=VARCHAR}
   </select>
-
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysUser" useGeneratedKeys="true">
-    insert into sys_user (username, entity_id, entity_type, 
-      entity_name, application_name, user_email, 
-      user_phone, personal_status, password, 
-      pwd_question, pwd_answer, last_login_date, 
-      last_pwd_chg_date, is_online, is_locked_out, 
-      is_changed_pwd, order_num, is_ok, 
-      org_id, remark, created_by, 
-      created_date, last_modified_by, last_modified_date, 
+  <insert id="insert" parameterType="com.zy.springmvc.domain.SysUser">
+    insert into sys_user (id, username, entity_id, 
+      entity_type, entity_name, application_name, 
+      user_email, user_phone, personal_status, 
+      password, pwd_question, pwd_answer, 
+      last_login_date, last_pwd_chg_date, 
+      is_online, is_locked_out, is_changed_pwd, 
+      order_num, is_ok, org_id, 
+      remark, created_by, created_date, 
+      last_modified_by, last_modified_date, 
       accountNonExpired, accountNonLocked, enabled, 
       credentialsNonExpired, created_time, 
       creator, modified_time, modifier
       )
-    values (#{username,jdbcType=VARCHAR}, #{entity_id,jdbcType=VARCHAR}, #{entity_type,jdbcType=VARCHAR}, 
-      #{entity_name,jdbcType=VARCHAR}, #{application_name,jdbcType=VARCHAR}, #{user_email,jdbcType=VARCHAR}, 
-      #{user_phone,jdbcType=VARCHAR}, #{personal_status,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{pwd_question,jdbcType=VARCHAR}, #{pwd_answer,jdbcType=VARCHAR}, #{last_login_date,jdbcType=TIMESTAMP}, 
-      #{last_pwd_chg_date,jdbcType=TIMESTAMP}, #{is_online,jdbcType=VARCHAR}, #{is_locked_out,jdbcType=VARCHAR}, 
-      #{is_changed_pwd,jdbcType=VARCHAR}, #{order_num,jdbcType=INTEGER}, #{is_ok,jdbcType=VARCHAR}, 
-      #{org_id,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{created_by,jdbcType=VARCHAR}, 
-      #{created_date,jdbcType=TIMESTAMP}, #{last_modified_by,jdbcType=VARCHAR}, #{last_modified_date,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{entity_id,jdbcType=VARCHAR}, 
+      #{entity_type,jdbcType=VARCHAR}, #{entity_name,jdbcType=VARCHAR}, #{application_name,jdbcType=VARCHAR}, 
+      #{user_email,jdbcType=VARCHAR}, #{user_phone,jdbcType=VARCHAR}, #{personal_status,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{pwd_question,jdbcType=VARCHAR}, #{pwd_answer,jdbcType=VARCHAR}, 
+      #{last_login_date,jdbcType=TIMESTAMP}, #{last_pwd_chg_date,jdbcType=TIMESTAMP}, 
+      #{is_online,jdbcType=VARCHAR}, #{is_locked_out,jdbcType=VARCHAR}, #{is_changed_pwd,jdbcType=VARCHAR}, 
+      #{order_num,jdbcType=INTEGER}, #{is_ok,jdbcType=VARCHAR}, #{org_id,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{created_by,jdbcType=VARCHAR}, #{created_date,jdbcType=TIMESTAMP}, 
+      #{last_modified_by,jdbcType=VARCHAR}, #{last_modified_date,jdbcType=TIMESTAMP}, 
       #{accountNonExpired,jdbcType=INTEGER}, #{accountNonLocked,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER}, 
       #{credentialsNonExpired,jdbcType=INTEGER}, #{created_time,jdbcType=TIMESTAMP}, 
       #{creator,jdbcType=VARCHAR}, #{modified_time,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.springmvc.domain.SysUser" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="username != null">
         username,
       </if>
@@ -188,6 +192,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>

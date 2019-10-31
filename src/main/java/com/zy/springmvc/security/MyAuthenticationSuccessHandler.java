@@ -3,8 +3,6 @@ package com.zy.springmvc.security;
 import com.alibaba.fastjson.JSONObject;
 import com.zy.springmvc.domain.Result;
 
-import com.zy.springmvc.domain.User;
-import org.apache.ibatis.ognl.Ognl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -29,11 +27,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         logger.info("登录验证成功：");
         logger.info("权限点：" + JSONObject.toJSONString(authentication));
-        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(object instanceof User) {
-            User user = (User)object;
-            logger.info(user.toString());
-        }
         // 验证成功返回JSON数据到前端
         Result result = new Result();
         result.setSuccess(true);

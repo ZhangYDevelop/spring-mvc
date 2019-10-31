@@ -1,7 +1,6 @@
 package com.zy.springmvc.security;
 
 import com.zy.springmvc.domain.SysUser;
-import com.zy.springmvc.domain.User;
 import com.zy.springmvc.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

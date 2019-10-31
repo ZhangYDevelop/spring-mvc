@@ -1,19 +1,14 @@
 package com.zy.springmvc;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zy.springmvc.domain.SysModel;
 import com.zy.springmvc.domain.SysUser;
-import com.zy.springmvc.domain.User;
-import com.zy.springmvc.mapper.SysModelMapper;
 import com.zy.springmvc.mapper.SysUserMapper;
-import org.hibernate.id.GUIDGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.StringUtils;
 
 /**
  * @Author zhangy
@@ -22,11 +17,6 @@ import org.springframework.util.StringUtils;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context.xml")
 public class UserMapperTest {
-
-
-
-    @Autowired
-    private SysModelMapper sysModelMapper;
 
     @Autowired
     private SysUserMapper sysUserMapper;
@@ -47,8 +37,8 @@ public class UserMapperTest {
     @Test
     public void tesupdateUser() {
         SysUser user =  new SysUser();
-        user.setId(3);
         user.setUsername("admin");
+        user.setId("123");
         user.setEntity_name("管理员");
         Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
         user.setPassword(md5PasswordEncoder.encodePassword("admin", null));
@@ -57,11 +47,11 @@ public class UserMapperTest {
 
     @Test
     public void  testgetsysModelMapper() {
-       SysModel sysModel =  new SysModel();
-       sysModel.setId("dfdf");
-       sysModel.setModuleName("lsdflsjf");
-
-       sysModelMapper.insert(sysModel);
-       System.out.println(sysModel);
+//       SysModel sysModel =  new SysModel();
+//       sysModel.setId("dfdf");
+//       sysModel.setModuleName("lsdflsjf");
+//
+//       sysModelMapper.insert(sysModel);
+//       System.out.println(sysModel);
     }
 }
