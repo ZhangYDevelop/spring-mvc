@@ -54,7 +54,7 @@ public class MySecurityMetadataSource implements
     public Collection<ConfigAttribute> getAttributes(Object object)
             throws IllegalArgumentException {
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
-        System.out.println("requestUrl is " + requestUrl);
+        // System.out.println("requestUrl is " + requestUrl);
         if(resourceMap == null) {
             loadResourceDefine();
         }

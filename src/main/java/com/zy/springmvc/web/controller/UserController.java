@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,13 +88,25 @@ public class UserController {
 
     @RequestMapping("/user/add")
     @ResponseBody
-    public ResponseEntity<String> addUser(@RequestParam Map map) throws Exception {
+    public String addUser(@RequestParam Map map) throws Exception {
         SysUser sysUser  = MapUtils.map2bean(map, SysUser.class);
-        sysUser.setId(UUID.randomUUID().toString());
-        userService.insert(sysUser);
+        // 判断是否用户存在
+        SysUser exitUser =   userService.getSysUserByUserName(sysUser.getUsername());
         Result result = new Result();
-        result.setSuccess(true);
-        result.setData(sysUser);
-        return  ResponseEntity.ok(JSONObject.toJSONString(sysUser));
+
+        if (exitUser == null)  {
+            sysUser.setId(UUID.randomUUID().toString());
+            sysUser.setAccountNonExpired(true);
+            sysUser.setAccountNonLocked(true);
+            sysUser.setEnabled(true);
+            sysUser.setCredentialsNonExpired(true);
+            userService.insert(sysUser);
+            result.setSuccess(true);
+            result.setData(sysUser);
+        } else {
+            result.setSuccess(false);
+            result.setMessage("用户已存在");
+        }
+        return  JSONObject.toJSON(result).toString();
     }
 }

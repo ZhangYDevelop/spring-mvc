@@ -72,22 +72,18 @@
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function($scope, $http) {
             $scope.user = {};
-            $scope.submit = function() {
-                $scope.user = angular.copy($scope.user);
-                alert("dfdfd")
+            $scope.submit = function () {
+                $scope.user.password =  hex_md5($scope.user.password);
                 // 简单的 GET 请求，可以改为 POST
-                $http({
-                    method: 'GET',
-                    url: '<%=basePath%>/platform/user/add',
-                    data: $scope
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    debugger
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
+                var url = '<%=basePath%>/platform/user/add';
+                $http.post(url, {}, {params:$scope.user}).success(function (data) {
+                    if (data.success) {
+                        alert("注册成功")
+                    } else {
+                        alert("注册失败：" + data.message)
+                    }
+                })
             };
-            $scope.submit();
         });
 
     </script>
@@ -163,18 +159,13 @@
                         </div>
                         <div class="form-group">
                             <label for="name">用户名</label>
-                            <input type="realName" name="entity_name" class="form-control" id="entity_name"
+                            <input type="realName" name="entity_name" class="form-control" id="entity_name" ng-model="user.entity_name"
                                    placeholder="请输入用户名">
                         </div>
                         <div class="form-group">
                             <label for="name">电话</label>
-                            <input type="text" class="form-control" id="tel" name="tel"
+                            <input type="text" class="form-control" id="tel" name="tel" ng-model="user.user_phone"
                                    placeholder="请输入电话">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">邮箱</label>
-                            <input type="text" class="form-control" id="mail" name="mail"
-                                   placeholder="请输入邮箱">
                         </div>
                     </form>
                 </div>
