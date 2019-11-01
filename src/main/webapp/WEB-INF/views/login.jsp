@@ -76,13 +76,14 @@
                 $scope.user.password =  hex_md5($scope.user.password);
                 // 简单的 GET 请求，可以改为 POST
                 var url = '<%=basePath%>/platform/user/add';
-                $http.post(url, {}, {params:$scope.user}).success(function (data) {
-                    if (data.success) {
-                        alert("注册成功")
+                $http.post(url, {}, {params:$scope.user}).then(function (res) {
+                    if (res.data.success) {
+                        $('#myModal').modal('hide');
+                        alert("注册成功");s
                     } else {
-                        alert("注册失败：" + data.message)
+                        alert("注册失败：" + res.data.message)
                     }
-                })
+                });
             };
         });
 

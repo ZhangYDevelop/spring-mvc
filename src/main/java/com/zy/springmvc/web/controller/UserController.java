@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -100,6 +102,7 @@ public class UserController {
             sysUser.setAccountNonLocked(true);
             sysUser.setEnabled(true);
             sysUser.setCredentialsNonExpired(true);
+            sysUser.setCreated_time(new Date());
             userService.insert(sysUser);
             result.setSuccess(true);
             result.setData(sysUser);

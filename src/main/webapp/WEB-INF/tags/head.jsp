@@ -76,7 +76,7 @@ folder instead of downloading all of them to reduce the load. -->
 <!-- AdminLTE App -->
 <script src="<%=contextPath%>/resources/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<%=contextPath%>/resources/js/dashboard.js"></script>
+<%--<script src="<%=contextPath%>/resources/js/dashboard.js"></script>--%>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/js/demo.js"></script>
 <script src="<%=contextPath%>/resources/js/html5shiv.min.js"></script>
