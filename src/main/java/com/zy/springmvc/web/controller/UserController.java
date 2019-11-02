@@ -108,4 +108,9 @@ public class UserController {
         }
         return  JSONObject.toJSON(result).toString();
     }
+
+    @RequestMapping("/register/user")
+    public ModelAndView registerUser() {
+        return new ModelAndView("register");
+    }
 }

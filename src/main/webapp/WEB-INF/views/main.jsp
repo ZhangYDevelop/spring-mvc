@@ -274,7 +274,7 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="<%=contextPath%>/logout" class="btn btn-default btn-flat">退出登录</a>
+                                    <a href="<%=contextPath%>/logout" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
