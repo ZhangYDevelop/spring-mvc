@@ -85,11 +85,9 @@
 
         $scope.register = function () {
             $scope.user.password =  hex_md5($scope.user.password);
-            // 简单的 GET 请求，可以改为 POST
             var url = '<%=contextPath%>/platform/user/add';
             $http.post(url, {}, {params:$scope.user}).then(function (res) {
                 if (res.data.success) {
-                    $('#myModal').modal('hide');
                     alert("注册成功, 三秒后跳转到登录页");
                     setTimeout(function () {
                         window.location.href = '<%=contextPath%>/platform/login';
