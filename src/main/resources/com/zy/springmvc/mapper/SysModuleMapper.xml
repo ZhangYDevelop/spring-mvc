@@ -33,12 +33,19 @@
     is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="getAllSysModule"  resultMap="BaseResultMap">
     select 
+    <include refid="Base_Column_List" />
+    from sys_module
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from sys_module
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_module
     where id = #{id,jdbcType=VARCHAR}

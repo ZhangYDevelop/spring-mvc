@@ -3,8 +3,11 @@ package com.zy.springmvc.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.zy.springmvc.common.MapUtils;
 import com.zy.springmvc.domain.Result;
+import com.zy.springmvc.domain.SysModule;
 import com.zy.springmvc.domain.SysUser;
+import com.zy.springmvc.service.SysModuleService;
 import com.zy.springmvc.service.UserService;
+import com.zy.springmvc.service.impl.SysModuleServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -34,6 +38,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SysModuleService sysModuleService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @Description("访问登陆页面")
@@ -112,5 +119,12 @@ public class UserController {
     @RequestMapping("/register/user")
     public ModelAndView registerUser() {
         return new ModelAndView("register");
+    }
+
+    @RequestMapping("/sysmodule/getAllSysModule")
+    @ResponseBody
+    public String getSysModule() {
+       List<SysModule> sysModulesList =  sysModuleService.getAllSysModule();
+       return JSONObject.toJSON(sysModulesList).toString() ;
     }
 }

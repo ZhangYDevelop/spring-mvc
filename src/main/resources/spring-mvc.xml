@@ -17,7 +17,11 @@
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <!--处理json返回数据中文乱码-->
-                <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>

@@ -1,10 +1,15 @@
-package com.zy.springmvc.mapper;
+package com.zy.springmvc.service;
 
 import com.zy.springmvc.domain.SysModule;
 
 import java.util.List;
 
-public interface SysModuleMapper {
+/**
+ * @AUTHOR zhangy
+ * 2019-11-04  21:33
+ */
+public interface SysModuleService {
+
     int deleteByPrimaryKey(String id);
 
     int insert(SysModule record);
