@@ -33,7 +33,7 @@
     is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
-  <select id="getAllSysModule"  resultMap="BaseResultMap">
+  <select id="getAllSysModule"  resultMap="BaseResultMap" parameterType="java.lang.String">
     select 
     <include refid="Base_Column_List" />
     from sys_module

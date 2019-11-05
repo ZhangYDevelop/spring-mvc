@@ -21,14 +21,15 @@
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function ($scope, $http) {
             var thisClone = this;
+            $scope.menuParam = {moduleName: ''};
             // 获取菜单数据
             $scope.getMenueInfo = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModule';
-                $http.post(url, {}).then(function (res) {
+                $http.post(url, {}, {params: $scope.menuParam}).then(function (res) {
                     // 组装菜单树形结构
                     if(res.data.length > 0) {
                         var temp =   res.data.filter(function(value) {
-                            return value.parentModule == '-1';
+                            return value.parentModule == '-1' || value.parentModule == null;
                         });
                         if (temp && temp.length > 0) {
                             temp.forEach(function (item) {
@@ -39,9 +40,43 @@
                             })
                         }
                         thisClone.menuList = temp;
+                        thisClone.menuListOld = temp;
                     }
                 });
             };
+            //菜单栏搜索
+            $scope.filterMenuItemsByModuleName = function() {
+                debugger
+                if ($scope.menuParam.moduleName) {
+                    var temp =  thisClone.menuListOld.filter(function (item) {
+                        return item.moduleName == $scope.menuParam.moduleName  ;
+                    })
+                    var child =  thisClone.menuListOld.map(function (item) {
+                        return item.childern  ;
+                    })
+                    child =  child.filter(function (item) {
+                        return item.moduleName == $scope.menuParam.moduleName  ;
+                    })
+                    if (child && child.length > 0) {
+                        child.forEach(function (data) {
+                           var parentNode = thisClone.menuListOld.find(function (item) {
+                                return item.id == item.parentMoudle  ;
+                            })
+                            temp.push(parentNode);
+                        })
+                    }
+                    temp.forEach(function (item) {
+                        var childern =  child.filter(function (data) {
+                            return data.parentModule == item.id;
+                        })
+                        item['childern'] = childern;
+                    })
+                    thisClone.menuList = temp;
+                } else {
+                    thisClone.menuList = thisClone.menuListOld;
+                }
+
+            }
             $scope.getMenueInfo();
         });
 
@@ -330,11 +365,11 @@
                 </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
+            <form  class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" name="q" class="form-control" placeholder="Search..." ng-model="menuParam.moduleName">
                     <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                <button ng-click="filterMenuItemsByModuleName()" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
                 </div>
@@ -342,7 +377,6 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
                 <!--循环树结构-->
                 <li class="active treeview" ng-repeat="item in menu.menuList">
                     <a href="#">
