@@ -39,9 +39,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private SysModuleService sysModuleService;
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @Description("访问登陆页面")
     public String submit() {
@@ -121,10 +118,4 @@ public class UserController {
         return new ModelAndView("register");
     }
 
-    @RequestMapping("/sysmodule/getAllSysModule")
-    @ResponseBody
-    public String getSysModule() {
-       List<SysModule> sysModulesList =  sysModuleService.getAllSysModule();
-       return JSONObject.toJSON(sysModulesList).toString() ;
-    }
 }

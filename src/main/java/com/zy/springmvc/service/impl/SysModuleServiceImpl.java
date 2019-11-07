@@ -49,7 +49,7 @@ public class SysModuleServiceImpl implements SysModuleService {
     }
 
     @Override
-    public List<SysModule> getAllSysModule() {
-        return sysModuleMapper.getAllSysModule();
+    public List<SysModule> getAllSysModule(String username) {
+        return sysModuleMapper.getAllSysModule(username);
     }
 }

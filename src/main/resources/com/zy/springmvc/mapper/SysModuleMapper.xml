@@ -34,9 +34,23 @@
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
   <select id="getAllSysModule"  resultMap="BaseResultMap" parameterType="java.lang.String">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_module
+    select  a.* from sys_module a
+                      INNER JOIN sys_permission  b on a.id = b.sys_module_id
+                      INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
+                      INNER JOIN sys_user d on d.id =c.sys_user_id
+    <if test="username != null and username != 'admin'">
+      where d.username  = #{username,jdbcType=VARCHAR}
+    </if>
+    union
+    select  a.* from sys_module a
+      where a.id in (select DISTINCT a.parent_module from sys_module  a
+                    INNER JOIN sys_permission  b on a.id = b.sys_module_id
+                    INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
+                    INNER JOIN sys_user d on d.id =c.sys_user_id
+      <if test="username != null and username != 'admin'">
+        where d.username  = #{username,jdbcType=VARCHAR}
+      </if>
+    )
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

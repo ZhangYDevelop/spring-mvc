@@ -77,9 +77,9 @@
                         $(".login_msg").html("登录成功正在跳转，请稍候...");
                         window.location = '<%=contextPath%>/platform/main';
                     } else if (res.data.code == '004') {
-                        $(".login_msg").html(data.message);
+                        $(".login_msg").html(res.data.message);
                     } else {
-                        $("#ssid").val(data.data);
+                        $("#ssid").val(res.data.message);
                         /* $(".login_msg").html(data.message); */
                         $(".login_msg").html("用户名或密码错误，请重新登录");
                     }

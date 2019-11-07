@@ -1,9 +1,12 @@
 package com.zy.springmvc.security;
 
+import com.zy.springmvc.domain.SysModule;
+import com.zy.springmvc.service.SysModuleService;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -15,36 +18,30 @@ public class MySecurityMetadataSource implements
         FilterInvocationSecurityMetadataSource {
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
 
-    public MySecurityMetadataSource(){
+    public MySecurityMetadataSource(SysModuleService sysModuleService){
+        this.sysModuleService = sysModuleService;
         loadResourceDefine();
     }
+
+
+    private final  SysModuleService sysModuleService;
 
     //加载所有资源与权限的关系
     private void loadResourceDefine() {
         if(resourceMap == null) {
             resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
-           /* List<Resources> resources = this.resourcesDao.findAll();
-            for (Resources resource : resources) {
-                Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
-                //以权限名封装为Spring的security Object
-                ConfigAttribute configAttribute = new SecurityConfig(resource.getName());
-                configAttributes.add(configAttribute);
-                resourceMap.put(resource.getUrl(), configAttributes);
-            } */
-            Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
-            //以权限名封装为Spring的security Object
-            ConfigAttribute configAttribute = new SecurityConfig("USER_ROLE2");
-            configAttributes.add(configAttribute);
-            resourceMap.put("/api/platform/main", configAttributes);
-
-            configAttributes = new ArrayList<ConfigAttribute>();
-            configAttribute = new SecurityConfig("USER_ROLE3");
-            configAttributes.add(configAttribute);
-            resourceMap.put("/api/platform/error", configAttributes);
+            // 查询所有的模块，以模块名称作为权限点
+            List<SysModule> sysModulesList =  sysModuleService.getAllSysModule("admin");
+            for (SysModule resource : sysModulesList) {
+                if (StringUtils.isEmpty(resource.getModuleUrl())) {
+                    Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
+                    //以权限名封装为Spring的security Object
+                    ConfigAttribute configAttribute = new SecurityConfig(resource.getModuleName());
+                    configAttributes.add(configAttribute);
+                    resourceMap.put(resource.getModuleUrl(), configAttributes);
+                }
+            }
         }
-
-        Set<Map.Entry<String, Collection<ConfigAttribute>>> resourceSet = resourceMap.entrySet();
-        Iterator<Map.Entry<String, Collection<ConfigAttribute>>> iterator = resourceSet.iterator();
     }
 
 

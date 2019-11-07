@@ -22,5 +22,5 @@ public interface SysModuleService {
 
     int updateByPrimaryKey(SysModule record);
 
-    List<SysModule> getAllSysModule();
+    List<SysModule> getAllSysModule(String username);
 }

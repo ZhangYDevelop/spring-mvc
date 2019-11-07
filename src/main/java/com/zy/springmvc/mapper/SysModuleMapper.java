@@ -17,5 +17,10 @@ public interface SysModuleMapper {
 
     int updateByPrimaryKey(SysModule record);
 
-    List<SysModule> getAllSysModule();
+    /**
+     * 根据用户名查询用户拥有的菜单列表
+     * @param username
+     * @return
+     */
+    List<SysModule> getAllSysModule(String username);
 }
