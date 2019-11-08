@@ -44,7 +44,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Full name" ng-model="user.entity_name">
+                <input type="text" class="form-control" placeholder="Full name" ng-model="user.entity_name">
                 <span class="glyphicon glyphicon-edit form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
