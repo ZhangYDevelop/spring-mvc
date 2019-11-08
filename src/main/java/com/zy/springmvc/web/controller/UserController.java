@@ -118,4 +118,19 @@ public class UserController {
         return new ModelAndView("register");
     }
 
+    /**
+     * 用户列表
+     * @return
+     */
+    @RequestMapping("/user/list")
+    public ModelAndView userList() {
+        return new ModelAndView("/platform/user/userlist");
+    }
+
+    @RequestMapping("/user/userinfo")
+    @ResponseBody
+    public String getAllUser() {
+       return JSONObject.toJSONString(userService.getAllUser());
+    }
+
 }

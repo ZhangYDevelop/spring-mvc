@@ -1,7 +1,9 @@
 package com.zy.springmvc;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zy.springmvc.domain.ModulePermissionUserRelation;
 import com.zy.springmvc.domain.SysUser;
+import com.zy.springmvc.mapper.SysModuleMapper;
 import com.zy.springmvc.mapper.SysUserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * @Author zhangy
@@ -20,6 +24,17 @@ public class UserMapperTest {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private SysModuleMapper sysModuleMapper;
+
+
+    @Test
+    public void testMenu() {
+        List<ModulePermissionUserRelation> lsit =  sysModuleMapper.getAllSysModule("zhangyu");
+        System.out.println(lsit.toString());
+    }
+
 
     @Test
     public void testUserMapper() {

@@ -27,22 +27,34 @@
     <result column="ext_field_4" jdbcType="VARCHAR" property="extField4" />
     <result column="ext_field_5" jdbcType="VARCHAR" property="extField5" />
   </resultMap>
+  <resultMap id="baseResultMapExt" type="com.zy.springmvc.domain.ModulePermissionUserRelation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="parent_module" jdbcType="VARCHAR" property="parentModule" />
+    <result column="module_url" jdbcType="VARCHAR" property="moduleUrl" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="entity_name" jdbcType="VARCHAR" property="entityName" />
+    <result column="sys_role_id" jdbcType="VARCHAR" property="sysRoleId" />
+    <result column="sys_permission_id" jdbcType="VARCHAR" property="sysPermissionId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="module_icon" jdbcType="VARCHAR" property="moduleIcon" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
     module_eng_desc, is_run_work_flow, is_modify, is_ok, order_num, is_display_front, 
     is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
-  <select id="getAllSysModule"  resultMap="BaseResultMap" parameterType="java.lang.String">
-    select  a.* from sys_module a
+  <select id="getAllSysModule"  resultMap="baseResultMapExt" parameterType="java.lang.String">
+    select  DISTINCT a.id,a.module_url, a.module_name,a.parent_module,a.module_icon, d.username,d.entity_name,c.sys_role_id,c.sys_user_id, c.sys_permission_id,b.`code` from sys_module a
                       INNER JOIN sys_permission  b on a.id = b.sys_module_id
                       INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
                       INNER JOIN sys_user d on d.id =c.sys_user_id
-    <if test="username != null and username != 'admin'">
+    <if test="username != null and username != 'admin' and username != ''">
       where d.username  = #{username,jdbcType=VARCHAR}
     </if>
     union
-    select  a.* from sys_module a
+    select a.id,a.module_url, a.module_name,a.parent_module,a.module_icon , '','','','','','' from sys_module a
       where a.id in (select DISTINCT a.parent_module from sys_module  a
                     INNER JOIN sys_permission  b on a.id = b.sys_module_id
                     INNER JOIN sys_role_permission c on c.sys_permission_id = b.id

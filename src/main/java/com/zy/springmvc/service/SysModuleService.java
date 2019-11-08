@@ -1,8 +1,10 @@
 package com.zy.springmvc.service;
 
+import com.zy.springmvc.domain.ModulePermissionUserRelation;
 import com.zy.springmvc.domain.SysModule;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @AUTHOR zhangy
@@ -22,5 +24,5 @@ public interface SysModuleService {
 
     int updateByPrimaryKey(SysModule record);
 
-    List<SysModule> getAllSysModule(String username);
+    List<ModulePermissionUserRelation> getAllSysModule(String username);
 }

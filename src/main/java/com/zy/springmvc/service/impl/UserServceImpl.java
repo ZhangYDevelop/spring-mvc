@@ -6,6 +6,8 @@ import com.zy.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author zhangy
  * @Date 21:17 2019/10/29
@@ -52,5 +54,10 @@ public class UserServceImpl implements UserService {
     @Override
     public SysUser getSysUserByUserName(String username) {
         return sysUserMapperl.getSysUserByUserName(username);
+    }
+
+    @Override
+    public List<SysUser> getAllUser() {
+        return sysUserMapperl.getAllUser();
     }
 }

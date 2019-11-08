@@ -11,6 +11,7 @@
         <!--<security:intercept-url pattern="/api/platform/main" access="hasAnyAuthority('USER_ROLE')"/>-->
         <security:intercept-url pattern="/platform/error" access="permitAll()"/>
         <security:intercept-url pattern="/platform/login" access="permitAll()"/>
+        <security:intercept-url pattern="/platform/main" access="permitAll()"/>
         <security:intercept-url pattern="/platform/register/user" access="permitAll()"/>
         <security:intercept-url pattern="/pictureCheckCode/**" access="permitAll()"/>
         <security:intercept-url pattern="/platform/user/add" access="permitAll()"/>

@@ -3,6 +3,8 @@ package com.zy.springmvc.mapper;
 
 import com.zy.springmvc.domain.SysUser;
 
+import java.util.List;
+
 public interface SysUserMapper {
     int deleteByPrimaryKey(String id);
 
@@ -17,4 +19,6 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
     SysUser getSysUserByUserName(String username);
+
+    List<SysUser> getAllUser() ;
 }

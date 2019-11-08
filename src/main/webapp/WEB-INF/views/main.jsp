@@ -15,9 +15,6 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <jsp:include page="/WEB-INF/tags/head.jsp"></jsp:include>
     <script type="text/javascript">
-        function menuClick() {
-            $("#contentIframe").attr("src", "<%=contextPath%>/platform/error");
-        }
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function ($scope, $http) {
             var thisClone = this;
@@ -28,8 +25,17 @@
                 $http.post(url, {}, {params: $scope.menuParam}).then(function (res) {
                     // 组装菜单树形结构
                     if(res.data.length > 0) {
+                        var tempdata = [];
+                        // 去重
+                        res.data.forEach(function (item) {
+                          var flag =   tempdata.find(function (tem) {
+                                return tem.id == item.id;
+                            })
+                            if (!flag) tempdata.push(item);
+                        })
+                        res.data = tempdata;
                         var temp =   res.data.filter(function(value) {
-                            return value.parentModule == '-1' || value.parentModule == null;
+                            return value.parentModule == '-1' || value.parentModule == null || value.parentModule == '';
                         });
                         if (temp && temp.length > 0) {
                             temp.forEach(function (item) {
@@ -46,7 +52,6 @@
             };
             //菜单栏搜索
             $scope.filterMenuItemsByModuleName = function() {
-                debugger
                 if ($scope.menuParam.moduleName) {
                     var temp =  thisClone.menuListOld.filter(function (item) {
                         return item.moduleName == $scope.menuParam.moduleName  ;
@@ -76,6 +81,9 @@
                     thisClone.menuList = thisClone.menuListOld;
                 }
 
+            }
+            $scope.menuClick = function (item) {
+                $("#contentIframe").attr("src", "<%=contextPath%>" + item.moduleUrl);
             }
             $scope.getMenueInfo();
         });
@@ -387,9 +395,8 @@
                     </a>
                     <ul class="treeview-menu" >
                         <li class="active" ng-repeat="child in item.childern">
-                            <a href="index.html"><i class="fa {{child.moduleIcon}}"></i> {{child.moduleName}} </a>
+                            <a href="javascript:void (0)" ng-click="menuClick(child)"><i class="fa {{child.moduleIcon}}"></i> {{child.moduleName}} </a>
                         </li>
-
                     </ul>
                 </li>
             </ul>
@@ -412,7 +419,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <iframe id="contentIframe" style="height: 88%;width: 100%;border: 0px;"></iframe>
+            <iframe id="contentIframe" style="height: 88%;width: 100%;border: 0px;margin-top: 10px;"></iframe>
         </section>
         <!-- /.content -->
     </div>

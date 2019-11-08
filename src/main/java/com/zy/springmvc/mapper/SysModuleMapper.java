@@ -1,8 +1,10 @@
 package com.zy.springmvc.mapper;
 
+import com.zy.springmvc.domain.ModulePermissionUserRelation;
 import com.zy.springmvc.domain.SysModule;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysModuleMapper {
     int deleteByPrimaryKey(String id);
@@ -22,5 +24,5 @@ public interface SysModuleMapper {
      * @param username
      * @return
      */
-    List<SysModule> getAllSysModule(String username);
+    List<ModulePermissionUserRelation> getAllSysModule(String username);
 }

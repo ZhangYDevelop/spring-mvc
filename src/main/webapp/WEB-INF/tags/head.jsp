@@ -30,7 +30,7 @@ folder instead of downloading all of them to reduce the load. -->
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/bootstrap3-wysihtml5.min.css">
 <link rel="shortcut icon" href="<%=contextPath%>/resources/images/favicon.ico" type="image/x-icon">
-
+<link rel="stylesheet" href="<%=contextPath%>/resources/css/dataTables.bootstrap.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,3 +84,5 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/respond.min.js"></script>
 <script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
 <script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
+<script src="<%=contextPath%>/resources/js/jquery.dataTables.min.js"></script>
+<script src="<%=contextPath%>/resources/js/dataTables.bootstrap.js"></script>

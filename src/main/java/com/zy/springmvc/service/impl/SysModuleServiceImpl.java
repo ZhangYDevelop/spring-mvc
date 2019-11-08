@@ -1,5 +1,6 @@
 package com.zy.springmvc.service.impl;
 
+import com.zy.springmvc.domain.ModulePermissionUserRelation;
 import com.zy.springmvc.domain.SysModule;
 import com.zy.springmvc.mapper.SysModuleMapper;
 import com.zy.springmvc.service.SysModuleService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @AUTHOR zhangy
@@ -49,7 +51,7 @@ public class SysModuleServiceImpl implements SysModuleService {
     }
 
     @Override
-    public List<SysModule> getAllSysModule(String username) {
+    public  List<ModulePermissionUserRelation> getAllSysModule(String username) {
         return sysModuleMapper.getAllSysModule(username);
     }
 }

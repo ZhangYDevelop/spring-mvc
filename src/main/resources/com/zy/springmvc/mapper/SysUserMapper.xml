@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.springmvc.mapper.SysUserMapper">
-  <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysUser">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="entity_id" jdbcType="VARCHAR" property="entity_id" />
-    <result column="entity_type" jdbcType="VARCHAR" property="entity_type" />
-    <result column="entity_name" jdbcType="VARCHAR" property="entity_name" />
-    <result column="application_name" jdbcType="VARCHAR" property="application_name" />
-    <result column="user_email" jdbcType="VARCHAR" property="user_email" />
-    <result column="user_phone" jdbcType="VARCHAR" property="user_phone" />
-    <result column="personal_status" jdbcType="VARCHAR" property="personal_status" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="pwd_question" jdbcType="VARCHAR" property="pwd_question" />
-    <result column="pwd_answer" jdbcType="VARCHAR" property="pwd_answer" />
-    <result column="last_login_date" jdbcType="TIMESTAMP" property="last_login_date" />
-    <result column="last_pwd_chg_date" jdbcType="TIMESTAMP" property="last_pwd_chg_date" />
-    <result column="is_online" jdbcType="VARCHAR" property="is_online" />
-    <result column="is_locked_out" jdbcType="VARCHAR" property="is_locked_out" />
-    <result column="is_changed_pwd" jdbcType="VARCHAR" property="is_changed_pwd" />
-    <result column="order_num" jdbcType="INTEGER" property="order_num" />
-    <result column="is_ok" jdbcType="VARCHAR" property="is_ok" />
-    <result column="org_id" jdbcType="VARCHAR" property="org_id" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="created_by" jdbcType="VARCHAR" property="created_by" />
-    <result column="created_date" jdbcType="TIMESTAMP" property="created_date" />
-    <result column="last_modified_by" jdbcType="VARCHAR" property="last_modified_by" />
-    <result column="last_modified_date" jdbcType="TIMESTAMP" property="last_modified_date" />
-    <result column="accountNonExpired" jdbcType="INTEGER" property="accountNonExpired" />
-    <result column="accountNonLocked" jdbcType="INTEGER" property="accountNonLocked" />
-    <result column="enabled" jdbcType="INTEGER" property="enabled" />
-    <result column="credentialsNonExpired" jdbcType="INTEGER" property="credentialsNonExpired" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
-    <result column="creator" jdbcType="VARCHAR" property="creator" />
-    <result column="modified_time" jdbcType="TIMESTAMP" property="modified_time" />
-    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.zy.springmvc.domain.SysUser">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="entity_id" jdbcType="VARCHAR" property="entity_id"/>
+        <result column="entity_type" jdbcType="VARCHAR" property="entity_type"/>
+        <result column="entity_name" jdbcType="VARCHAR" property="entity_name"/>
+        <result column="application_name" jdbcType="VARCHAR" property="application_name"/>
+        <result column="user_email" jdbcType="VARCHAR" property="user_email"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="user_phone"/>
+        <result column="personal_status" jdbcType="VARCHAR" property="personal_status"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="pwd_question" jdbcType="VARCHAR" property="pwd_question"/>
+        <result column="pwd_answer" jdbcType="VARCHAR" property="pwd_answer"/>
+        <result column="last_login_date" jdbcType="TIMESTAMP" property="last_login_date"/>
+        <result column="last_pwd_chg_date" jdbcType="TIMESTAMP" property="last_pwd_chg_date"/>
+        <result column="is_online" jdbcType="VARCHAR" property="is_online"/>
+        <result column="is_locked_out" jdbcType="VARCHAR" property="is_locked_out"/>
+        <result column="is_changed_pwd" jdbcType="VARCHAR" property="is_changed_pwd"/>
+        <result column="order_num" jdbcType="INTEGER" property="order_num"/>
+        <result column="is_ok" jdbcType="VARCHAR" property="is_ok"/>
+        <result column="org_id" jdbcType="VARCHAR" property="org_id"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="created_by" jdbcType="VARCHAR" property="created_by"/>
+        <result column="created_date" jdbcType="TIMESTAMP" property="created_date"/>
+        <result column="last_modified_by" jdbcType="VARCHAR" property="last_modified_by"/>
+        <result column="last_modified_date" jdbcType="TIMESTAMP" property="last_modified_date"/>
+        <result column="accountNonExpired" jdbcType="INTEGER" property="accountNonExpired"/>
+        <result column="accountNonLocked" jdbcType="INTEGER" property="accountNonLocked"/>
+        <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+        <result column="credentialsNonExpired" jdbcType="INTEGER" property="credentialsNonExpired"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="created_time"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="modified_time" jdbcType="TIMESTAMP" property="modified_time"/>
+        <result column="modifier" jdbcType="VARCHAR" property="modifier"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, username, entity_id, entity_type, entity_name, application_name, user_email, 
     user_phone, personal_status, password, pwd_question, pwd_answer, last_login_date, 
     last_pwd_chg_date, is_online, is_locked_out, is_changed_pwd, order_num, is_ok, org_id, 
@@ -44,23 +44,30 @@
     accountNonLocked, enabled, credentialsNonExpired, created_time, creator, modified_time, 
     modifier
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-  select
-  <include refid="Base_Column_List" />
-  from sys_user
-  where id = #{id,jdbcType=VARCHAR}
-</select>
-  <select id="getSysUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    where username = #{username,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+    </select>
+
+    <select id="getSysUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zy.springmvc.domain.SysUser">
+    <insert id="insert" parameterType="com.zy.springmvc.domain.SysUser">
     insert into sys_user (id, username, entity_id, 
       entity_type, entity_name, application_name, 
       user_email, user_phone, personal_status, 
@@ -88,314 +95,314 @@
       #{creator,jdbcType=VARCHAR}, #{modified_time,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysUser">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="entity_id != null">
-        entity_id,
-      </if>
-      <if test="entity_type != null">
-        entity_type,
-      </if>
-      <if test="entity_name != null">
-        entity_name,
-      </if>
-      <if test="application_name != null">
-        application_name,
-      </if>
-      <if test="user_email != null">
-        user_email,
-      </if>
-      <if test="user_phone != null">
-        user_phone,
-      </if>
-      <if test="personal_status != null">
-        personal_status,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="pwd_question != null">
-        pwd_question,
-      </if>
-      <if test="pwd_answer != null">
-        pwd_answer,
-      </if>
-      <if test="last_login_date != null">
-        last_login_date,
-      </if>
-      <if test="last_pwd_chg_date != null">
-        last_pwd_chg_date,
-      </if>
-      <if test="is_online != null">
-        is_online,
-      </if>
-      <if test="is_locked_out != null">
-        is_locked_out,
-      </if>
-      <if test="is_changed_pwd != null">
-        is_changed_pwd,
-      </if>
-      <if test="order_num != null">
-        order_num,
-      </if>
-      <if test="is_ok != null">
-        is_ok,
-      </if>
-      <if test="org_id != null">
-        org_id,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-      <if test="created_by != null">
-        created_by,
-      </if>
-      <if test="created_date != null">
-        created_date,
-      </if>
-      <if test="last_modified_by != null">
-        last_modified_by,
-      </if>
-      <if test="last_modified_date != null">
-        last_modified_date,
-      </if>
-      <if test="accountNonExpired != null">
-        accountNonExpired,
-      </if>
-      <if test="accountNonLocked != null">
-        accountNonLocked,
-      </if>
-      <if test="enabled != null">
-        enabled,
-      </if>
-      <if test="credentialsNonExpired != null">
-        credentialsNonExpired,
-      </if>
-      <if test="created_time != null">
-        created_time,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="modified_time != null">
-        modified_time,
-      </if>
-      <if test="modifier != null">
-        modifier,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_id != null">
-        #{entity_id,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_type != null">
-        #{entity_type,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_name != null">
-        #{entity_name,jdbcType=VARCHAR},
-      </if>
-      <if test="application_name != null">
-        #{application_name,jdbcType=VARCHAR},
-      </if>
-      <if test="user_email != null">
-        #{user_email,jdbcType=VARCHAR},
-      </if>
-      <if test="user_phone != null">
-        #{user_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="personal_status != null">
-        #{personal_status,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd_question != null">
-        #{pwd_question,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd_answer != null">
-        #{pwd_answer,jdbcType=VARCHAR},
-      </if>
-      <if test="last_login_date != null">
-        #{last_login_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_pwd_chg_date != null">
-        #{last_pwd_chg_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="is_online != null">
-        #{is_online,jdbcType=VARCHAR},
-      </if>
-      <if test="is_locked_out != null">
-        #{is_locked_out,jdbcType=VARCHAR},
-      </if>
-      <if test="is_changed_pwd != null">
-        #{is_changed_pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="order_num != null">
-        #{order_num,jdbcType=INTEGER},
-      </if>
-      <if test="is_ok != null">
-        #{is_ok,jdbcType=VARCHAR},
-      </if>
-      <if test="org_id != null">
-        #{org_id,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="created_by != null">
-        #{created_by,jdbcType=VARCHAR},
-      </if>
-      <if test="created_date != null">
-        #{created_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_modified_by != null">
-        #{last_modified_by,jdbcType=VARCHAR},
-      </if>
-      <if test="last_modified_date != null">
-        #{last_modified_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="accountNonExpired != null">
-        #{accountNonExpired,jdbcType=INTEGER},
-      </if>
-      <if test="accountNonLocked != null">
-        #{accountNonLocked,jdbcType=INTEGER},
-      </if>
-      <if test="enabled != null">
-        #{enabled,jdbcType=INTEGER},
-      </if>
-      <if test="credentialsNonExpired != null">
-        #{credentialsNonExpired,jdbcType=INTEGER},
-      </if>
-      <if test="created_time != null">
-        #{created_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="modified_time != null">
-        #{modified_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifier != null">
-        #{modifier,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysUser">
-    update sys_user
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_id != null">
-        entity_id = #{entity_id,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_type != null">
-        entity_type = #{entity_type,jdbcType=VARCHAR},
-      </if>
-      <if test="entity_name != null">
-        entity_name = #{entity_name,jdbcType=VARCHAR},
-      </if>
-      <if test="application_name != null">
-        application_name = #{application_name,jdbcType=VARCHAR},
-      </if>
-      <if test="user_email != null">
-        user_email = #{user_email,jdbcType=VARCHAR},
-      </if>
-      <if test="user_phone != null">
-        user_phone = #{user_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="personal_status != null">
-        personal_status = #{personal_status,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd_question != null">
-        pwd_question = #{pwd_question,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd_answer != null">
-        pwd_answer = #{pwd_answer,jdbcType=VARCHAR},
-      </if>
-      <if test="last_login_date != null">
-        last_login_date = #{last_login_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_pwd_chg_date != null">
-        last_pwd_chg_date = #{last_pwd_chg_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="is_online != null">
-        is_online = #{is_online,jdbcType=VARCHAR},
-      </if>
-      <if test="is_locked_out != null">
-        is_locked_out = #{is_locked_out,jdbcType=VARCHAR},
-      </if>
-      <if test="is_changed_pwd != null">
-        is_changed_pwd = #{is_changed_pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="order_num != null">
-        order_num = #{order_num,jdbcType=INTEGER},
-      </if>
-      <if test="is_ok != null">
-        is_ok = #{is_ok,jdbcType=VARCHAR},
-      </if>
-      <if test="org_id != null">
-        org_id = #{org_id,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="created_by != null">
-        created_by = #{created_by,jdbcType=VARCHAR},
-      </if>
-      <if test="created_date != null">
-        created_date = #{created_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_modified_by != null">
-        last_modified_by = #{last_modified_by,jdbcType=VARCHAR},
-      </if>
-      <if test="last_modified_date != null">
-        last_modified_date = #{last_modified_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="accountNonExpired != null">
-        accountNonExpired = #{accountNonExpired,jdbcType=INTEGER},
-      </if>
-      <if test="accountNonLocked != null">
-        accountNonLocked = #{accountNonLocked,jdbcType=INTEGER},
-      </if>
-      <if test="enabled != null">
-        enabled = #{enabled,jdbcType=INTEGER},
-      </if>
-      <if test="credentialsNonExpired != null">
-        credentialsNonExpired = #{credentialsNonExpired,jdbcType=INTEGER},
-      </if>
-      <if test="created_time != null">
-        created_time = #{created_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        creator = #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="modified_time != null">
-        modified_time = #{modified_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifier != null">
-        modifier = #{modifier,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysUser">
+    <insert id="insertSelective" parameterType="com.zy.springmvc.domain.SysUser">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="entity_id != null">
+                entity_id,
+            </if>
+            <if test="entity_type != null">
+                entity_type,
+            </if>
+            <if test="entity_name != null">
+                entity_name,
+            </if>
+            <if test="application_name != null">
+                application_name,
+            </if>
+            <if test="user_email != null">
+                user_email,
+            </if>
+            <if test="user_phone != null">
+                user_phone,
+            </if>
+            <if test="personal_status != null">
+                personal_status,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="pwd_question != null">
+                pwd_question,
+            </if>
+            <if test="pwd_answer != null">
+                pwd_answer,
+            </if>
+            <if test="last_login_date != null">
+                last_login_date,
+            </if>
+            <if test="last_pwd_chg_date != null">
+                last_pwd_chg_date,
+            </if>
+            <if test="is_online != null">
+                is_online,
+            </if>
+            <if test="is_locked_out != null">
+                is_locked_out,
+            </if>
+            <if test="is_changed_pwd != null">
+                is_changed_pwd,
+            </if>
+            <if test="order_num != null">
+                order_num,
+            </if>
+            <if test="is_ok != null">
+                is_ok,
+            </if>
+            <if test="org_id != null">
+                org_id,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="created_by != null">
+                created_by,
+            </if>
+            <if test="created_date != null">
+                created_date,
+            </if>
+            <if test="last_modified_by != null">
+                last_modified_by,
+            </if>
+            <if test="last_modified_date != null">
+                last_modified_date,
+            </if>
+            <if test="accountNonExpired != null">
+                accountNonExpired,
+            </if>
+            <if test="accountNonLocked != null">
+                accountNonLocked,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="credentialsNonExpired != null">
+                credentialsNonExpired,
+            </if>
+            <if test="created_time != null">
+                created_time,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="modified_time != null">
+                modified_time,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_id != null">
+                #{entity_id,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_type != null">
+                #{entity_type,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_name != null">
+                #{entity_name,jdbcType=VARCHAR},
+            </if>
+            <if test="application_name != null">
+                #{application_name,jdbcType=VARCHAR},
+            </if>
+            <if test="user_email != null">
+                #{user_email,jdbcType=VARCHAR},
+            </if>
+            <if test="user_phone != null">
+                #{user_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="personal_status != null">
+                #{personal_status,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd_question != null">
+                #{pwd_question,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd_answer != null">
+                #{pwd_answer,jdbcType=VARCHAR},
+            </if>
+            <if test="last_login_date != null">
+                #{last_login_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_pwd_chg_date != null">
+                #{last_pwd_chg_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="is_online != null">
+                #{is_online,jdbcType=VARCHAR},
+            </if>
+            <if test="is_locked_out != null">
+                #{is_locked_out,jdbcType=VARCHAR},
+            </if>
+            <if test="is_changed_pwd != null">
+                #{is_changed_pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="order_num != null">
+                #{order_num,jdbcType=INTEGER},
+            </if>
+            <if test="is_ok != null">
+                #{is_ok,jdbcType=VARCHAR},
+            </if>
+            <if test="org_id != null">
+                #{org_id,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="created_by != null">
+                #{created_by,jdbcType=VARCHAR},
+            </if>
+            <if test="created_date != null">
+                #{created_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_modified_by != null">
+                #{last_modified_by,jdbcType=VARCHAR},
+            </if>
+            <if test="last_modified_date != null">
+                #{last_modified_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="accountNonExpired != null">
+                #{accountNonExpired,jdbcType=INTEGER},
+            </if>
+            <if test="accountNonLocked != null">
+                #{accountNonLocked,jdbcType=INTEGER},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="credentialsNonExpired != null">
+                #{credentialsNonExpired,jdbcType=INTEGER},
+            </if>
+            <if test="created_time != null">
+                #{created_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="modified_time != null">
+                #{modified_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                #{modifier,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zy.springmvc.domain.SysUser">
+        update sys_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_id != null">
+                entity_id = #{entity_id,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_type != null">
+                entity_type = #{entity_type,jdbcType=VARCHAR},
+            </if>
+            <if test="entity_name != null">
+                entity_name = #{entity_name,jdbcType=VARCHAR},
+            </if>
+            <if test="application_name != null">
+                application_name = #{application_name,jdbcType=VARCHAR},
+            </if>
+            <if test="user_email != null">
+                user_email = #{user_email,jdbcType=VARCHAR},
+            </if>
+            <if test="user_phone != null">
+                user_phone = #{user_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="personal_status != null">
+                personal_status = #{personal_status,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd_question != null">
+                pwd_question = #{pwd_question,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd_answer != null">
+                pwd_answer = #{pwd_answer,jdbcType=VARCHAR},
+            </if>
+            <if test="last_login_date != null">
+                last_login_date = #{last_login_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_pwd_chg_date != null">
+                last_pwd_chg_date = #{last_pwd_chg_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="is_online != null">
+                is_online = #{is_online,jdbcType=VARCHAR},
+            </if>
+            <if test="is_locked_out != null">
+                is_locked_out = #{is_locked_out,jdbcType=VARCHAR},
+            </if>
+            <if test="is_changed_pwd != null">
+                is_changed_pwd = #{is_changed_pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="order_num != null">
+                order_num = #{order_num,jdbcType=INTEGER},
+            </if>
+            <if test="is_ok != null">
+                is_ok = #{is_ok,jdbcType=VARCHAR},
+            </if>
+            <if test="org_id != null">
+                org_id = #{org_id,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="created_by != null">
+                created_by = #{created_by,jdbcType=VARCHAR},
+            </if>
+            <if test="created_date != null">
+                created_date = #{created_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_modified_by != null">
+                last_modified_by = #{last_modified_by,jdbcType=VARCHAR},
+            </if>
+            <if test="last_modified_date != null">
+                last_modified_date = #{last_modified_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="accountNonExpired != null">
+                accountNonExpired = #{accountNonExpired,jdbcType=INTEGER},
+            </if>
+            <if test="accountNonLocked != null">
+                accountNonLocked = #{accountNonLocked,jdbcType=INTEGER},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="credentialsNonExpired != null">
+                credentialsNonExpired = #{credentialsNonExpired,jdbcType=INTEGER},
+            </if>
+            <if test="created_time != null">
+                created_time = #{created_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="modified_time != null">
+                modified_time = #{modified_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zy.springmvc.domain.SysUser">
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
       entity_id = #{entity_id,jdbcType=VARCHAR},

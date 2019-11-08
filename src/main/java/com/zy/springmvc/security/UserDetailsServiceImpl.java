@@ -1,5 +1,6 @@
 package com.zy.springmvc.security;
 
+import com.zy.springmvc.domain.ModulePermissionUserRelation;
 import com.zy.springmvc.domain.SysModule;
 import com.zy.springmvc.domain.SysUser;
 import com.zy.springmvc.service.SysModuleService;
@@ -13,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -36,11 +38,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         SysUser user = userService.getSysUserByUserName(userName);
         if (null != user) {
             // 查询用户拥有的权限标志符
-            List<SysModule> sysModulesList =  sysModuleService.getAllSysModule(user.getUsername());
+            List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModule(user.getUsername());
             Set<GrantedAuthority> grantedAuthorityList = new HashSet<>();
-            for (SysModule module : sysModulesList) {
-                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(module.getModuleName());
-                grantedAuthorityList.add(grantedAuthority);
+            for (ModulePermissionUserRelation obj : sysModulesList) {
+                String permissionCode = obj.getCode();
+                if (!StringUtils.isEmpty(permissionCode)) { // 授权代码不能为空，否则报错
+                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permissionCode);
+                    grantedAuthorityList.add(grantedAuthority);
+                }
             }
             // 授权
             user.setAuthorities(grantedAuthorityList);

@@ -12,7 +12,7 @@
 <body>
     <div class="jumbotron" style="text-align: center;">
         <h1>403</h1>
-        <p> 抱歉，你无权限访问</p>
+        <p> 抱歉，你无权限访问，请联系管理员！</p>
         <div style="position: relative;
                 top: 50%;
                 left: 40%;
