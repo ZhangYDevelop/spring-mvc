@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -31,5 +32,14 @@ public class SysMenueController {
         //SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModule(null);
         return JSONObject.toJSON(sysModulesList).toString() ;
+    }
+
+    /**
+     * 用户列表
+     * @return
+     */
+    @RequestMapping("/module/list")
+    public ModelAndView userList() {
+        return new ModelAndView("/platform/module/moduleList");
     }
 }

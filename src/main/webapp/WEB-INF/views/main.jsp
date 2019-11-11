@@ -35,7 +35,7 @@
                         })
                         res.data = tempdata;
                         var temp =   res.data.filter(function(value) {
-                            return value.parentModule == '-1' || value.parentModule == null || value.parentModule == '';
+                            return value.parentModule == '0' || value.parentModule == null || value.parentModule == '';
                         });
                         if (temp && temp.length > 0) {
                             temp.forEach(function (item) {

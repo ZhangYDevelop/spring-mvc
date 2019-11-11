@@ -32,6 +32,7 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="shortcut icon" href="<%=contextPath%>/resources/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/dataTables.bootstrap.css">
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -80,9 +81,11 @@ folder instead of downloading all of them to reduce the load. -->
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/js/demo.js"></script>
 <script src="<%=contextPath%>/resources/js/html5shiv.min.js"></script>
-<script src="<%=contextPath%>/resources/js/morris.min.js"></script>
 <script src="<%=contextPath%>/resources/js/respond.min.js"></script>
-<script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
 <script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
 <script src="<%=contextPath%>/resources/js/jquery.dataTables.min.js"></script>
 <script src="<%=contextPath%>/resources/js/dataTables.bootstrap.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.0/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+<script src="https://cdn.bootcss.com/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>

@@ -117,7 +117,7 @@
             </div>
             <div class="form-group has-feedback" style="text-align: right">
                     <img  style="margin-top: -5px;" src="<%=contextPath%>/pictureCheckCode" id="imgCode" width="63" height="23" alt="单击可刷新"
-                          onclick="codeClick();"/> <a  href="#" style="margin-left: 10px; "  onclick="codeClick();">看不清，换一张</a>
+                          onclick="codeClick();"/> <a  href="#" style="margin-left: 10px; "  onclick="codeClick();">Unclear,Change another one.</a>
             </div>
             <div class="row">
                 <div class="login_msg" style="text-align: center;"></div>
