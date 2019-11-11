@@ -32,7 +32,7 @@
         <!--别名扫描-->
         <property name="typeAliasesPackage"  value="com.zy.springmvc.domain"/>
 
-        <property name="configLocation" value="classpath:mybatis.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <!--mapper 接口扫描-->
