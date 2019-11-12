@@ -32,7 +32,7 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="shortcut icon" href="<%=contextPath%>/resources/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/dataTables.bootstrap.css">
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/css/jquery.treegrid.min.css">
 
 <!-- Google Font -->
 <link rel="stylesheet"
@@ -47,7 +47,7 @@ folder instead of downloading all of them to reduce the load. -->
     $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<%=contextPath%>/resources/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/resources/js/bootstrap.js"></script>
 <!-- Morris.js charts -->
 <script src="<%=contextPath%>/resources/js/raphael.min.js"></script>
 <script src="<%=contextPath%>/resources/js/morris.min.js"></script>
@@ -81,6 +81,6 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/jquery.dataTables.min.js"></script>
 <script src="<%=contextPath%>/resources/js/dataTables.bootstrap.js"></script>
 
-<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.12.0/extensions/treegrid/bootstrap-table-treegrid.js"></script>
-<script src="https://cdn.bootcss.com/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>
+<script src="<%=contextPath%>/resources/js/bootstrap-table.min.js"></script>
+<script src="<%=contextPath%>/resources/js/bootstrap-table-treegrid.js"></script>
+<script src="<%=contextPath%>/resources/js/jquery.treegrid.min.js"></script>
