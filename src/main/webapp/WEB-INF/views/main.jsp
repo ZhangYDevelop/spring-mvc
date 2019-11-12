@@ -300,7 +300,7 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="<%=contextPath%>/resources/images/favicon.ico" class="user-image" alt="User Image">
                             <span class="hidden-xs"><%=userMap.get("entity_name")%></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -354,7 +354,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<%=contextPath%>/resources/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="<%=contextPath%>/resources/images/favicon.ico" class="img-circle" alt="User Image" style="width: 45px;height: 45px;">
                 </div>
                 <div class="pull-left info">
                     <p><%=userMap.get("entity_name")%></p>
