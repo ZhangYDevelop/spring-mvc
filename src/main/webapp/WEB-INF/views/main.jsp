@@ -25,15 +25,6 @@
                 $http.post(url, {}, {params: $scope.menuParam}).then(function (res) {
                     // 组装菜单树形结构
                     if(res.data.length > 0) {
-                        var tempdata = [];
-                        // 去重
-                        res.data.forEach(function (item) {
-                          var flag =   tempdata.find(function (tem) {
-                                return tem.id == item.id;
-                            })
-                            if (!flag) tempdata.push(item);
-                        })
-                        res.data = tempdata;
                         var temp =   res.data.filter(function(value) {
                             return value.parentModule == '0' || value.parentModule == null || value.parentModule == '';
                         });
@@ -96,9 +87,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+        <a href="javascript:void(0)" class="logo">
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Admin</b>ZY</span>
         </a>
@@ -125,7 +114,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <%--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
                                             </div>
                                             <h4>
                                                 Support Team
@@ -138,7 +127,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <%--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--%>
                                             </div>
                                             <h4>
                                                 AdminLTE Design Team
@@ -150,7 +139,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <%--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--%>
                                             </div>
                                             <h4>
                                                 Developers
@@ -162,7 +151,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <%--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--%>
                                             </div>
                                             <h4>
                                                 Sales Department
@@ -174,7 +163,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <%--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--%>
                                             </div>
                                             <h4>
                                                 Reviewers
@@ -317,7 +306,7 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <%--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
 
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -386,14 +375,14 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!--循环树结构-->
-                <li class="active treeview" ng-repeat="item in menu.menuList">
+                <li class="treeview" ng-repeat="item in menu.menuList">
                     <a href="#">
                         <i class="fa {{item.moduleIcon}}"></i> <span>{{item.moduleName}}</span>
-                        <span class="pull-right-container">
+                        <span class="pull-right-container"  ng-show ="item.childern.length > 0">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu" >
+                    <ul class="treeview-menu">
                         <li class="active" ng-repeat="child in item.childern">
                             <a href="javascript:void (0)" ng-click="menuClick(child)"><i class="fa {{child.moduleIcon}}"></i> {{child.moduleName}} </a>
                         </li>

@@ -30,7 +30,7 @@ public class MySecurityMetadataSource implements
         if(resourceMap == null) {
             resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
             // 查询所有的模块下的权限点，将权限点加入到springsecurity权限框架中
-            List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModule(null);
+            List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModulePermissionByUserName(null);
             for (ModulePermissionUserRelation obj : sysModulesList) {
                 String url = obj.getModuleUrl();
                 String permissionCode = obj.getCode();

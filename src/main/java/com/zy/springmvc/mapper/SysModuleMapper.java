@@ -20,9 +20,15 @@ public interface SysModuleMapper {
     int updateByPrimaryKey(SysModule record);
 
     /**
+     * 根据查询菜单列表
+     * @return
+     */
+    List<ModulePermissionUserRelation> getAllSysModule();
+
+    /**
      * 根据用户名查询用户拥有的菜单列表
      * @param username
      * @return
      */
-    List<ModulePermissionUserRelation> getAllSysModule(String username);
+    List<ModulePermissionUserRelation> getAllSysModulePermissionByUserName(String username);
 }

@@ -46,7 +46,7 @@
     is_top_menu, is_side_menu, creator, created_time, modifier, modified_time, ext_field_1, 
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
-  <select id="getAllSysModule"  resultMap="baseResultMapExt" parameterType="java.lang.String">
+  <select id="getAllSysModulePermissionByUserName"  resultMap="baseResultMapExt" parameterType="java.lang.String">
     select  DISTINCT a.id,a.module_url, a.module_name,a.parent_module,a.module_icon,a.is_ok, d.username,d.entity_name,c.sys_role_id,c.sys_user_id, c.sys_permission_id,b.`code` from sys_module a
                       INNER JOIN sys_permission  b on a.id = b.sys_module_id
                       INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
@@ -54,16 +54,12 @@
     <if test="username != null and username != 'admin' and username != ''">
       where d.username  = #{username,jdbcType=VARCHAR}
     </if>
-    union
-    select a.id,a.module_url, a.module_name,a.parent_module,a.module_icon ,a.is_ok, '','','','','','' from sys_module a
-      where a.id in (select DISTINCT a.parent_module from sys_module  a
-                    INNER JOIN sys_permission  b on a.id = b.sys_module_id
-                    INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
-                    INNER JOIN sys_user d on d.id =c.sys_user_id
-      <if test="username != null and username != 'admin'">
-        where d.username  = #{username,jdbcType=VARCHAR}
-      </if>
-    )
+  </select>
+
+  <select id="getAllSysModule"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_module order by order_num asc
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

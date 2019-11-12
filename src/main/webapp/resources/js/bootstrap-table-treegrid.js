@@ -20,7 +20,12 @@
         },
         onCheckRoot: function (row, data) {
             var that = this;
-            return !row[that.options.parentIdField];
+            //return !row[that.options.parentIdField];
+            if (row[that.options.parentIdField] == '0') { // 这里的值要与数据库里面的对比
+                return true;
+            } else {
+                return false;
+            }
         }
     });
 

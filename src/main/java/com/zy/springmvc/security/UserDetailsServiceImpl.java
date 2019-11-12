@@ -38,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         SysUser user = userService.getSysUserByUserName(userName);
         if (null != user) {
             // 查询用户拥有的权限标志符
-            List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModule(user.getUsername());
+            List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModulePermissionByUserName(user.getUsername());
             Set<GrantedAuthority> grantedAuthorityList = new HashSet<>();
             for (ModulePermissionUserRelation obj : sysModulesList) {
                 String permissionCode = obj.getCode();

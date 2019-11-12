@@ -17,7 +17,6 @@
             $scope.getUserList = function () {
                 var url = '<%=contextPath%>/platform/user/userinfo';
                 $http.post(url, {}, {}).then(function (res) {
-                    debugger
                     $scope.userListData = res.data;
                 });
             };

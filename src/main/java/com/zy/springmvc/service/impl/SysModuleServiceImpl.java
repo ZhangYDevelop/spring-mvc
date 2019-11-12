@@ -51,7 +51,14 @@ public class SysModuleServiceImpl implements SysModuleService {
     }
 
     @Override
-    public  List<ModulePermissionUserRelation> getAllSysModule(String username) {
-        return sysModuleMapper.getAllSysModule(username);
+    public List<ModulePermissionUserRelation> getAllSysModule() {
+        return sysModuleMapper.getAllSysModule();
     }
+
+    @Override
+    public List<ModulePermissionUserRelation> getAllSysModulePermissionByUserName(String username) {
+        return sysModuleMapper.getAllSysModulePermissionByUserName(username);
+    }
+
+
 }

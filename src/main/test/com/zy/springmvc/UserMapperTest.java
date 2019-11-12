@@ -31,7 +31,7 @@ public class UserMapperTest {
 
     @Test
     public void testMenu() {
-        List<ModulePermissionUserRelation> lsit =  sysModuleMapper.getAllSysModule("zhangyu");
+        List<ModulePermissionUserRelation> lsit =  sysModuleMapper.getAllSysModule();
         System.out.println(lsit.toString());
     }
 
