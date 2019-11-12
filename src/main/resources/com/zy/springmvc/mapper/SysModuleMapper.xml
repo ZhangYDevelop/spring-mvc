@@ -38,6 +38,7 @@
     <result column="sys_permission_id" jdbcType="VARCHAR" property="sysPermissionId" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="module_icon" jdbcType="VARCHAR" property="moduleIcon" />
+    <result column="is_ok" jdbcType="VARCHAR" property="isOk" />
   </resultMap>
   <sql id="Base_Column_List">
     id, module_name, module_code, parent_module, module_type, module_url, module_icon, 
@@ -46,7 +47,7 @@
     ext_field_2, ext_field_3, ext_field_4, ext_field_5
   </sql>
   <select id="getAllSysModule"  resultMap="baseResultMapExt" parameterType="java.lang.String">
-    select  DISTINCT a.id,a.module_url, a.module_name,a.parent_module,a.module_icon, d.username,d.entity_name,c.sys_role_id,c.sys_user_id, c.sys_permission_id,b.`code` from sys_module a
+    select  DISTINCT a.id,a.module_url, a.module_name,a.parent_module,a.module_icon,a.is_ok, d.username,d.entity_name,c.sys_role_id,c.sys_user_id, c.sys_permission_id,b.`code` from sys_module a
                       INNER JOIN sys_permission  b on a.id = b.sys_module_id
                       INNER JOIN sys_role_permission c on c.sys_permission_id = b.id
                       INNER JOIN sys_user d on d.id =c.sys_user_id
@@ -54,7 +55,7 @@
       where d.username  = #{username,jdbcType=VARCHAR}
     </if>
     union
-    select a.id,a.module_url, a.module_name,a.parent_module,a.module_icon , '','','','','','' from sys_module a
+    select a.id,a.module_url, a.module_name,a.parent_module,a.module_icon ,a.is_ok, '','','','','','' from sys_module a
       where a.id in (select DISTINCT a.parent_module from sys_module  a
                     INNER JOIN sys_permission  b on a.id = b.sys_module_id
                     INNER JOIN sys_role_permission c on c.sys_permission_id = b.id

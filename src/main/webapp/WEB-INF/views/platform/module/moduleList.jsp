@@ -12,7 +12,7 @@
     <script type="text/javascript">
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function ($scope, $http) {
-            $scope.userListData = null;
+            // https://blog.csdn.net/qq_36987822/article/details/83857708 后续参照该网址优化，分页等功能
             // 获取菜单数据
             $scope.getUserList = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModule';
@@ -23,25 +23,18 @@
                             var flag = temp.find(function (value) { return value.id == item.id });
                             if (!flag) temp.push(item);
                         })
-                        debugger
-                        temp = JSON.parse(
-                            '[{"id":1,"parentModule":0,"status":1,"moduleName":"用户管理","permissionValue":"open:user:manage"},' +
-                            '{"id":2,"parentModule":0,"status":1,"moduleName":"系统管理","permissionValue":"open:system:manage"},' +
-                            '{"id":3,"parentModule":1,"status":1,"moduleName":"新增用户","permissionValue":"open:user:add"},' +
-                            '{"id":4,"parentModule":1,"status":1,"moduleName":"修改用户","permissionValue":"open:user:edit"},' +
-                            '{"id":5,"parentModule":1,"status":0,"moduleName":"删除用户","permissionValue":"open:user:del"},' +
-                            '{"id":6,"parentModule":2,"status":1,"moduleName":"系统配置管理","permissionValue":"open:systemconfig:manage"},' +
-                            '{"id":7,"parentModule":6,"status":1,"moduleName":"新增配置","permissionValue":"open:systemconfig:add"},' +
-                            '{"id":8,"parentModule":6,"status":1,"moduleName":"修改配置","permissionValue":"open:systemconfig:edit"},' +
-                            '{"id":9,"parentModule":6,"status":0,"moduleName":"删除配置","permissionValue":"open:systemconfig:del"},' +
-                            '{"id":10,"parentModule":2,"status":1,"moduleName":"系统日志管理","permissionValue":"open:log:manage"},' +
-                            '{"id":11,"parentModule":10,"status":1,"moduleName":"新增日志","permissionValue":"open:log:add"},' +
-                            '{"id":12,"parentModule":10,"status":1,"moduleName":"修改日志","permissionValue":"open:log:edit"},' +
-                            '{"id":13,"parentModule":10,"status":0,"moduleName":"删除日志","permissionValue":"open:log:del"}]');
                         $("#example1").bootstrapTable({
                             data: temp,
                             idField: 'id',
                             dataType:'jsonp',
+                            // striped : true, //是否显示行间隔色
+                            // cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                            // pagination : true, //是否显示分页（*）
+                            // sortable : false, //是否启用排序
+                            // sidePagination : "server", //分页方式：client客户端分页client客户端分页，server服务端分页（*）
+                            // pageNumber : 1, //初始化加载第一页，默认第一页
+                            // pageSize : 9, //每页的记录行数（*）
+                            // pageList : [ 10, 25, 50, 100 ], //可供选择的每页的行数（*）
                             columns: [
                                 { field: 'check',  checkbox: true, formatter: function (value, row, index) {
                                         if (row.check == true) {
@@ -51,15 +44,19 @@
                                         }
                                     }
                                 },
-                                { field: 'moduleName',  title: '名称' },
+                                { field: 'moduleName',  title: '模块名称' },
                                 // {field: 'id', title: '编号', sortable: true, align: 'center'},
                                 // {field: 'pid', title: '所属上级'},
-                                // { field: 'status',  title: '状态', sortable: true,  align: 'center', formatter: 'statusFormatter'  },
-                                // { field: 'permissionValue', title: '权限值'  },
-                                // { field: 'operate', title: '操作', align: 'center', events : operateEvents, formatter: 'operateFormatter' },
+                                { field: 'moduleUrl',  title: 'moduleUrl', sortable: true,  align: 'center' },
+                                { field: 'isOk', title: '是否有效' , formatter: function (value, row ,index) {
+                                        return value == '1' ?  '有效' : '无效';
+                                    } },
+                                { field: 'operate', title: '操作', align: 'center', events : operateEvents, formatter: function () {
+                                        return [
+                                            ' <div class="btn-group"> <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" ></i>&nbsp;修改</button> <button type="button" class="btn btn-info"><i class="fa fa-trash-o" ></i>&nbsp;删除</button> </div>'
+                                        ].join('');
+                                    } },
                             ],
-
-                            // bootstrap-table-treegrid.js 插件配置 -- start
 
                             //在哪一列展开树形
                             treeShowField: 'moduleName',
@@ -93,7 +90,6 @@
                                 // 刷新数据
                                 $table.bootstrapTable('load', datas);
                             },
-
                             onUncheck:function(row){
                                 var datas = $table.bootstrapTable('getData');
                                 selectChilds(datas,row,"id","parentModule",false);
@@ -108,32 +104,6 @@
             };
             $scope.getUserList();
         })
-
-        // 格式化按钮
-        function operateFormatter(value, row, index) {
-            return [
-                '<button type="button" class="RoleOfadd btn-small  btn-primary" style="margin-right:15px;"><i class="fa fa-plus" ></i>&nbsp;新增</button>',
-                '<button type="button" class="RoleOfedit btn-small   btn-primary" style="margin-right:15px;"><i class="fa fa-pencil-square-o" ></i>&nbsp;修改</button>',
-                '<button type="button" class="RoleOfdelete btn-small   btn-primary" style="margin-right:15px;"><i class="fa fa-trash-o" ></i>&nbsp;删除</button>'
-            ].join('');
-
-        }
-        // 格式化类型
-        function typeFormatter(value, row, index) {
-            if (value === 'menu') {  return '菜单';  }
-            if (value === 'button') {  return '按钮'; }
-            if (value === 'api') {  return '接口'; }
-            return '-';
-        }
-        // 格式化状态
-        function statusFormatter(value, row, index) {
-            if (value === 1) {
-                return '<span class="label label-success">正常</span>';
-            } else {
-                return '<span class="label label-default">锁定</span>';
-            }
-        }
-
         //初始化操作按钮的方法
         window.operateEvents = {
             'click .RoleOfadd': function (e, value, row, index) {

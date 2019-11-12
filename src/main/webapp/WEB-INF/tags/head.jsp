@@ -32,12 +32,7 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="shortcut icon" href="<%=contextPath%>/resources/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/dataTables.bootstrap.css">
 
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-
-<![endif]-->
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css">
 
 <!-- Google Font -->
 <link rel="stylesheet"

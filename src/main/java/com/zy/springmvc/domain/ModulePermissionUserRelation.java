@@ -17,6 +17,15 @@ public class ModulePermissionUserRelation {
     private String sysPermissionId;
     private String code;
     private String moduleIcon;
+    private String isOk;
+
+    public String getIsOk() {
+        return isOk;
+    }
+
+    public void setIsOk(String isOk) {
+        this.isOk = isOk;
+    }
 
     public String getModuleIcon() {
         return moduleIcon;
