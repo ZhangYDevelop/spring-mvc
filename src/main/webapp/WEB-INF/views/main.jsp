@@ -19,6 +19,7 @@
         app.controller('formCtrl', function ($scope, $http) {
             var thisClone = this;
             $scope.menuParam = {moduleName: ''};
+            $scope.headList = []; // 面包屑
             // 获取菜单数据
             $scope.getMenueInfo = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModule';
@@ -75,6 +76,13 @@
             }
             $scope.menuClick = function (item) {
                 $("#contentIframe").attr("src", "<%=contextPath%>" + item.moduleUrl);
+                // 处理面包屑数据
+                var parent = thisClone.menuList.find(function (data) {
+                    return data.id ==  item.parentModule;
+                })
+                $.headList = [];
+                $scope.headList.push(parent.moduleName);
+                $scope.headList.push(item.moduleName);
             }
             $scope.getMenueInfo();
         });
@@ -82,7 +90,7 @@
 
     </script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" ng-app="myApp" ng-controller="formCtrl as menu">
 <div class="wrapper">
 
     <header class="main-header">
@@ -348,7 +356,7 @@
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar" class="login-box" ng-app="myApp" ng-controller="formCtrl as menu">
+    <aside class="main-sidebar" class="login-box" >
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
@@ -395,14 +403,10 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>Control panel</small>
-            </h1>
+        <section class="content-header" style="height: 40px;">
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
+                <li class="active" ng-repeat="item in headList" >{{item}}</li>
             </ol>
         </section>
 
