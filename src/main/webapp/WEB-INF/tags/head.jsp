@@ -84,3 +84,4 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/bootstrap-table.min.js"></script>
 <script src="<%=contextPath%>/resources/js/bootstrap-table-treegrid.js"></script>
 <script src="<%=contextPath%>/resources/js/jquery.treegrid.min.js"></script>
+<script src="<%=contextPath%>/resources/js/message/message.js"></script>

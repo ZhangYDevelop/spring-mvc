@@ -12,7 +12,7 @@
     <script type="text/javascript">
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function ($scope, $http) {
-
+            $scope.moduleObject = {};
             // 获取菜单数据
             $scope.getModuleList = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModule';
@@ -93,6 +93,14 @@
 
              }
             $scope.getModuleList();
+            $scope.addModule = function () {
+                var url = '<%=contextPath%>/platform/sysmodule/addModel';
+                $http.post(url, {}, {params: $scope.moduleObject}).then(function (res) {
+                    debugger
+                    MessageHelp.alert({message: "保存成功"});
+                    $('#modal-default').modal('hide');
+                });
+            }
         })
         //初始化操作按钮的方法
         window.operateEvents = {
@@ -107,9 +115,6 @@
             }
         };
 
-        $(function () {
-
-        })
     </script>
 </head>
     <body ng-app="myApp" ng-controller="formCtrl">
@@ -128,43 +133,43 @@
                     <div class="modal-body">
                         <div class="box-body">
                             <div class="form-group" style="margin-top: 5px;">
-                                <div  class="col-xs-2 control-label" style="margin-top: 5px;">模块名称：</div>
+                                <div  class="col-xs-2 control-label" style="margin-top: 5px;" >模块名称：</div>
                                 <div class="col-xs-4">
-                                    <input type="email" class="form-control" >
+                                    <input  class="form-control" ng-model = "moduleObject.moduleName">
                                 </div>
-                                <div  class="col-xs-2 control-label" style="margin-top: 5px;">模块地址：</div>
+                                <div  class="col-xs-2 control-label" style="margin-top: 5px;" >模块地址：</div>
 
-                                <div class="col-xs-4">
-                                    <input type="email" class="form-control"  >
+                                <div class="col-xs-4" >
+                                    <input  class="form-control" ng-model = "moduleObject.moduleUrl" >
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 5px;">
-                                <div  class="col-xs-2 control-label" style="margin-top: 5px;">图标：</div>
+                                <div  class="col-xs-2 control-label" style="margin-top: 5px;" >图标：</div>
                                 <div class="col-xs-4">
-                                    <input type="email" class="form-control" >
+                                    <input  class="form-control" ng-model = "moduleObject.moduleIcon" >
                                 </div>
                                 <div  class="col-xs-2 control-label" style="margin-top: 5px;">序号：</div>
 
                                 <div class="col-xs-4">
-                                    <input type="email" class="form-control" >
+                                    <input  class="form-control" ng-model = "moduleObject.orderNum">
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 5px;">
                                 <div  class="col-xs-2 control-label" style="margin-top: 5px;">父节点：</div>
                                 <div class="col-xs-4">
-                                    <input type="email" class="form-control" >
+                                    <input  class="form-control" >
                                 </div>
                                 <div  class="col-xs-2 control-label" style="margin-top: 5px;">是否有效：</div>
 
                                 <div class="col-xs-4">
-                                    <input type="email" class="form-control" >
+                                    <input  class="form-control" ng-model = "moduleObject.isOk" >
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" ng-click="addModule()">Save</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->

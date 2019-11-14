@@ -88,7 +88,7 @@
             var url = '<%=contextPath%>/platform/user/add';
             $http.post(url, {}, {params:$scope.user}).then(function (res) {
                 if (res.data.success) {
-                    alert("注册成功, 三秒后跳转到登录页");
+                    MessageHelp.alert({message: "注册成功, 三秒后跳转到登录页"});
                     setTimeout(function () {
                         window.location.href = '<%=contextPath%>/platform/login';
                     }, 3000);
