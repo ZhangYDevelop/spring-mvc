@@ -40,7 +40,7 @@
                                 } },
                             { field: 'operate', title: '操作', align: 'center', events : operateEvents, formatter: function () {
                                     return [
-                                        ' <div class="btn-group"> <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" ></i>修改</button> <button type="button" class="btn btn-info"><i class="fa fa-trash-o" ></i>删除</button> </div>'
+                                        ' <div class="btn-group"> <button  type="button" class="btn btn-info RoleOfedit" ><i class="fa fa-pencil-square-o" ></i>修改</button> <button type="button" class="btn btn-info RoleOfdelete" ><i class="fa fa-trash-o" ></i>删除</button> </div>'
                                     ].join('');
                                 } },
                         ],
@@ -104,14 +104,20 @@
         })
         //初始化操作按钮的方法
         window.operateEvents = {
-            'click .RoleOfadd': function (e, value, row, index) {
-                add(row.id);
-            },
             'click .RoleOfdelete': function (e, value, row, index) {
-                del(row.id);
+                debugger
+                MessageHelp.confirm({message: '确定删除？'}).on(function (success) {
+                    if(success) {
+                        var url = '<%=contextPath%>/platform/sysmodule/delModel';
+                        $http.post(url, {}, {params: {id: row.id}}).then(function (res) {
+                            MessageHelp.alert({message: "保存成功"});
+                            $('#modal-default').modal('hide');
+                        });
+                    }
+                })
+
             },
             'click .RoleOfedit': function (e, value, row, index) {
-                update(row.id);
             }
         };
 

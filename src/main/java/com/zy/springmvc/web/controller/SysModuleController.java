@@ -57,7 +57,7 @@ public class SysModuleController {
      */
     @RequestMapping("/sysmodule/addModel")
     @ResponseBody
-    public String getSysModule(@RequestParam Map map) {
+    public String addModel(@RequestParam Map map) {
         try {
             SysModule sysUser  = MapUtils.map2bean(map, SysModule.class);
             sysUser.setId(UUID.randomUUID().toString());
@@ -65,11 +65,25 @@ public class SysModuleController {
             Result result= new Result();
             result.setSuccess(true);
             result.setData(sysUser);
-            return JSONObject.toJSON(sysUser).toString() ;
+            return JSONObject.toJSON(result).toString() ;
         } catch (Exception e) {
             e.printStackTrace();
         }
        return  null;
+    }
+
+    /**
+     * 新增模块
+     * @return
+     */
+    @RequestMapping("/sysmodule/delModel")
+    @ResponseBody
+    public String delSysModule(@RequestParam Map map) {
+       String id = (String)map.get("id");
+       sysModuleService.deleteByPrimaryKey(id);
+        Result result= new Result();
+        result.setSuccess(true);
+        return JSONObject.toJSON(result).toString() ;
     }
 
 }
