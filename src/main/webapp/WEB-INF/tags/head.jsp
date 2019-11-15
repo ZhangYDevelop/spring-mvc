@@ -34,6 +34,8 @@ folder instead of downloading all of them to reduce the load. -->
 
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/jquery.treegrid.min.css">
 
+<link rel="stylesheet" href="<%=contextPath%>/resources/css/bootstrap-treeselect/bootstrap-select.min.css">
+
 <!-- Google Font -->
 <link rel="stylesheet"
       href="<%=contextPath%>/resources/css/css.css">
@@ -85,3 +87,4 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="<%=contextPath%>/resources/js/bootstrap-table-treegrid.js"></script>
 <script src="<%=contextPath%>/resources/js/jquery.treegrid.min.js"></script>
 <script src="<%=contextPath%>/resources/js/message/message.js"></script>
+<script src="<%=contextPath%>/resources/js/bootstrap-treeselect/bootstrap-select.min.js"></script>

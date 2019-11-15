@@ -412,7 +412,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <iframe id="contentIframe" style="height: 88%;width: 100%;border: 0px;margin-top: 10px;"></iframe>
+            <iframe id="contentIframe" style="height: 88%;width: 100%;border: 0px;margin-top: 5px;"></iframe>
         </section>
         <!-- /.content -->
     </div>
