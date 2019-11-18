@@ -1,6 +1,8 @@
 package com.zy.springmvc.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zy.springmvc.common.MapUtils;
 import com.zy.springmvc.domain.Result;
 import com.zy.springmvc.domain.SysModule;
@@ -129,8 +131,14 @@ public class UserController {
 
     @RequestMapping("/user/userinfo")
     @ResponseBody
-    public String getAllUser() {
-       return JSONObject.toJSONString(userService.getAllUser());
+    public  String getAllUser() {
+        int currentPage = 0;
+        int size = 3;
+        PageHelper.startPage(currentPage, size, true);//currentPage 当前页码，size 每页量
+        PageHelper.orderBy("created_date desc");//排序
+        List<SysUser> list = userService.getAllUser();
+        PageInfo pageInfo = new PageInfo<SysUser>(list);
+        return JSONObject.toJSONString(pageInfo);
     }
 
 }
