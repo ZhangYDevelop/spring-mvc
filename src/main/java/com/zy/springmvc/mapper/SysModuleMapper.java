@@ -23,7 +23,7 @@ public interface SysModuleMapper {
      * 根据查询菜单列表
      * @return
      */
-    List<ModulePermissionUserRelation> getAllSysModule();
+    List<SysModule> getAllSysModule();
 
     /**
      * 根据用户名查询用户拥有的菜单列表

@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -37,9 +34,26 @@ public class SysModuleController {
     @RequestMapping("/sysmodule/getAllSysModule")
     @ResponseBody
     public String getSysModule() {
-        //SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<ModulePermissionUserRelation> sysModulesList =  sysModuleService.getAllSysModule();
+        List<SysModule> sysModulesList =  sysModuleService.getAllSysModule();
         return JSONObject.toJSON(sysModulesList).toString() ;
+    }
+
+    @RequestMapping("/sysmodule/getAllSysModuleJson")
+    @ResponseBody
+    public String getSysModuleJson() {
+        List<SysModule> sysModulesList =  sysModuleService.getAllSysModule();
+        List<SysModule> parentList = sysModulesList.stream().filter(item -> "0".equals(item.getParentModule())).collect(Collectors.toList());
+        List<Map<String, Object>> retList = new ArrayList<>();
+        for (SysModule item : parentList) {
+             Map<String, Object> map = new HashMap<>();
+             map.put("moduleName", item.getModuleName());
+             map.put("id", item.getId());
+             List<SysModule> children = new ArrayList<>();
+             children = sysModulesList.stream().filter(data -> data.getParentModule().equals(item.getId())).collect(Collectors.toList());
+             map.put("childern", children);
+             retList.add(map);
+        }
+        return JSONObject.toJSON(retList).toString() ;
     }
 
     /**

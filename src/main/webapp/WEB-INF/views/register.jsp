@@ -25,6 +25,7 @@
     <script src="<%=contextPath%>/resources/js/encrypt/md5.js"></script>
     <script src="<%=contextPath%>/resources/js/icheck.min.js"></script>
     <script src="<%=contextPath%>/resources/js/angular-1.5.8/angular.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/message/message.js"></script>
 </head>
 <body class="hold-transition register-page" style="background: #74cee4;">
 <div class="register-box" ng-app="myApp" ng-controller="formCtrl">

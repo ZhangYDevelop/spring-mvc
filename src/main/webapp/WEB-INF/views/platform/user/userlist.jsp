@@ -10,38 +10,48 @@
     <title>Title</title>
     <jsp:include page="/WEB-INF/tags/head.jsp"></jsp:include>
     <script type="text/javascript">
-        var app = angular.module('tableApp', []);
-        app.controller('tableAppCtl', function ($scope, $http) {
+        <%--var app = angular.module('tableApp', []);--%>
+        <%--app.controller('tableAppCtl', function ($scope, $http) {--%>
+            <%--$scope.pageInfo = {};--%>
+            <%--// 获取菜单数据--%>
+            <%--$scope.getUserList = function () {--%>
+                <%--var url = '<%=contextPath%>/platform/user/userinfo';--%>
+                <%--$http.post(url, {}, {}).then(function (res) {--%>
+                    <%--debugger--%>
+                    <%--$scope.pageInfo = res.data;--%>
+                <%--});--%>
+            <%--};--%>
+            <%--$scope.getUserList();--%>
+        <%--})--%>
+        APP.controller('formCtl', function($scope, $http) {
+            var ctrl = this;
             $scope.pageInfo = {};
+            $scope.currentPage = 1;
+            $scope.itemCntEachPage = 2;
             // 获取菜单数据
             $scope.getUserList = function () {
                 var url = '<%=contextPath%>/platform/user/userinfo';
-                $http.post(url, {}, {}).then(function (res) {
-                    debugger
+                var page = $scope.currentPage - 1;
+                $scope.param = {page: page, pageSize: $scope.itemCntEachPage };
+                $http.get(url, {params: $scope.param}).then(function (res) {
                     $scope.pageInfo = res.data;
+                    $scope.itemCnt = res.data.total;
                 });
             };
-            $scope.getUserList();
-        })
-        APP.controller('formCtl', function() {
-            var ctrl = this;
-
-            ctrl.itemCnt = 100;
-            ctrl.currentPage = 1;
-            ctrl.itemCntEachPage = 10;
-
-            ctrl.onChange = function() {
+            $scope.onChange = function(value) {
                 console.log(ctrl.currentPage);
+                $scope.getUserList();
             };
+
         });
 
-        $(function () {
-            angular.bootstrap(document.getElementById("pageNation"),['pageNation']);
-        })
+        // $(function () {
+        //     angular.bootstrap(document.getElementById("pageNation"),['pageNation']);
+        // })
     </script>
 </head>
-<body >
-    <table id="example1" class="table table-bordered table-striped" ng-app="tableApp" ng-controller="tableAppCtl as ctrl">
+<body ng-app="pageNation" ng-controller="formCtl as ctrl" id ="pageNation">
+    <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th>用户名</th>
@@ -57,18 +67,18 @@
             <td>{{item.username}}  </td>
             <td>{{item.user_phone}}</td>
             <td> {{item.user_email}}</td>
-            <td>{{item.created_date}}</td>
+            <td>{{item.created_time | date:'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
         </tbody>
     </table>
-     <div style="float: right;margin-right:20px;" ng-app="pageNation" ng-controller="formCtl as ctrl" id ="pageNation">
+     <div style="float: right;margin-right:20px;" >
          <pagination
-                 pg-item-cnt="ctrl.itemCnt"
-                 pg-current="ctrl.currentPage"
-                 pg-on-change="ctrl.onChange()"
+                 pg-item-cnt="itemCnt"
+                 pg-current="currentPage"
+                 pg-on-change="onChange()"
                  pg-home-text="首页"
                  pg-end-text="尾页"
-                 pg-item-cnt-each-page="ctrl.itemCntEachPage">
+                 pg-item-cnt-each-page="itemCntEachPage">
          </pagination>
      </div>
 </body>

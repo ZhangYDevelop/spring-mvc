@@ -12,8 +12,8 @@
     <script type="text/javascript">
         var app = angular.module('myApp', []);
         app.controller('formCtrl', function ($scope, $http) {
-            $scope.moduleObject = {};
             $scope.dataList = [];
+            $scope.moduleObject = {};
             // 获取菜单数据
             $scope.getModuleList = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModule';
@@ -108,18 +108,6 @@
                     },
                     formatNoMatches: function () {  //没有匹配的结果
                         return '无符合条件的记录';
-                    },
-                    onLoadSuccess: function (data) {
-                        debugger
-                        var temp =  data.filter(function (value) { return value.parentModule == '-1' });
-                        temp.forEach(function (value) {
-                          var childern =   data.filter(function (data) {
-                                return data.parentModule == value.id;
-                            })
-
-                            value['childern'] = childern;
-                        })
-                        $scope.dataList = temp;
                     }
                 });
             }
@@ -132,12 +120,22 @@
                     $('#modal-default').modal('hide');
                 });
             }
+
+            $scope.getTree = function () {
+                var url = '<%=contextPath%>/platform/sysmodule/getAllSysModuleJson'
+                $http.get(url, {}, {}).then(function (value) {
+                    debugger
+                    $scope.dataList = value.data;
+                })
+            }
+            $scope.getTree();
+
         })
 
 
     </script>
 </head>
-<body ng-app="myApp" ng-controller="formCtrl">
+<body ng-app="myApp" ng-controller="formCtrl as modulePage">
 <table id="example1" class="table table-bordered table-striped"></table>
 <div id="toolbar">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default"><i
@@ -156,36 +154,34 @@
                 <div class="box-body">
                     <div class="form-group" style="height: 35px;">
 
-                            <label for="moduleName" class="col-sm-2 control-label">模块名称：</label>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="moduleName"  ng-model="moduleObject.moduleName">
-                            </div>
-                            <label for="moduleUrl" class="col-sm-2 control-label">模块名称：</label>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="moduleUrl" ng-model="moduleObject.moduleUrl">
-                            </div>
+                        <label for="moduleName" class="col-sm-2 control-label">模块名称：</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="moduleName" ng-model="moduleObject.moduleName">
+                        </div>
+                        <label for="moduleUrl" class="col-sm-2 control-label">模块名称：</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="moduleUrl" ng-model="moduleObject.moduleUrl">
+                        </div>
 
                     </div>
                     <div class="form-group" style="height: 35px;">
-                            <label for="moduleIcon" class="col-sm-2 control-label">图标：</label>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="moduleIcon"  ng-model="moduleObject.moduleIcon">
-                            </div>
-                            <label for="orderNum" class="col-sm-2 control-label">序号：</label>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="orderNum" ng-model="moduleObject.orderNum">
-                            </div>
+                        <label for="moduleIcon" class="col-sm-2 control-label">图标：</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="moduleIcon" ng-model="moduleObject.moduleIcon">
+                        </div>
+                        <label for="orderNum" class="col-sm-2 control-label">序号：</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="orderNum" ng-model="moduleObject.orderNum">
+                        </div>
                     </div>
                     <div class="form-group" style="height: 35px;">
                         <label for="moduleIcon" class="col-sm-2 control-label">父节点：</label>
                         <div class="col-sm-4">
-                            <%--<input type="email" class="form-control" id="parentModule"  ng-model="moduleObject.parentModule">--%>
-                            <%--<div id="parentModuleTreeView"></div>--%>
-                                <select class="selectpicker" ng-model="moduleObject.parentModule">
-                                    <optgroup label="{{item.moduleName}}"  ng-repeat="item in headList">
-                                        <option  ng-repeat="child in item.childern">{{child.moduleName}}</option>
-                                    </optgroup>
-                                </select>
+                            <select class="selectpicker" ng-model="moduleObject.parentModule">
+                                <optgroup label="{{item.moduleName}}" ng-options="item in dataList">
+                                    <option ng-options="child in item.childern">{{child.moduleName}}</option>
+                                </optgroup>
+                            </select>
                         </div>
                         <label class="col-sm-2 control-label">是否有效：</label>
                         <div class="col-sm-4">

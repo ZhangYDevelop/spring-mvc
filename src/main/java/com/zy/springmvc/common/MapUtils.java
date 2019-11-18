@@ -51,7 +51,7 @@ public class MapUtils {
         for (PropertyDescriptor pd : list) {
             String key = pd.getName();    //获取属性名
             Object value=map.get(key);  //获取属性值
-            pd.getWriteMethod().invoke(obj, value);//调用属性setter()方法,设置到javabean对象当中
+            if (null != value) pd.getWriteMethod().invoke(obj, value);//调用属性setter()方法,设置到javabean对象当中
         }
         return obj;
     }

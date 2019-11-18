@@ -2,6 +2,7 @@ package com.zy.springmvc;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zy.springmvc.domain.ModulePermissionUserRelation;
+import com.zy.springmvc.domain.SysModule;
 import com.zy.springmvc.domain.SysUser;
 import com.zy.springmvc.mapper.SysModuleMapper;
 import com.zy.springmvc.mapper.SysUserMapper;
@@ -31,7 +32,7 @@ public class UserMapperTest {
 
     @Test
     public void testMenu() {
-        List<ModulePermissionUserRelation> lsit =  sysModuleMapper.getAllSysModule();
+        List<SysModule> lsit =  sysModuleMapper.getAllSysModule();
         System.out.println(lsit.toString());
     }
 

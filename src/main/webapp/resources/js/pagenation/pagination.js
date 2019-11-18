@@ -8,7 +8,7 @@ APP.directive('pagination', function() {
 
         template: [
             '<div class="ng-pagination">',
-            '    <nav ng-show="pageNums.length > 1">',
+            '    <nav ng-show="pageNums.length >= 1">',
             '        <ul class="pagination">',
             '            <li ng-click="goToPage(1)">',
             '                <a href="javascript:;" aria-label="Previous">',

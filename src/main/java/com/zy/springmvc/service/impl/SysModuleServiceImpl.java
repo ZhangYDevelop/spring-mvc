@@ -51,7 +51,7 @@ public class SysModuleServiceImpl implements SysModuleService {
     }
 
     @Override
-    public List<ModulePermissionUserRelation> getAllSysModule() {
+    public List<SysModule> getAllSysModule() {
         return sysModuleMapper.getAllSysModule();
     }
 

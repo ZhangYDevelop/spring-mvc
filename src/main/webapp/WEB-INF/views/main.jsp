@@ -80,7 +80,7 @@
                 var parent = thisClone.menuList.find(function (data) {
                     return data.id ==  item.parentModule;
                 })
-                $.headList = [];
+                $scope.headList = [];
                 $scope.headList.push(parent.moduleName);
                 $scope.headList.push(item.moduleName);
             }
