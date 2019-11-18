@@ -15,7 +15,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <jsp:include page="/WEB-INF/tags/head.jsp"></jsp:include>
     <script type="text/javascript">
-        var app = angular.module('myApp', []);
+        var app = angular.module('mainApp', []);
         app.controller('formCtrl', function ($scope, $http) {
             var thisClone = this;
             $scope.menuParam = {moduleName: ''};
@@ -90,7 +90,7 @@
 
     </script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini" ng-app="myApp" ng-controller="formCtrl as menu">
+<body class="hold-transition skin-blue sidebar-mini" ng-app="mainApp" ng-controller="formCtrl as menu">
 <div class="wrapper">
 
     <header class="main-header">
