@@ -27,11 +27,11 @@
             var ctrl = this;
             $scope.pageInfo = {};
             $scope.currentPage = 1;
-            $scope.itemCntEachPage = 2;
+            $scope.itemCntEachPage = 10;
             // 获取菜单数据
             $scope.getUserList = function () {
                 var url = '<%=contextPath%>/platform/user/userinfo';
-                var page = $scope.currentPage - 1;
+                var page = $scope.currentPage;
                 $scope.param = {page: page, pageSize: $scope.itemCntEachPage };
                 $http.get(url, {params: $scope.param}).then(function (res) {
                     $scope.pageInfo = res.data;

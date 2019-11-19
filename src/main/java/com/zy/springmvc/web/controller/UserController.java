@@ -134,7 +134,7 @@ public class UserController {
     public  String getAllUser(@RequestParam Map map) {
         int currentPage = Integer.parseInt((String) map.get("page"));
         int size = Integer.parseInt((String)map.get("pageSize"));
-        PageHelper.startPage(currentPage, size, true);//currentPage 当前页码，size 每页量
+        PageHelper.startPage(currentPage, size);//currentPage 当前页码，size 每页量
         PageHelper.orderBy("created_date desc");//排序
         List<SysUser> list = userService.getAllUser();
         PageInfo pageInfo = new PageInfo<SysUser>(list);
