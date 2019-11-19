@@ -124,7 +124,6 @@
             $scope.getTree = function () {
                 var url = '<%=contextPath%>/platform/sysmodule/getAllSysModuleJson'
                 $http.get(url, {}, {}).then(function (value) {
-                    debugger
                     $scope.dataList = value.data;
                 })
             }
@@ -158,7 +157,7 @@
                         <div class="col-sm-4">
                             <input type="email" class="form-control" id="moduleName" ng-model="moduleObject.moduleName">
                         </div>
-                        <label for="moduleUrl" class="col-sm-2 control-label">模块名称：</label>
+                        <label for="moduleUrl" class="col-sm-2 control-label">模块路径：</label>
                         <div class="col-sm-4">
                             <input type="email" class="form-control" id="moduleUrl" ng-model="moduleObject.moduleUrl">
                         </div>
@@ -177,10 +176,14 @@
                     <div class="form-group" style="height: 35px;">
                         <label for="moduleIcon" class="col-sm-2 control-label">父节点：</label>
                         <div class="col-sm-4">
-                            <select class="selectpicker" ng-model="moduleObject.parentModule">
-                                <optgroup label="{{item.moduleName}}" ng-options="item in dataList">
-                                    <option ng-options="child in item.childern">{{child.moduleName}}</option>
-                                </optgroup>
+                            <%--<select class="selectpicker" ng-model="moduleObject.parentModule">--%>
+                                <%--&lt;%&ndash;<optgroup label="{{item.moduleName}}" ng-options="item in dataList">&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<option ng-options="child in item.childern">{{child.moduleName}}</option>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</optgroup>&ndash;%&gt;--%>
+                                    <%--<option ng-options="item in dataList">{{item.moduleName}}</option>--%>
+                            <%--</select>--%>
+                            <select  ng-model="moduleObject.parentModule" style="width: 160px;" >
+                                <option ng-repeat="x in dataList" value="{{x.id}}">{{x.moduleName}}</option>
                             </select>
                         </div>
                         <label class="col-sm-2 control-label">是否有效：</label>
