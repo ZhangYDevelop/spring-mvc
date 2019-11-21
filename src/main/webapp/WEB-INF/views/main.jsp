@@ -4,9 +4,12 @@
     String path = request.getContextPath();
     String contextPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
     request.setAttribute("contextPath", contextPath);
-    String authencationStr = (String) request.getSession().getAttribute("access_token");
-    Map map = (Map) JSON.parse(authencationStr);
-    Map userMap = (Map) map.get("principal"); //用户信息
+    Map userMap = null;
+    if (null != request.getSession().getAttribute("access_token")) {
+        String authencationStr = (String) request.getSession().getAttribute("access_token");
+        Map map = (Map) JSON.parse(authencationStr);
+        userMap = (Map) map.get("principal"); //用户信息
+    }
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html >
@@ -75,14 +78,18 @@
 
             }
             $scope.menuClick = function (item) {
-                $("#contentIframe").attr("src", "<%=contextPath%>" + item.moduleUrl);
-                // 处理面包屑数据
-                var parent = thisClone.menuList.find(function (data) {
-                    return data.id ==  item.parentModule;
-                })
-                $scope.headList = [];
-                $scope.headList.push(parent.moduleName);
-                $scope.headList.push(item.moduleName);
+                debugger
+                if (item.moduleUrl) {
+                    $("#contentIframe").attr("src", "<%=contextPath%>" + item.moduleUrl);
+                    // 处理面包屑数据
+                    var parent = thisClone.menuList.find(function (data) {
+                        return data.id ==  item.parentModule;
+                    })
+                    $scope.headList = [];
+                    $scope.headList.push(parent.moduleName);
+                    $scope.headList.push(item.moduleName);
+                }
+
             }
             $scope.getMenueInfo();
         });
@@ -384,8 +391,8 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!--循环树结构-->
                 <li class="treeview" ng-repeat="item in menu.menuList">
-                    <a href="#">
-                        <i class="fa {{item.moduleIcon}}"></i> <span>{{item.moduleName}}</span>
+                    <a href="#" ng-click="menuClick(item)">
+                        <i class="fa {{item.moduleIcon}}" ></i> <span>{{item.moduleName}}</span>
                         <span class="pull-right-container"  ng-show ="item.childern.length > 0">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
