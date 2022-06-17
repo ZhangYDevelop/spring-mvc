@@ -16,7 +16,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <spring.version>5.1.7.RELEASE</spring.version>
         <aspectj>1.9.2</aspectj>
-        <fastjson>1.2.47</fastjson>
+        <fastjson>1.2.83</fastjson>
         <spring.security>4.2.3.RELEASE</spring.security>
         <jstl>1.2</jstl>
     </properties>
